@@ -7,7 +7,6 @@ def build_standalone_html():
     md_path = os.path.join(base_dir, "Predictive_RL_DVFS_Research_Paper.md")
     img_path = os.path.join(base_dir, "results", "benchmark_performance_comparison.png")
     out_html = os.path.join(base_dir, "IEEE_Predictive_RL_DVFS_Research_Paper.html")
-    artifact_html = os.path.join(r"C:\Users\saisr\.gemini\antigravity-ide\brain\92f7ea13-7b89-4863-ac91-5f0810687e77", "IEEE_Predictive_RL_DVFS_Research_Paper.html")
 
     # Read base64 image
     with open(img_path, "rb") as f:
@@ -157,10 +156,6 @@ def build_standalone_html():
 
     with open(out_html, "w", encoding="utf-8") as f:
         f.write(html_content)
-
-    if os.path.exists(os.path.dirname(artifact_html)):
-        with open(artifact_html, "w", encoding="utf-8") as f:
-            f.write(html_content)
 
     print(f"Successfully generated HTML with embedded base64 image at: {out_html}")
 

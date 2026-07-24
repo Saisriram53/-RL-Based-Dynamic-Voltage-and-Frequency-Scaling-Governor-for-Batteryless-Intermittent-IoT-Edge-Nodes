@@ -4,13 +4,14 @@ from gymnasium import spaces
 
 class EnergyHarvestingDVFSEnv(gym.Env):
     """
-    Advanced Physics-Informed Gymnasium environment modeling an intermittent, 
-    batteryless IoT node with Supercapacitor ESR, PLL Clock Lock Latency, 
-    Thermal Leakage Drift, and Domain Randomization for Sim-to-Real Transfer.
+    Advanced Physics-Informed Gymnasium environment modeling a Partially Observable
+    Markov Decision Process (POMDP) for an intermittent, batteryless IoT node with
+    Supercapacitor ESR I^2 R losses, PLL Clock Lock Latency, Thermal Leakage Drift, 
+    and Domain Randomization for Sim-to-Real Transfer.
     """
     metadata = {'render_modes': ['human']}
 
-    def __init__(self, profile='standard_cloudy', domain_randomization=True):
+    def __init__(self, profile='standard_cloudy', domain_randomization=True, C_supercap=0.010):
         super(EnergyHarvestingDVFSEnv, self).__init__()
         
         # 1. Frequency Steps (MHz) & Core Voltages (Volts)
@@ -19,12 +20,12 @@ class EnergyHarvestingDVFSEnv(gym.Env):
         self.action_space = spaces.Discrete(len(self.freq_steps))
         
         # 2. Physical Hardware Parameters
-        self.C_supercap = 0.010     # 10 mF Supercapacitor capacitance
-        self.V_max = 3.3           # Maximum operating voltage ceiling
-        self.V_brownout = 1.8      # Crash threshold (SRAM reset)
-        self.alpha_CL = 1e-10      # Effective capacitance switching load (100 pF)
-        self.base_P_leakage = 0.002# Static baseline leakage (2 mW)
-        self.R_esr_base = 0.5      # 0.5 Ohm Supercapacitor Equivalent Series Resistance (ESR)
+        self.C_supercap = float(C_supercap) # Configurable Supercapacitor capacitance (F)
+        self.V_max = 3.3                   # Maximum operating voltage ceiling
+        self.V_brownout = 1.8              # Crash threshold (SRAM reset)
+        self.alpha_CL = 1e-10              # Effective capacitance switching load (100 pF)
+        self.base_P_leakage = 0.002        # Static baseline leakage (2 mW)
+        self.R_esr_base = 0.5              # 0.5 Ohm Supercapacitor Equivalent Series Resistance (ESR)
         self.domain_randomization = domain_randomization
         
         # 3. Observation Space: [V_terminal (V), Task Queue Length, Harvested Power (W), dP_harvested (W), Prev_Action_Norm]
@@ -44,7 +45,7 @@ class EnergyHarvestingDVFSEnv(gym.Env):
             trace = 0.02 * np.sin(t) + 0.025
             trace[40:85] = 0.002  # 45-step heavy cloud drop (2 mW harvested)
         elif self.profile == 'volatile':
-            trace = 0.02 * np.sin(t) + 0.025 + 0.005 * np.random.randn(self.max_steps)
+            trace = 0.02 * np.sin(t) + 0.025 + 0.005 * self.np_random.normal(0, 1, self.max_steps)
             trace[40:85] = 0.002
         elif self.profile == 'clear_day':
             trace = 0.03 * np.sin(t) + 0.035
@@ -56,9 +57,7 @@ class EnergyHarvestingDVFSEnv(gym.Env):
 
     def reset(self, seed=None, options=None):
         super().reset(seed=seed)
-        if seed is not None:
-            np.random.seed(seed)
-            
+        
         self.V_cap = 3.0           # Fully charged initial state (3.0 V)
         self.queue_length = 25.0   # Pending task queue
         self.time_step = 0
@@ -66,10 +65,10 @@ class EnergyHarvestingDVFSEnv(gym.Env):
         self.prev_p_harvested = 0.025
         self.solar_trace = self._generate_solar_profile()
         
-        # Apply Domain Randomization across episodes
+        # Apply Domain Randomization across episodes using Gymnasium isolated RNG
         if self.domain_randomization:
-            self.R_esr = np.random.uniform(0.3, 0.7)         # ESR varies between 0.3 - 0.7 Ohm
-            self.P_leakage = np.random.uniform(0.0015, 0.0025)# Leakage varies between 1.5 - 2.5 mW
+            self.R_esr = float(self.np_random.uniform(0.3, 0.7))         # ESR varies between 0.3 - 0.7 Ohm
+            self.P_leakage = float(self.np_random.uniform(0.0015, 0.0025))# Leakage varies between 1.5 - 2.5 mW
         else:
             self.R_esr = self.R_esr_base
             self.P_leakage = self.base_P_leakage
@@ -94,15 +93,18 @@ class EnergyHarvestingDVFSEnv(gym.Env):
         P_dynamic = self.alpha_CL * (v_dd ** 2) * freq
         P_consumed = P_dynamic + self.P_leakage
         
-        # 2. Energy-Conserving Supercapacitor Differential Integration (E = 0.5 * C * V^2)
+        # 2. Energy-Conserving Supercapacitor Differential Integration with ESR I^2 R Loss
+        I_load = P_consumed / max(1.0, self.V_cap)
+        P_esr_loss = (I_load ** 2) * self.R_esr
+        P_total_drain = P_consumed + P_esr_loss
+        
         P_harvested = self.solar_trace[self.time_step % len(self.solar_trace)]
-        delta_energy = (P_harvested - P_consumed) * dt
+        delta_energy = (P_harvested - P_total_drain) * dt
         current_energy = 0.5 * self.C_supercap * (self.V_cap ** 2)
         new_energy = max(0.0, current_energy + delta_energy)
         self.V_cap = float(np.clip(np.sqrt((2.0 * new_energy) / self.C_supercap), 0.0, self.V_max))
         
         # 3. Terminal Voltage under ESR Drop after load integration
-        I_load = P_consumed / max(1.0, self.V_cap)
         V_terminal = float(max(0.0, self.V_cap - (I_load * self.R_esr)))
         
         # 4. Task Queue Dynamics with Physical 50us PLL Lock Delay Overhead (0.05% penalty)
@@ -111,8 +113,8 @@ class EnergyHarvestingDVFSEnv(gym.Env):
         tasks_processed_actual = min(self.queue_length, tasks_processed)
         self.queue_length = max(0.0, self.queue_length - tasks_processed_actual)
         
-        # Poisson task arrival (capped strictly at 200.0 to satisfy Gymnasium observation space bounds)
-        incoming_tasks = np.random.poisson(lam=4.0)
+        # Poisson task arrival using Gymnasium isolated RNG
+        incoming_tasks = int(self.np_random.poisson(lam=4.0))
         self.queue_length = float(min(200.0, self.queue_length + incoming_tasks))
         
         # 5. Reward & Crash Evaluation (Evaluated on Terminal Voltage under ESR drop)

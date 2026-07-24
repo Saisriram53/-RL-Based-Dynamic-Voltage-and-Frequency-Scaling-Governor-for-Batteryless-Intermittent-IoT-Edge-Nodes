@@ -14,6 +14,7 @@ def run_episode(env, governor):
     done = False
     
     v_cap_history = []
+    v_terminal_history = []
     freq_history = []
     queue_history = []
     p_harvest_history = []
@@ -40,6 +41,7 @@ def run_episode(env, governor):
         done = terminated or truncated
         
         v_cap_history.append(info['v_cap'])
+        v_terminal_history.append(info['v_terminal'])
         freq_history.append(freq_map[action])
         queue_history.append(obs[1])
         p_harvest_history.append(info['p_harvested'])
@@ -53,6 +55,7 @@ def run_episode(env, governor):
             
     return {
         'v_cap': v_cap_history,
+        'v_terminal': v_terminal_history,
         'freq': freq_history,
         'queue': queue_history,
         'p_harvest': p_harvest_history,
@@ -172,19 +175,37 @@ def benchmark_and_plot():
         print(f"{name:<20} | {m['crash_rate']:<18.1f} | {tp_str:<30} | {q_str:<20}")
     print("=============================================================================\n")
 
-    # Wilcoxon Signed-Rank Test between PPO and Static Threshold Queue Backlog
-    if 'Proposed PPO RL' in raw_queue_data and 'Static Threshold' in raw_queue_data:
-        from scipy.stats import wilcoxon
-        stat, p_val = wilcoxon(raw_queue_data['Proposed PPO RL'], raw_queue_data['Static Threshold'])
-        print(f"Wilcoxon Signed-Rank Test (PPO vs Static Threshold Latency): W = {stat:.1f}, p = {p_val:.6e}")
-        if p_val < 0.001:
-            print("--> Statistically significant latency reduction achieved by PPO (p < 0.001)!\n")
+    # 1.5 Multi-Seed PPO Training Convergence Evaluation
+    ppo_seed_backlogs = []
+    for s in range(5):
+        sp = os.path.join(models_dir, f"ppo_dvfs_seed_{s}.zip")
+        if os.path.exists(sp):
+            m_s = PPO.load(sp)
+            q_s = []
+            for seed in range(30):
+                e_s = EnergyHarvestingDVFSEnv(profile='standard_cloudy')
+                o_s, _ = e_s.reset(seed=100 + seed)
+                d_s = False
+                ql_s = []
+                while not d_s:
+                    a_res = m_s.predict(o_s, deterministic=True)
+                    a_s = int(a_res[0].item()) if isinstance(a_res[0], np.ndarray) else int(a_res[0])
+                    o_s, r_s, term_s, trunc_s, inf_s = e_s.step(a_s)
+                    d_s = term_s or trunc_s
+                    ql_s.append(o_s[1])
+                q_s.append(np.mean(ql_s))
+            ppo_seed_backlogs.append(np.mean(q_s))
+            
+    if ppo_seed_backlogs:
+        print(f"Multi-Seed PPO Training Convergence (5 Training Seeds): Mean Backlog = {np.mean(ppo_seed_backlogs):.2f} ± {np.std(ppo_seed_backlogs):.2f} tasks across independent training runs.")
 
-    # Multi-Profile Sensitivity Analysis
-    print("================ MULTI-PROFILE SENSITIVITY ANALYSIS ================")
-    print(f"{'Profile Scenario':<18} | {'Governor':<18} | {'Crash Rate (%)':<15} | {'Avg Latency':<15}")
-    print("-" * 72)
+    # 1.6 Multi-Profile Sensitivity Analysis & CSV Export
+    print("\n================ MULTI-PROFILE SENSITIVITY ANALYSIS ================")
+    print(f"{'Profile Scenario':<18} | {'Governor':<18} | {'Crash Rate (%)':<15} | {'Mean Queue Backlog':<20}")
+    print("-" * 76)
     profiles = ['standard_cloudy', 'volatile', 'clear_day']
+    sens_csv_rows = []
+    
     for p in profiles:
         for name in ['Powersave', 'Static Threshold', 'Proposed PPO RL']:
             if name not in governors:
@@ -197,6 +218,8 @@ def benchmark_and_plot():
                 o_p, _ = e_p.reset(seed=200 + seed)
                 d_p = False
                 ql = []
+                t_tasks_p = 0
+                steps_p = 0
                 while not d_p:
                     try:
                         a_res = gov.predict(o_p, deterministic=True)
@@ -207,11 +230,92 @@ def benchmark_and_plot():
                     o_p, r_p, term_p, trunc_p, inf_p = e_p.step(a_p)
                     d_p = term_p or trunc_p
                     ql.append(o_p[1])
+                    t_tasks_p += inf_p['tasks_processed']
+                    steps_p += 1
                     if inf_p['brownout']:
                         c_cnt += 1
                 q_list.append(np.mean(ql))
+                sens_csv_rows.append({
+                    'profile': p,
+                    'governor': name,
+                    'seed': 200 + seed,
+                    'crashed': inf_p['brownout'],
+                    'mean_queue_backlog': np.mean(ql),
+                    'total_tasks': t_tasks_p,
+                    'active_steps': steps_p
+                })
             print(f"{p:<18} | {name:<18} | {(c_cnt/30)*100:<15.1f} | {np.mean(q_list):<15.1f} ± {np.std(q_list):.1f}")
     print("====================================================================\n")
+
+    sens_csv_path = os.path.join(results_dir, "sensitivity_raw_results.csv")
+    if sens_csv_rows:
+        keys = sens_csv_rows[0].keys()
+        with open(sens_csv_path, 'w', newline='') as f:
+            dict_writer = csv.DictWriter(f, fieldnames=keys)
+            dict_writer.writeheader()
+            dict_writer.writerows(sens_csv_rows)
+    print(f"Saved raw sensitivity trial data to: {sens_csv_path}")
+
+    # 1.7 Supercapacitor Capacitance Sensitivity Sweep (5 mF, 10 mF, 30 mF, 50 mF)
+    print("\n================ SUPERCAPACITOR CAPACITANCE SWEEP STUDY ================")
+    print(f"{'Capacitance (mF)':<18} | {'Governor':<18} | {'Crash Rate (%)':<15} | {'Mean Queue Backlog':<20}")
+    print("-" * 76)
+    cap_values = [0.005, 0.010, 0.030, 0.050] # 5mF, 10mF, 30mF, 50mF
+    cap_csv_rows = []
+    
+    for c_val in cap_values:
+        c_mf = int(c_val * 1000)
+        for name in ['Always-Max', 'Powersave', 'Static Threshold', 'Proposed PPO RL']:
+            if name not in governors:
+                continue
+            gov = governors[name]
+            c_cnt = 0
+            q_list = []
+            for seed in range(30):
+                e_c = EnergyHarvestingDVFSEnv(profile='standard_cloudy', C_supercap=c_val)
+                o_c, _ = e_c.reset(seed=300 + seed)
+                d_c = False
+                ql = []
+                t_tasks_c = 0
+                steps_c = 0
+                crashed_c = False
+                while not d_c:
+                    try:
+                        a_res = gov.predict(o_c, deterministic=True)
+                    except TypeError:
+                        a_res = gov.predict(o_c)
+                    a_c = a_res[0] if isinstance(a_res, tuple) else a_res
+                    a_c = int(a_c.item()) if isinstance(a_c, np.ndarray) else int(a_c)
+                    o_c, r_c, term_c, trunc_c, inf_c = e_c.step(a_c)
+                    d_c = term_c or trunc_c
+                    ql.append(o_c[1])
+                    t_tasks_c += inf_c['tasks_processed']
+                    steps_c += 1
+                    if inf_c['brownout']:
+                        crashed_c = True
+                if crashed_c:
+                    c_cnt += 1
+                q_list.append(np.mean(ql))
+                cap_csv_rows.append({
+                    'C_supercap_mF': c_mf,
+                    'governor': name,
+                    'seed': 300 + seed,
+                    'crashed': crashed_c,
+                    'mean_queue_backlog': np.mean(ql),
+                    'total_tasks': t_tasks_c,
+                    'active_steps': steps_c
+                })
+            print(f"{c_mf:<18.0f} | {name:<18} | {(c_cnt/30)*100:<15.1f} | {np.mean(q_list):<15.1f} ± {np.std(q_list):.1f}")
+    print("========================================================================\n")
+
+    cap_csv_path = os.path.join(results_dir, "capacitance_sweep_raw_results.csv")
+    if cap_csv_rows:
+        keys = cap_csv_rows[0].keys()
+        with open(cap_csv_path, 'w', newline='') as f:
+            dict_writer = csv.DictWriter(f, fieldnames=keys)
+            dict_writer.writeheader()
+            dict_writer.writerows(cap_csv_rows)
+    print(f"Saved raw capacitance sweep trial data to: {cap_csv_path}")
 
     # 2. Generate High-Resolution Publication-Quality Plots
     fig, axs = plt.subplots(3, 2, figsize=(14, 10), dpi=300)
@@ -225,12 +329,12 @@ def benchmark_and_plot():
         'DQN RL': '#0275d8'
     }
     
-    # (a) Supercapacitor Voltage Trajectories
+    # (a) Supercapacitor Terminal Voltage Trajectories (incorporating ESR drop)
     for name, trace in episode_traces.items():
-        steps = np.arange(len(trace['v_cap'])) * 100  # ms
-        axs[0, 0].plot(steps, trace['v_cap'], label=name, color=colors.get(name, 'black'), linewidth=2)
+        steps = np.arange(len(trace['v_terminal'])) * 100  # ms
+        axs[0, 0].plot(steps, trace['v_terminal'], label=name, color=colors.get(name, 'black'), linewidth=2)
     axs[0, 0].axhline(y=1.8, color='red', linestyle='--', label='Brownout Threshold (1.8V)')
-    axs[0, 0].set_title('(a) Supercapacitor Voltage ($V_{cap}$)', fontweight='bold')
+    axs[0, 0].set_title('(a) Supercapacitor Terminal Voltage ($V_{terminal}$)', fontweight='bold')
     axs[0, 0].set_ylabel('Voltage (V)')
     axs[0, 0].set_xlabel('Time (ms)')
     axs[0, 0].set_ylim(1.0, 3.4)
