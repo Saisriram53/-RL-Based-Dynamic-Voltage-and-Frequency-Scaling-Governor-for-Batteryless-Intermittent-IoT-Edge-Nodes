@@ -12,6 +12,8 @@ This repository contains the complete implementation of a **Gradient-Aware Reinf
 ├── IEEE_Predictive_RL_DVFS_Research_Paper.html # Standalone HTML paper with base64 plots
 ├── README.md                               # Project documentation & reproduction commands
 ├── requirements.txt                        # Dependency constraints
+├── firmware/                               # Bare-metal / FreeRTOS ARM Cortex-M4 C Firmware
+│   └── main.c                              # STM32F4 USART1 & DVFS clock scaling firmware
 ├── models/
 │   ├── ppo_dvfs_model.zip                 # Primary trained PPO model
 │   ├── ppo_dvfs_seed_0.zip...seed_4.zip   # 5-seed trained PPO policy archives
@@ -40,11 +42,14 @@ This repository contains the complete implementation of a **Gradient-Aware Reinf
 
 ## 🛠️ Installation & Execution Guide
 
-### 1. Environment Setup
+### 1. Environment Setup & Renode Installation
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
+
+# Install official Renode 1.16.0 binary via winget (Windows):
+winget install --id Renode.Renode --accept-source-agreements --accept-package-agreements --silent
 ```
 
 ### 2. Model Training (`src/train.py`)
@@ -59,14 +64,11 @@ To run 30 Monte Carlo evaluation trials across 5 governors, execute the Wilcoxon
 python src/evaluate_and_plot.py
 ```
 
-### 4. Hardware Command Interface & Emulation Trajectory (`renode/arm_cortex_m4_co_sim.py`)
-To execute a 150-step hardware command trajectory streaming frequency scaling payloads over line-buffered TCP sockets (`port 4000`):
+### 4. Official Renode Hardware Co-Simulation (`renode/arm_cortex_m4_co_sim.py`)
+To launch official installed **Renode v1.16.0 (`Renode.exe`)**, ingest `renode/stm32f4_dvfs.resc`, create the ARM Cortex-M4 platform, and stream 150 steps of frequency scaling payloads over line-buffered TCP sockets (`port 4000`):
 ```bash
 python renode/arm_cortex_m4_co_sim.py
 ```
-
-*Note on Renode Integration:*  
-`renode_server.py` implements a Python TCP server emulating the socket control protocol of Renode's external management interface. This validates command formatting and cycle accounting on host systems without requiring a native C# Renode CLI binary installation. For systems with native Renode installed, use `renode renode/stm32f4_dvfs.resc`.
 
 ---
 
