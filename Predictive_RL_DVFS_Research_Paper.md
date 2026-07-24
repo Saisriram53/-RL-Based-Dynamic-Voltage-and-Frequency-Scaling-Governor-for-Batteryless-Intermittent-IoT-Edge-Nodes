@@ -10,9 +10,9 @@
 ## Abstract
 Ambient energy-harvesting Internet of Things (IoT) edge nodes eliminate battery replacement overheads but introduce operational vulnerability to environmental power volatility. Photovoltaic shading events rapidly drain small-capacity supercapacitors, driving supply rails below the integrated Brownout Reset (BOR) trip voltage ($V_{\text{brownout}} = 1.8\text{V}$) and inducing hardware reboots that wipe volatile SRAM state. Conventional Dynamic Voltage and Frequency Scaling (DVFS) governors—such as aggressive Always-Max, static thresholding, or static Powersave—either trigger frequent brownouts or create severe queue backlogs due to static frequency throttling.
 
-We design and evaluate a **Gradient-Aware Reinforcement Learning (RL) DVFS Governor** tailored for intermittent microcontrollers operating under severe energy constraints. Formulated as a **Partially Observable Markov Decision Process (POMDP)** incorporating energy-conserving supercapacitor differential dynamics ($E = \frac{1}{2} C V^2$) and internal ESR resistive losses ($P_{\text{esr\_loss}} = I_{\text{load}}^2 R_{\text{esr}}$), the policy agent ingests real-time telemetry—specifically terminal supercapacitor voltage ($V_{\text{terminal}}$), active task backlog ($Q_{\text{len}}$), photovoltaic power ($P_{\text{harvested}}$), power gradient ($\Delta P_{\text{harvested}}$), and normalized prior action—to dynamically modulate CPU core frequency between $8\text{ MHz}$ and $80\text{ MHz}$. Evaluated across 30 independent held-out test seeds under deterministic policy inference in a physics-informed Gymnasium environment, our Proximal Policy Optimization (PPO) model eliminates brownout resets entirely (**0.0% crash rate** at $C_{\text{supercap}} = 10\text{ mF}$), maintaining normalized service throughput (**4.15 ± 0.20 tasks/step**) and minimal mean queue backlog (**4.6 ± 0.3 tasks**). Multi-seed training evaluation across 5 independent training runs confirms robust policy convergence ($4.54 \pm 0.06\text{ tasks}$ mean backlog across 5 trained policies). Statistical hypothesis testing confirms a highly significant queue backlog reduction over static thresholding (Wilcoxon signed-rank test $W=0.0, p = 1.86 \times 10^{-9} < 0.001$). Capacitance sensitivity analysis across $C_{\text{supercap}} \in [5\text{ mF}, 10\text{ mF}, 30\text{ mF}, 50\text{ mF}]$ identifies $10\text{ mF}$ as the optimal energy-buffer threshold where PPO prevents brownouts while Always-Max incurs a **100.0% crash rate**. Finally, we validate hardware command interface feasibility using a dedicated **ARM Cortex-M4 FreeRTOS Emulation Architecture** (`renode/stm32f4_dvfs.repl` & `renode/renode_server.py`), streaming 150-step live instruction cycle counters ($694.4\text{M cycles}$) and FreeRTOS TCB stack memory estimates ($1,840\text{ bytes}$) over line-buffered TCP sockets (`port 4000`).
+We design and evaluate a **Gradient-Aware Reinforcement Learning (RL) DVFS Governor** tailored for intermittent microcontrollers operating under severe energy constraints. Formulated as a **Partially Observable Markov Decision Process (POMDP)** incorporating energy-conserving supercapacitor differential dynamics ($E = \frac{1}{2} C V^2$) and internal ESR resistive losses ($P_{\text{esr\_loss}} = I_{\text{load}}^2 R_{\text{esr}}$), the policy agent ingests real-time telemetry—specifically terminal supercapacitor voltage ($V_{\text{terminal}}$), active task backlog ($Q_{\text{len}}$), photovoltaic power ($P_{\text{harvested}}$), power gradient ($\Delta P_{\text{harvested}}$), and normalized prior action—to dynamically modulate CPU core frequency between $8\text{ MHz}$ and $80\text{ MHz}$. Evaluated across 30 independent held-out test seeds under deterministic policy inference in a physics-informed Gymnasium environment, our Proximal Policy Optimization (PPO) model eliminates brownout resets entirely (**0.0% crash rate** at $C_{\text{supercap}} = 10\text{ mF}$), maintaining normalized service throughput (**4.15 ± 0.20 tasks/step**) and minimal mean queue backlog (**4.6 ± 0.3 tasks**). Multi-seed training evaluation across 5 independent training runs confirms robust policy convergence ($4.54 \pm 0.06\text{ tasks}$ mean backlog across 5 trained policies). Statistical hypothesis testing confirms a highly significant queue backlog reduction over static thresholding (Wilcoxon signed-rank test $W=0.0, p = 1.86 \times 10^{-9} < 0.001$). Capacitance sensitivity analysis across $C_{\text{supercap}} \in [5\text{ mF}, 10\text{ mF}, 30\text{ mF}, 50\text{ mF}]$ identifies $10\text{ mF}$ as the optimal energy-buffer threshold where PPO prevents brownouts while Always-Max incurs a **100.0% crash rate**. Finally, we demonstrate hardware command interface feasibility using a dedicated **ARM Cortex-M4 Hardware Command Protocol Bridge** (`renode/arm_cortex_m4_co_sim.py` and `renode/renode_server.py`), paired with native Renode platform setup scripts (`renode/stm32f4_dvfs.repl` & `.resc`) for target deployment.
 
-**Index Terms—** Dynamic Voltage and Frequency Scaling (DVFS), Batteryless IoT, Intermittent Computing, Energy Harvesting, Reinforcement Learning, Proximal Policy Optimization (PPO), Renode Hardware Co-Simulation, POMDP.
+**Index Terms—** Dynamic Voltage and Frequency Scaling (DVFS), Batteryless IoT, Intermittent Computing, Energy Harvesting, Reinforcement Learning, Proximal Policy Optimization (PPO), Hardware Co-Simulation Bridge, POMDP.
 
 ---
 
@@ -36,7 +36,7 @@ Research into supply voltage regulation and frequency scaling for batteryless in
 2. **Reinforcement Learning-Based Governors:** In mainstream systems, *zTT* [6] established RL-based DVFS by framing performance-energy regulation as a Markov Decision Process. For energy-harvesting IoT nodes, *tinyMAN* [7] demonstrated Q-learning energy management deployed directly onto wearable microcontroller prototypes using TensorFlow Lite Micro (<100 KB footprint).
 
 **Our Distinct Position & Methodological Advance:**  
-While D2VFS [3], FBTC [4], and ACES [5] rely on reactive voltage comparator feedback, they exhibit switching lag during rapid environmental transients because capacitor voltage drops trail active power draw. Conversely, while *tinyMAN* [7] and *zTT* [6] demonstrated lightweight RL deployment, they focused on battery-buffered wearables or task offloading without modeling supercapacitor Equivalent Series Resistance ($R_{\text{esr}}$) voltage drops. Our work bridges this gap by combining **real-time solar power gradient telemetry** with **energy-conserving supercapacitor ESR dynamics ($V_{\text{terminal}} = V_{\text{cap}} - I_{\text{load}} R_{\text{esr}}$)** in a physics-informed POMDP, paired with a **Renode Cortex-M4 socket co-simulation architecture**.
+While D2VFS [3], FBTC [4], and ACES [5] rely on reactive voltage comparator feedback, they exhibit switching lag during rapid environmental transients because capacitor voltage drops trail active power draw. Conversely, while *tinyMAN* [7] and *zTT* [6] demonstrated lightweight RL deployment, they focused on battery-buffered wearables or task offloading without modeling supercapacitor Equivalent Series Resistance ($R_{\text{esr}}$) voltage drops. Our work bridges this gap by combining **real-time solar power gradient telemetry** with **energy-conserving supercapacitor ESR dynamics ($V_{\text{terminal}} = V_{\text{cap}} - I_{\text{load}} R_{\text{esr}}$)** in a physics-informed POMDP, paired with a **hardware command protocol socket bridge**.
 
 ---
 
@@ -76,15 +76,6 @@ $$V_{\text{terminal}}(t) = \max\left(0.0, V_{\text{cap}}(t) - I_{\text{load}}(t)
 
 System brownout reset triggers whenever $V_{\text{terminal}}(t) \le 1.8\text{V}$ or $V_{\text{cap}}(t) \le 1.8\text{V}$, forcing immediate episode termination.
 
-### C. Task Arrival Process & Queue Dynamics
-Workload arrivals follow a Poisson distribution with mean arrival rate $\lambda = 4.0\text{ tasks/step}$. Execution throughput $N_{\text{comp}}$ scales directly with CPU clock frequency, incorporating physical PLL locking overhead ($50\,\mu\text{s}$ stall, modeled as a $0.05\%$ throughput factor $\eta_{\text{pll}} = 0.9995$ on frequency transition):
-
-$$N_{\text{comp}}(t) = \min\left(Q_{\text{len}}(t), \frac{f(t)}{8 \times 10^6} \cdot \eta_{\text{pll}}\right)$$
-
-where $8\text{ MHz}$ clears $1.0\text{ task/step}$ and $80\text{ MHz}$ clears $10.0\text{ tasks/step}$. Queue evolution is bounded by hardware buffer capacity ($200.0\text{ tasks}$):
-
-$$Q_{\text{len}}(t+1) = \min\left(200.0, \max\left(0.0, Q_{\text{len}}(t) - N_{\text{comp}}(t)\right) + \text{Poisson}(\lambda)\right)$$
-
 ---
 
 ## III. Gradient-Aware Reinforcement Learning Governor Formulation
@@ -102,32 +93,32 @@ $$o_t = \left[ V_{\text{terminal}}(t), Q_{\text{len}}(t), P_{\text{harvested}}(t
 
 ---
 
-## IV. ARM Cortex-M4 FreeRTOS Renode Hardware Co-Simulation Architecture
+## IV. Hardware Command Protocol & Emulation Framework
 
 ```
 +------------------------------------+               +-----------------------------------+
-|    Python Gym RL Governor          |               |    Renode Emulated MCU Target     |
-|  (Gymnasium + Stable-Baselines3)   |               |   (ARM Cortex-M4 + FreeRTOS)      |
+|    Python Gym RL Governor          |               |    Renode Protocol Emulator       |
+|  (Gymnasium + Stable-Baselines3)   |               |   (ARM Cortex-M4 Target Model)    |
 |                                    |  TCP Socket   |  - stm32f4_dvfs.repl & .resc      |
-|   1. Observes Vterm, Qlen, Pharvest| ------------> |   1. Reconfigures PLL clock tree  |
-|   2. Computes action a_t (PPO)     |  Port 4000    |   2. Measures active instruction cycles
-|   3. Transmits JSON scaling cmd    | <------------ |   3. Profiles SRAM stack footprint    |
+|   1. Observes Vterm, Qlen, Pharvest| ------------> |   1. Reconfigures PLL clock state |
+|   2. Computes action a_t (PPO)     |  Port 4000    |   2. Accumulates instruction cycles
+|   3. Transmits JSON scaling cmd    | <------------ |   3. Estimates FreeRTOS TCB RAM   |
 +------------------------------------+               +-----------------------------------+
 ```
 
-To validate physical hardware command translation, target microcontroller resource constraints, and FreeRTOS RTOS compatibility, we constructed a dedicated **Renode Co-Simulation Emulation Architecture** (`renode/stm32f4_dvfs.repl` & `renode/renode_server.py`).
+To validate hardware command translation and protocol interface overheads without requiring a native Renode binary installation on the host system:
 
-1. **Renode Target Platform & Script:**
-   - **`renode/stm32f4_dvfs.repl`**: Defines an ARM Cortex-M4 microcontroller core with $128\text{ KB}$ SRAM (`0x20000000`), $512\text{ KB}$ Flash (`0x08000000`), and STM32F4 USART1 peripheral.
-   - **`renode/stm32f4_dvfs.resc`**: Loads the platform description and displays the UART peripheral interface.
-2. **Co-Simulation Server & Telemetry Bridge (`renode/renode_server.py` & `renode/arm_cortex_m4_co_sim.py`):**
-   - A dedicated Python TCP server (`renode/renode_server.py`) emulates the Renode external peripheral management plugin interface on port 4000.
+1. **Native Target Platform Configuration:**
+   - **`renode/stm32f4_dvfs.repl`**: Defines an ARM Cortex-M4 microcontroller platform (STM32F4 with $128\text{ KB}$ SRAM and $512\text{ KB}$ Flash).
+   - **`renode/stm32f4_dvfs.resc`**: Renode execution script loading the platform definition for deployment on systems with full Renode CLI installations.
+2. **Socket Protocol Emulator (`renode/renode_server.py` & `renode/arm_cortex_m4_co_sim.py`):**
+   - A dedicated Python server (`renode/renode_server.py`) implements the TCP socket control protocol of Renode's external management interface on port 4000.
    - The Python RL policy acts as a client connecting over line-buffered TCP sockets (`makefile('r')`).
    - On each control step ($\Delta t = 100\text{ ms}$), Python transmits JSON scaling payload: `{"command": "set_frequency", "frequency_mhz": 80.0, "voltage_v": 1.5}`.
-   - The emulator reconfigures the virtual PLL clock tree, accumulates executed CPU instruction cycles ($\Delta \text{cycles} = f \cdot \Delta t$), returns a representative FreeRTOS task control block (TCB) SRAM stack memory estimate ($1,840\text{ bytes}$), and streams telemetry back to Python.
-3. **Live Co-Simulation Benchmark Results:**
-   - Executing a full 150-step co-simulation episode driven by the trained PPO policy model (`models/ppo_dvfs_model.zip`) completed in **$694,400,000\text{ instruction cycles}$** with a constant SRAM stack footprint estimate of **$1,840\text{ bytes}$**.
-   - Full 150-step hardware telemetry logs are exported and archived to `results/renode_cosim_telemetry.json`.
+   - The emulator server processes commands, accumulates executed CPU instruction cycles ($\Delta \text{cycles} = f \cdot \Delta t$), and returns a representative FreeRTOS task control block (TCB) SRAM stack memory footprint estimate ($1,840\text{ bytes}$).
+3. **Hardware Command Interface Trajectory Results:**
+   - Executing a full 150-step trajectory driven by the trained PPO policy model (`models/ppo_dvfs_model.zip`) completed in **$694,400,000\text{ instruction cycles}$** with a representative FreeRTOS SRAM stack estimate of **$1,840\text{ bytes}$**.
+   - Full 150-step command and telemetry logs are exported to `results/renode_cosim_telemetry.json`.
 
 ---
 

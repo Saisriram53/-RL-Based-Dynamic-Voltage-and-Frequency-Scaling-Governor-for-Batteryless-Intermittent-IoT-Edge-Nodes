@@ -1,48 +1,87 @@
-# Predictive RL-Based DVFS Governor for Batteryless Intermittent IoT Edge Nodes
+# Gradient-Aware RL-Based DVFS Governor for Batteryless Intermittent IoT Edge Nodes
 
-This repository contains the official implementation of the **Predictive Reinforcement Learning (RL) DVFS Governor** for batteryless, energy-harvesting IoT nodes.
+This repository contains the complete implementation of a **Gradient-Aware Reinforcement Learning (RL) DVFS Governor** tailored for intermittent, energy-harvesting IoT nodes.
 
 ---
 
-## 🛠️ Architecture & Setup Instructions
+## 🏗️ Project Architecture & Component Breakdown
 
-### 1. Installation
-Ensure Python 3.10+ is installed. Activate your virtual environment and install dependencies:
+```
+.
+├── Predictive_RL_DVFS_Research_Paper.md   # Complete IEEE research paper
+├── IEEE_Predictive_RL_DVFS_Research_Paper.html # Standalone HTML paper with base64 plots
+├── README.md                               # Project documentation & reproduction commands
+├── requirements.txt                        # Dependency constraints
+├── models/
+│   ├── ppo_dvfs_model.zip                 # Primary trained PPO model
+│   ├── ppo_dvfs_seed_0.zip...seed_4.zip   # 5-seed trained PPO policy archives
+│   └── dqn_dvfs_model.zip                 # Trained DQN model archive
+├── src/
+│   ├── environment.py                      # POMDP Gymnasium physics environment (E = 0.5*C*V^2)
+│   ├── train.py                            # Multi-seed PPO & DQN training pipeline
+│   ├── evaluate_and_plot.py                # Deterministic evaluation & Wilcoxon test script
+│   ├── baselines.py                        # Always-Max, Powersave, Static Threshold governors
+│   └── export_html_with_embedded_images.py # Base64 HTML exporter
+├── renode/
+│   ├── stm32f4_dvfs.repl                   # Renode ARM Cortex-M4 platform definition
+│   ├── stm32f4_dvfs.resc                   # Renode script for native Renode execution
+│   ├── renode_server.py                    # Renode socket protocol emulator server
+│   └── arm_cortex_m4_co_sim.py             # Client bridge executing hardware trajectory
+└── results/
+    ├── benchmark_performance_comparison.png# 300 DPI Multi-panel publication plot
+    ├── benchmark_performance_comparison.pdf# Vector PDF plot
+    ├── benchmark_raw_results.csv           # Raw per-seed primary trial dataset
+    ├── sensitivity_raw_results.csv         # Raw multi-profile trial dataset
+    ├── capacitance_sweep_raw_results.csv   # Raw capacitance sweep trial dataset
+    └── renode_cosim_telemetry.json         # 150-step co-simulation telemetry log
+```
+
+---
+
+## 🛠️ Installation & Execution Guide
+
+### 1. Environment Setup
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 2. Training Models (`src/train.py`)
-To train the Proximal Policy Optimization (PPO) and Deep Q-Network (DQN) models from scratch on the energy-conserving physics environment:
+### 2. Model Training (`src/train.py`)
+To train PPO across 5 independent seeds (`seed=0, 1, 2, 3, 4`) and DQN on the energy-conserving physics environment:
 ```bash
 python src/train.py
 ```
-This trains PPO and DQN over 61,440 timesteps with seed initialization (`seed=0`) and saves PyTorch models to `models/ppo_dvfs_model.zip` and `models/dqn_dvfs_model.zip`.
 
-### 3. Evaluation & Benchmarking (`src/evaluate_and_plot.py`)
-To evaluate all 5 governors (Always-Max, Powersave, Static Threshold, PPO RL, DQN RL) across 30 held-out test seeds (`seed=100...129`) under deterministic policy inference (`deterministic=True`):
+### 3. Quantitative Evaluation & Benchmarking (`src/evaluate_and_plot.py`)
+To run 30 Monte Carlo evaluation trials across 5 governors, execute the Wilcoxon signed-rank test, run the multi-profile sensitivity analysis, and perform the supercapacitor capacitance sweep ($5\text{ mF}, 10\text{ mF}, 30\text{ mF}, 50\text{ mF}$):
 ```bash
 python src/evaluate_and_plot.py
 ```
-This will:
-1. Export raw evaluation trial data to `results/benchmark_raw_results.csv`.
-2. Compute the **Wilcoxon Signed-Rank Test** for statistical significance testing.
-3. Perform **Multi-Profile Sensitivity Analysis** across 3 solar profiles (`standard_cloudy`, `volatile`, `clear_day`).
-4. Save 300 DPI publication plots to `results/benchmark_performance_comparison.png` and `results/benchmark_performance_comparison.pdf`.
+
+### 4. Hardware Command Interface & Emulation Trajectory (`renode/arm_cortex_m4_co_sim.py`)
+To execute a 150-step hardware command trajectory streaming frequency scaling payloads over line-buffered TCP sockets (`port 4000`):
+```bash
+python renode/arm_cortex_m4_co_sim.py
+```
+
+*Note on Renode Integration:*  
+`renode_server.py` implements a Python TCP server emulating the socket control protocol of Renode's external management interface. This validates command formatting and cycle accounting on host systems without requiring a native C# Renode CLI binary installation. For systems with native Renode installed, use `renode renode/stm32f4_dvfs.resc`.
 
 ---
 
-## ⚡ Energy-Conserving Physics Differential Math
+## ⚡ Physics Equations & Energy Conservation
 
-Energy integration across discrete control steps ($\Delta t = 0.1\text{ s}$) enforces strict energy conservation ($E = \frac{1}{2} C_{\text{supercap}} V^2$):
+Energy integration across discrete control steps ($\Delta t = 0.1\text{ s}$) enforces strict energy conservation ($E = \frac{1}{2} C_{\text{supercap}} V_{\text{cap}}^2$), accounting for core CMOS dissipation $P_{\text{total}}$ and internal ESR $I^2 R$ heat loss ($P_{\text{esr\_loss}} = I_{\text{load}}^2 R_{\text{esr}}$):
 
-$$\Delta E(t) = \left[ P_{\text{harvested}}(t) - P_{\text{total}}(f, V_{\text{dd}}) \right] \cdot \Delta t$$
+$$I_{\text{load}}(t) = \frac{P_{\text{total}}(f, V_{\text{dd}})}{\max(1.0, V_{\text{cap}}(t))}$$
+
+$$P_{\text{esr\_loss}}(t) = I_{\text{load}}^2(t) \cdot R_{\text{esr}}$$
+
+$$P_{\text{total\_drain}}(t) = P_{\text{total}}(f, V_{\text{dd}}) + P_{\text{esr\_loss}}(t)$$
+
+$$\Delta E(t) = \left[ P_{\text{harvested}}(t) - P_{\text{total\_drain}}(t) \right] \cdot \Delta t$$
 
 $$E(t+1) = \max\left(0.0, \frac{1}{2} C_{\text{supercap}} V_{\text{cap}}^2(t) + \Delta E(t)\right)$$
 
 $$V_{\text{cap}}(t+1) = \min\left(V_{\text{max}}, \sqrt{\frac{2 E(t+1)}{C_{\text{supercap}}}}\right)$$
-
-Accounting for internal series resistance ($R_{\text{esr}}$), terminal voltage under load current ($I_{\text{load}} = P_{\text{total}} / V_{\text{cap}}$) is evaluated after energy integration:
-$$V_{\text{terminal}}(t) = \max\left(0.0, V_{\text{cap}}(t) - I_{\text{load}}(t) \cdot R_{\text{esr}}\right)$$
