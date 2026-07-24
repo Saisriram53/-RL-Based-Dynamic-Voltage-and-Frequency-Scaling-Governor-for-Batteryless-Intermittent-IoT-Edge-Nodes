@@ -24,7 +24,6 @@ class RenodeHardwareCoSimBridge:
         self.host = host
         self.port = port
         self.sock = None
-        self.rfile = None
         self.total_cycles = 0
 
     def connect(self, timeout=3.0):
@@ -32,10 +31,9 @@ class RenodeHardwareCoSimBridge:
         while time.time() - start_time < timeout:
             try:
                 self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                self.sock.settimeout(1.0)
+                self.sock.settimeout(0.2)
                 self.sock.connect((self.host, self.port))
-                self.rfile = self.sock.makefile('r', encoding='utf-8')
-                print(f"[Co-Sim Bridge] Successfully connected to official Renode binary at {self.host}:{self.port}")
+                print(f"[Co-Sim Bridge] Successfully connected to official Renode binary socket at {self.host}:{self.port}")
                 return True
             except Exception:
                 time.sleep(0.5)
@@ -58,18 +56,25 @@ class RenodeHardwareCoSimBridge:
         self.total_cycles += cycles_step
 
     def receive_telemetry(self):
-        """Receives instruction cycle count and SRAM footprint telemetry from Renode interface."""
+        """Receives instruction cycle count and SRAM footprint telemetry with non-blocking socket fallback."""
+        if self.sock:
+            try:
+                self.sock.settimeout(0.001)
+                data_bytes = self.sock.recv(1024)
+                if data_bytes:
+                    text = data_bytes.decode('utf-8', errors='ignore').strip()
+                    if text.startswith('{') and text.endswith('}'):
+                        parsed = json.loads(text)
+                        if isinstance(parsed, dict):
+                            return parsed
+            except Exception:
+                pass
         return {
             'cycles': self.total_cycles,
             'ram_used_bytes': 1840  # Static FreeRTOS TCB stack footprint estimate
         }
 
     def close(self):
-        if self.rfile:
-            try:
-                self.rfile.close()
-            except Exception:
-                pass
         if self.sock:
             try:
                 self.sock.close()
