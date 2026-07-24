@@ -1,0 +1,1352 @@
+[
+  {
+    "step": 0,
+    "commanded_freq_mhz": 80.0,
+    "commanded_voltage_v": 1.5,
+    "v_terminal": 3.011959189918669,
+    "q_len": 16.0049991607666,
+    "renode_cycles": 8000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 1,
+    "commanded_freq_mhz": 80.0,
+    "commanded_voltage_v": 1.5,
+    "v_terminal": 3.0336535388445367,
+    "q_len": 13.005000114440918,
+    "renode_cycles": 16000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 2,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.0948903218159303,
+    "q_len": 17.007999420166016,
+    "renode_cycles": 20800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 3,
+    "commanded_freq_mhz": 80.0,
+    "commanded_voltage_v": 1.5,
+    "v_terminal": 3.124656101864424,
+    "q_len": 13.012999534606934,
+    "renode_cycles": 28800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 4,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.1943813170520925,
+    "q_len": 9.015999794006348,
+    "renode_cycles": 33600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 5,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2654991795571635,
+    "q_len": 4.015999794006348,
+    "renode_cycles": 38400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 6,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980192499587555,
+    "q_len": 3.0,
+    "renode_cycles": 43200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 7,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 6.0,
+    "renode_cycles": 48000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 8,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 5.0,
+    "renode_cycles": 52800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 9,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 5.0,
+    "renode_cycles": 57600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 10,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 3.0,
+    "renode_cycles": 62400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 11,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 2.0,
+    "renode_cycles": 67200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 12,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 4.0,
+    "renode_cycles": 72000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 13,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 6.0,
+    "renode_cycles": 76800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 14,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 5.0,
+    "renode_cycles": 81600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 15,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 6.0,
+    "renode_cycles": 86400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 16,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 8.0,
+    "renode_cycles": 91200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 17,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 5.0,
+    "renode_cycles": 96000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 18,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 0.0,
+    "renode_cycles": 100800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 19,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 3.0,
+    "renode_cycles": 105600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 20,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 13.0,
+    "renode_cycles": 110400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 21,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 12.0,
+    "renode_cycles": 115200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 22,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 7.0,
+    "renode_cycles": 120000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 23,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 6.0,
+    "renode_cycles": 124800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 24,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 6.0,
+    "renode_cycles": 129600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 25,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 4.0,
+    "renode_cycles": 134400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 26,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 4.0,
+    "renode_cycles": 139200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 27,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 9.0,
+    "renode_cycles": 144000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 28,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 6.0,
+    "renode_cycles": 148800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 29,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 5.0,
+    "renode_cycles": 153600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 30,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 1.0,
+    "renode_cycles": 158400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 31,
+    "commanded_freq_mhz": 16.0,
+    "commanded_voltage_v": 1.1,
+    "v_terminal": 3.299225269811303,
+    "q_len": 9.0,
+    "renode_cycles": 160000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 32,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 7.002999782562256,
+    "renode_cycles": 164800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 33,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 7.002999782562256,
+    "renode_cycles": 169600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 34,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 5.002999782562256,
+    "renode_cycles": 174400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 35,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 3.0,
+    "renode_cycles": 179200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 36,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 5.0,
+    "renode_cycles": 184000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 37,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 4.0,
+    "renode_cycles": 188800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 38,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 3.0,
+    "renode_cycles": 193600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 39,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 4.0,
+    "renode_cycles": 198400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 40,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.273051350022496,
+    "q_len": 4.0,
+    "renode_cycles": 203200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 41,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2478565893270055,
+    "q_len": 2.0,
+    "renode_cycles": 208000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 42,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.222464560277906,
+    "q_len": 2.0,
+    "renode_cycles": 212800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 43,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.1968705531914305,
+    "q_len": 4.0,
+    "renode_cycles": 217600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 44,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.171069667896477,
+    "q_len": 7.0,
+    "renode_cycles": 222400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 45,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.145056802768868,
+    "q_len": 7.0,
+    "renode_cycles": 227200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 46,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.1188266429402947,
+    "q_len": 1.0,
+    "renode_cycles": 232000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 47,
+    "commanded_freq_mhz": 16.0,
+    "commanded_voltage_v": 1.1,
+    "v_terminal": 3.1135410333843874,
+    "q_len": 7.0,
+    "renode_cycles": 233600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 48,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.085790407201887,
+    "q_len": 6.002999782562256,
+    "renode_cycles": 238400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 49,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.0590512827548078,
+    "q_len": 4.002999782562256,
+    "renode_cycles": 243200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 50,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.032075972609294,
+    "q_len": 4.0,
+    "renode_cycles": 248000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 51,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.0048581020766876,
+    "q_len": 1.0,
+    "renode_cycles": 252800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 52,
+    "commanded_freq_mhz": 16.0,
+    "commanded_voltage_v": 1.1,
+    "v_terminal": 2.999370110109165,
+    "q_len": 8.0,
+    "renode_cycles": 254400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 53,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.9705526768244312,
+    "q_len": 3.003000020980835,
+    "renode_cycles": 259200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 54,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.942764839059327,
+    "q_len": 2.0,
+    "renode_cycles": 264000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 55,
+    "commanded_freq_mhz": 16.0,
+    "commanded_voltage_v": 1.1,
+    "v_terminal": 2.9371598911199728,
+    "q_len": 1.0010000467300415,
+    "renode_cycles": 265600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 56,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.907725722640431,
+    "q_len": 6.0,
+    "renode_cycles": 270400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 57,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.8793305217016085,
+    "q_len": 4.0,
+    "renode_cycles": 275200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 58,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.850651967515463,
+    "q_len": 1.0,
+    "renode_cycles": 280000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 59,
+    "commanded_freq_mhz": 16.0,
+    "commanded_voltage_v": 1.1,
+    "v_terminal": 2.8448639905901465,
+    "q_len": 4.0,
+    "renode_cycles": 281600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 60,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.8144643147885806,
+    "q_len": 5.0,
+    "renode_cycles": 286400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 61,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.785116623287936,
+    "q_len": 4.0,
+    "renode_cycles": 291200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 62,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.7554557572894165,
+    "q_len": 7.0,
+    "renode_cycles": 296000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 63,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.7254714656438424,
+    "q_len": 8.0,
+    "renode_cycles": 300800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 64,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.695152925257834,
+    "q_len": 5.0,
+    "renode_cycles": 305600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 65,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.6644886953872757,
+    "q_len": 6.0,
+    "renode_cycles": 310400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 66,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.633466667123889,
+    "q_len": 5.0,
+    "renode_cycles": 315200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 67,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.602074007442155,
+    "q_len": 4.0,
+    "renode_cycles": 320000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 68,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.5702970970729595,
+    "q_len": 7.0,
+    "renode_cycles": 324800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 69,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.5381214613504515,
+    "q_len": 6.0,
+    "renode_cycles": 329600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 70,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.505531693035526,
+    "q_len": 1.0,
+    "renode_cycles": 334400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 71,
+    "commanded_freq_mhz": 16.0,
+    "commanded_voltage_v": 1.1,
+    "v_terminal": 2.498936076544144,
+    "q_len": 6.0,
+    "renode_cycles": 336000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 72,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.4642703562062276,
+    "q_len": 4.002999782562256,
+    "renode_cycles": 340800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 73,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.4306881760181915,
+    "q_len": 4.0,
+    "renode_cycles": 345600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 74,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.3966342800679525,
+    "q_len": 4.0,
+    "renode_cycles": 350400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 75,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.3620881984998117,
+    "q_len": 3.0,
+    "renode_cycles": 355200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 76,
+    "commanded_freq_mhz": 16.0,
+    "commanded_voltage_v": 1.1,
+    "v_terminal": 2.35508601458661,
+    "q_len": 3.000999927520752,
+    "renode_cycles": 356800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 77,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.318268924059229,
+    "q_len": 9.0,
+    "renode_cycles": 361600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 78,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.282533813279552,
+    "q_len": 8.0,
+    "renode_cycles": 366400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 79,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.2462286357543375,
+    "q_len": 5.0,
+    "renode_cycles": 371200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 80,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.2093251835221386,
+    "q_len": 3.0,
+    "renode_cycles": 376000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 81,
+    "commanded_freq_mhz": 16.0,
+    "commanded_voltage_v": 1.1,
+    "v_terminal": 2.201830569158004,
+    "q_len": 4.000999927520752,
+    "renode_cycles": 377600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 82,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.162403893614188,
+    "q_len": 4.0,
+    "renode_cycles": 382400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 83,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.124039978571859,
+    "q_len": 8.0,
+    "renode_cycles": 387200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 84,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.084967965361399,
+    "q_len": 6.0,
+    "renode_cycles": 392000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 85,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.225132812030445,
+    "q_len": 6.0,
+    "renode_cycles": 396800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 86,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.361521674047813,
+    "q_len": 4.0,
+    "renode_cycles": 401600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 87,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.4940429119517797,
+    "q_len": 2.0,
+    "renode_cycles": 406400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 88,
+    "commanded_freq_mhz": 16.0,
+    "commanded_voltage_v": 1.1,
+    "v_terminal": 2.647832469822321,
+    "q_len": 4.000999927520752,
+    "renode_cycles": 408000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 89,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.7703022013919947,
+    "q_len": 9.0,
+    "renode_cycles": 412800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 90,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 2.8907546146317737,
+    "q_len": 8.0,
+    "renode_cycles": 417600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 91,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.007617918736233,
+    "q_len": 5.0,
+    "renode_cycles": 422400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 92,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.120846835025393,
+    "q_len": 4.0,
+    "renode_cycles": 427200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 93,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.230385229506396,
+    "q_len": 5.0,
+    "renode_cycles": 432000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 94,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2979977623984187,
+    "q_len": 6.0,
+    "renode_cycles": 436800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 95,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 3.0,
+    "renode_cycles": 441600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 96,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 5.0,
+    "renode_cycles": 446400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 97,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 4.0,
+    "renode_cycles": 451200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 98,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 2.0,
+    "renode_cycles": 456000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 99,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 3.0,
+    "renode_cycles": 460800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 100,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 2.0,
+    "renode_cycles": 465600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 101,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 5.0,
+    "renode_cycles": 470400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 102,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 5.0,
+    "renode_cycles": 475200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 103,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 6.0,
+    "renode_cycles": 480000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 104,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 5.0,
+    "renode_cycles": 484800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 105,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 5.0,
+    "renode_cycles": 489600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 106,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 8.0,
+    "renode_cycles": 494400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 107,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 4.0,
+    "renode_cycles": 499200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 108,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 3.0,
+    "renode_cycles": 504000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 109,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 2.0,
+    "renode_cycles": 508800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 110,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 0.0,
+    "renode_cycles": 513600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 111,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 2.0,
+    "renode_cycles": 518400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 112,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 4.0,
+    "renode_cycles": 523200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 113,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 5.0,
+    "renode_cycles": 528000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 114,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 5.0,
+    "renode_cycles": 532800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 115,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 5.0,
+    "renode_cycles": 537600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 116,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 4.0,
+    "renode_cycles": 542400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 117,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 4.0,
+    "renode_cycles": 547200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 118,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 2.0,
+    "renode_cycles": 552000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 119,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 3.0,
+    "renode_cycles": 556800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 120,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 1.0,
+    "renode_cycles": 561600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 121,
+    "commanded_freq_mhz": 16.0,
+    "commanded_voltage_v": 1.1,
+    "v_terminal": 3.299225269811303,
+    "q_len": 2.0,
+    "renode_cycles": 563200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 122,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2967367132919754,
+    "q_len": 6.0,
+    "renode_cycles": 568000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 123,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2922796548685036,
+    "q_len": 2.0,
+    "renode_cycles": 572800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 124,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.285005146289509,
+    "q_len": 9.0,
+    "renode_cycles": 577600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 125,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2752672349987906,
+    "q_len": 6.0,
+    "renode_cycles": 582400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 126,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2634355086980253,
+    "q_len": 6.0,
+    "renode_cycles": 587200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 127,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.249895115293102,
+    "q_len": 4.0,
+    "renode_cycles": 592000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 128,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2350463883942115,
+    "q_len": 3.0,
+    "renode_cycles": 596800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 129,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.219304020742447,
+    "q_len": 8.0,
+    "renode_cycles": 601600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 130,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.203095721820138,
+    "q_len": 10.0,
+    "renode_cycles": 606400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 131,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.186860293932115,
+    "q_len": 5.0,
+    "renode_cycles": 611200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 132,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.1710450647697153,
+    "q_len": 3.0,
+    "renode_cycles": 616000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 133,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.1561026255727755,
+    "q_len": 5.0,
+    "renode_cycles": 620800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 134,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.142486844068481,
+    "q_len": 3.0,
+    "renode_cycles": 625600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 135,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.1306481515218643,
+    "q_len": 5.0,
+    "renode_cycles": 630400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 136,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.121028143723883,
+    "q_len": 6.0,
+    "renode_cycles": 635200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 137,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.1140535854485565,
+    "q_len": 3.0,
+    "renode_cycles": 640000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 138,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.1101299639400435,
+    "q_len": 3.0,
+    "renode_cycles": 644800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 139,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.109634794495076,
+    "q_len": 4.0,
+    "renode_cycles": 649600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 140,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.1129109335659297,
+    "q_len": 4.0,
+    "renode_cycles": 654400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 141,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.1202601943133925,
+    "q_len": 4.0,
+    "renode_cycles": 659200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 142,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.1319375785668355,
+    "q_len": 2.0,
+    "renode_cycles": 664000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 143,
+    "commanded_freq_mhz": 16.0,
+    "commanded_voltage_v": 1.1,
+    "v_terminal": 3.1689581163772047,
+    "q_len": 5.000999927520752,
+    "renode_cycles": 665600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 144,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.1884820341747124,
+    "q_len": 4.0,
+    "renode_cycles": 670400000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 145,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.213985401742713,
+    "q_len": 5.0,
+    "renode_cycles": 675200000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 146,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2442650230713572,
+    "q_len": 5.0,
+    "renode_cycles": 680000000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 147,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2792972154318782,
+    "q_len": 6.0,
+    "renode_cycles": 684800000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 148,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.298027560377217,
+    "q_len": 8.0,
+    "renode_cycles": 689600000,
+    "renode_ram_bytes": 1840
+  },
+  {
+    "step": 149,
+    "commanded_freq_mhz": 48.0,
+    "commanded_voltage_v": 1.3,
+    "v_terminal": 3.2980387429567597,
+    "q_len": 7.0,
+    "renode_cycles": 694400000,
+    "renode_ram_bytes": 1840
+  }
+]

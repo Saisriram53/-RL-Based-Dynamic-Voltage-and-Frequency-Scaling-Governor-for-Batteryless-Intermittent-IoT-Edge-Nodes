@@ -1,0 +1,12 @@
+:name: STM32F4 ARM Cortex-M4 DVFS Co-Simulation
+:description: Loads STM32F4 platform and initializes TCP Socket Plugin for RL DVFS Frequency Control
+
+using sysbus
+$name?="stm32f4_dvfs"
+
+mach create $name
+machine LoadPlatformDescription @renode/stm32f4_dvfs.repl
+
+showAnalyzer usart1
+
+echo "Renode STM32F4 ARM Cortex-M4 DVFS Target Ready on Port 4000."
