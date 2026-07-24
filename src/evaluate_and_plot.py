@@ -173,7 +173,16 @@ def benchmark_and_plot():
         tp_str = f"{m['avg_norm_tp']:.2f} ± {m['std_norm_tp']:.2f}"
         q_str = f"{m['avg_queue']:.1f} ± {m['std_queue']:.1f}"
         print(f"{name:<20} | {m['crash_rate']:<18.1f} | {tp_str:<30} | {q_str:<20}")
-    print("=============================================================================\n")
+    print("=============================================================================")
+
+    # Calculate paired Wilcoxon signed-rank test between PPO and Static Threshold
+    from scipy.stats import wilcoxon
+    ppo_q = raw_queue_data.get('Proposed PPO RL', [])
+    static_q = raw_queue_data.get('Static Threshold', [])
+    if ppo_q and static_q:
+        w_stat, p_val = wilcoxon(ppo_q, static_q)
+        print(f"Wilcoxon Signed-Rank Test (PPO vs Static Threshold): W = {w_stat:.1f}, p = {p_val:.2e}")
+    print("\n")
 
     # 1.5 Multi-Seed PPO Training Convergence Evaluation
     ppo_seed_backlogs = []
