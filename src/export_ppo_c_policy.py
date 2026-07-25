@@ -20,6 +20,14 @@ def export_ppo_to_c(model_path, output_header_path):
     w3 = state_dict['action_net.weight'].cpu().numpy()                   # (4, 64)
     b3 = state_dict['action_net.bias'].cpu().numpy()                     # (4,)
     
+    # Defensive shape assertions
+    assert w1.shape == (64, 5), f"Expected w1 shape (64, 5), got {w1.shape}"
+    assert b1.shape == (64,),   f"Expected b1 shape (64,), got {b1.shape}"
+    assert w2.shape == (64, 64), f"Expected w2 shape (64, 64), got {w2.shape}"
+    assert b2.shape == (64,),   f"Expected b2 shape (64,), got {b2.shape}"
+    assert w3.shape == (4, 64), f"Expected w3 shape (4, 64), got {w3.shape}"
+    assert b3.shape == (4,),    f"Expected b3 shape (4,), got {b3.shape}"
+    
     # 2. Format C Arrays
     def format_2d(arr, name):
         rows, cols = arr.shape
