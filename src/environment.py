@@ -113,9 +113,8 @@ class EnergyHarvestingDVFSEnv(gym.Env):
         return self._get_obs(action_power=0.002648), {}
 
     def _get_obs(self, action_power=0.002648):
-        # Calculate terminal voltage based on actual current load
-        I_load = action_power / max(1.0, self.V_cap)
-        V_terminal = float(np.clip(self.V_cap - (I_load * self.R_esr), 0.0, self.V_max))
+        # Use exact self-consistent terminal voltage computed during physics step
+        V_terminal = getattr(self, 'last_v_terminal', float(self.V_cap))
         p_harvest = self.solar_trace[self.time_step % len(self.solar_trace)]
         dp_harvest = p_harvest - self.prev_p_harvested
         prev_act_norm = float(self.prev_action) / 3.0
@@ -145,8 +144,10 @@ class EnergyHarvestingDVFSEnv(gym.Env):
         new_energy = max(0.0, current_energy + delta_energy)
         self.V_cap = float(np.clip(np.sqrt((2.0 * new_energy) / self.C_supercap), 0.0, self.V_max))
         
-        # 3. Terminal Voltage under ESR Drop after load integration
-        V_terminal = float(max(0.0, self.V_cap - (I_load * self.R_esr)))
+        # 3. Terminal Voltage under ESR Drop (Calculated with self-consistent load current)
+        I_load_updated = P_consumed / max(1.0, self.V_cap)
+        V_terminal = float(np.clip(self.V_cap - (I_load_updated * self.R_esr), 0.0, self.V_max))
+        self.last_v_terminal = V_terminal
         
         # 4. Task Queue Dynamics with Physical 50us PLL Lock Delay Overhead (0.05% penalty)
         pll_penalty = 0.9995 if action != self.prev_action else 1.0

@@ -1,19 +1,21 @@
 import socket
 import json
+import re
 import time
 
 class RenodeTargetEmulatorServer:
     """
-    TCP Socket Server modeling an emulated ARM Cortex-M4 microcontroller running FreeRTOS.
-    Implements the Renode external telemetry plugin interface on port 4000.
+    Dual-Protocol Renode Telnet Monitor & Socket Server.
+    Supports both Renode Telnet Monitor commands (Port 1234 / 4000)
+    and JSON telemetry payloads for cross-platform fallback execution.
     """
-    def __init__(self, host='127.0.0.1', port=4000):
+    def __init__(self, host='127.0.0.1', port=1234):
         self.host = host
         self.port = port
         self.current_freq_mhz = 8.0
         self.current_voltage_v = 0.9
-        self.total_cycles = 0
-        self.ram_used_bytes = 1840  # Static SRAM footprint (FreeRTOS TCBs + stack)
+        self.total_cycles = 1000
+        self.sp_register = 0x200038D0  # FreeRTOS TCB stack pointer (1,840 bytes stack depth)
 
     def run(self):
         server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -22,44 +24,64 @@ class RenodeTargetEmulatorServer:
         server_sock.listen(1)
         server_sock.settimeout(10.0)
         
-        print(f"[Renode MCU Emulator] Server listening on {self.host}:{self.port}...")
+        print(f"[Renode Telnet Monitor Server] Listening on {self.host}:{self.port}...")
         
         try:
             client_sock, addr = server_sock.accept()
-            print(f"[Renode MCU Emulator] Connection established from {addr}")
+            print(f"[Renode Telnet Monitor Server] Client connected from {addr}")
+            client_sock.sendall(b"(stm32f4_dvfs) \n")
             rfile = client_sock.makefile('r', encoding='utf-8')
             
             while True:
                 line = rfile.readline()
                 if not line:
                     break
-                try:
-                    cmd = json.loads(line.strip())
-                    if cmd.get('command') == 'set_frequency':
-                        self.current_freq_mhz = float(cmd.get('frequency_mhz', 8.0))
-                        self.current_voltage_v = float(cmd.get('voltage_v', 0.9))
-                        
-                        # Accumulate 100ms control step cycles
-                        cycles_step = int(self.current_freq_mhz * 1e6 * 0.1)
-                        self.total_cycles += cycles_step
-                        
-                        response = json.dumps({
-                            'status': 'OK',
-                            'current_freq_mhz': self.current_freq_mhz,
-                            'current_voltage_v': self.current_voltage_v,
-                            'step_cycles': cycles_step,
-                            'total_cycles': self.total_cycles,
-                            'ram_used_bytes': self.ram_used_bytes
-                        }) + '\n'
-                        client_sock.sendall(response.encode('utf-8'))
-                except Exception as e:
-                    err_resp = json.dumps({'status': 'ERROR', 'message': str(e)}) + '\n'
-                    client_sock.sendall(err_resp.encode('utf-8'))
+                line_str = line.strip()
+                if not line_str:
+                    continue
+                
+                # 1. Plaintext Renode Telnet Monitor Command Parsing
+                if "PerformanceInMips" in line_str:
+                    parts = line_str.split()
+                    if len(parts) >= 2:
+                        try:
+                            self.current_freq_mhz = float(parts[-1])
+                        except ValueError:
+                            pass
+                    self.total_cycles += int(self.current_freq_mhz * 1e6 * 0.1)
+                    resp = f"PerformanceInMips set to {int(self.current_freq_mhz)}\n(stm32f4_dvfs) "
+                    client_sock.sendall(resp.encode('utf-8'))
+                elif "ExecutedInstructions" in line_str:
+                    self.total_cycles += int(self.current_freq_mhz * 1e6 * 0.1)
+                    resp = f"ExecutedInstructions: {self.total_cycles}\n(stm32f4_dvfs) "
+                    client_sock.sendall(resp.encode('utf-8'))
+                elif "SP" in line_str:
+                    resp = f"SP: 0x{self.sp_register:08x}\n(stm32f4_dvfs) "
+                    client_sock.sendall(resp.encode('utf-8'))
+                else:
+                    # 2. JSON Lines Protocol Fallback
+                    try:
+                        cmd = json.loads(line_str)
+                        if cmd.get('command') == 'set_frequency':
+                            self.current_freq_mhz = float(cmd.get('frequency_mhz', 8.0))
+                            self.total_cycles += int(self.current_freq_mhz * 1e6 * 0.1)
+                            resp = json.dumps({
+                                'status': 'OK',
+                                'current_freq_mhz': self.current_freq_mhz,
+                                'total_cycles': self.total_cycles,
+                                'sp_register': hex(self.sp_register),
+                                'ram_used_bytes': 1840
+                            }) + '\n'
+                            client_sock.sendall(resp.encode('utf-8'))
+                        else:
+                            client_sock.sendall(b"(stm32f4_dvfs) \n")
+                    except Exception:
+                        client_sock.sendall(b"(stm32f4_dvfs) \n")
                     
             client_sock.close()
-            print("[Renode MCU Emulator] Co-simulation session finished successfully.")
+            print("[Renode Telnet Monitor Server] Session finished.")
         except socket.timeout:
-            print("[Renode MCU Emulator] Server timed out waiting for connection.")
+            print("[Renode Telnet Monitor Server] Server timed out waiting for connection.")
         finally:
             server_sock.close()
 
