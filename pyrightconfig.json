@@ -1,5 +1,11 @@
 {
+  "executionEnvironments": [
+    {
+      "root": "."
+    }
+  ],
   "extraPaths": [
+    ".",
     "src",
     "firmware",
     "renode"
