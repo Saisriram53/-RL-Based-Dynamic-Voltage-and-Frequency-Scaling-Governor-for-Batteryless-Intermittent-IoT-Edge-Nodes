@@ -87,6 +87,28 @@ class RenodeMonitorBridge:
         res = self.send_cmd(f"sysbus.cpu PerformanceInMips {int(freq_mhz)}")
         return res
 
+    def write_mmio_observation(self, obs):
+        """Writes 5 observation floats to SRAM MMIO base 0x20001000 and sets status_flag=1."""
+        import struct
+        for idx, val in enumerate(obs):
+            hex_word = hex(struct.unpack('<I', struct.pack('<f', float(val)))[0])
+            addr = hex(0x20001000 + (idx * 4))
+            self.send_cmd(f"sysbus WriteDoubleWord {addr} {hex_word}")
+        self.send_cmd("sysbus WriteDoubleWord 0x20001018 0x1")
+
+    def read_mmio_action(self):
+        """Reads on-chip inferred action from SRAM MMIO 0x20001014 if status_flag=2."""
+        res_flag = self.send_cmd("sysbus ReadDoubleWord 0x20001018")
+        matches = re.findall(r"0x[0-9a-fA-F]+\b|\b\d+\b", res_flag)
+        if matches:
+            flag_val = int(matches[-1], 16) if matches[-1].startswith("0x") else int(matches[-1])
+            if flag_val == 2:
+                res_act = self.send_cmd("sysbus ReadDoubleWord 0x20001014")
+                act_matches = re.findall(r"0x[0-9a-fA-F]+\b|\b\d+\b", res_act)
+                if act_matches:
+                    return int(act_matches[-1], 16) if act_matches[-1].startswith("0x") else int(act_matches[-1])
+        return None
+
     def get_executed_instructions(self):
         """Queries Renode's ARM Cortex-M4 internal instruction execution register."""
         res = self.send_cmd("sysbus.cpu ExecutedInstructions")
