@@ -10,12 +10,11 @@ if src_dir not in sys.path:
 if base_dir not in sys.path:
     sys.path.append(base_dir)
 
+from src.export_ppo_c_policy import export_ppo_to_c
 try:
-    from src.export_ppo_c_policy import export_ppo_to_c
+    from firmware.build_elf import create_arm_cortex_m4_elf
 except ImportError:
-    from export_ppo_c_policy import export_ppo_to_c
-
-from build_elf import create_arm_cortex_m4_elf
+    from build_elf import create_arm_cortex_m4_elf
 
 def build_closed_loop_firmware():
     """
