@@ -187,7 +187,9 @@ def benchmark_and_plot():
     # 1.5 Multi-Seed PPO Training Convergence Evaluation
     ppo_seed_backlogs = []
     for s in range(5):
-        sp = os.path.join(models_dir, f"ppo_dvfs_seed_{s}.zip")
+        sp_seeds = os.path.join(models_dir, "seeds", f"ppo_dvfs_seed_{s}.zip")
+        sp_root = os.path.join(models_dir, f"ppo_dvfs_seed_{s}.zip")
+        sp = sp_seeds if os.path.exists(sp_seeds) else sp_root
         if os.path.exists(sp):
             m_s = PPO.load(sp)
             q_s = []

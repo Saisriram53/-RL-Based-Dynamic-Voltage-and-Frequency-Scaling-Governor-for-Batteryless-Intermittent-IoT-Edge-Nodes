@@ -21,7 +21,9 @@ def train_agents(total_timesteps=61440, seeds=[0, 1, 2, 3, 4]):
         ppo_model.learn(total_timesteps=total_timesteps)
         
         # Save primary and seed-specific archives
-        ppo_path = os.path.join(models_dir, f"ppo_dvfs_seed_{s}.zip")
+        seeds_dir = os.path.join(models_dir, "seeds")
+        os.makedirs(seeds_dir, exist_ok=True)
+        ppo_path = os.path.join(seeds_dir, f"ppo_dvfs_seed_{s}.zip")
         ppo_model.save(ppo_path)
         if s == primary_seed:
             ppo_model.save(os.path.join(models_dir, "ppo_dvfs_model.zip"))

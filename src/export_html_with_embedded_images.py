@@ -1,6 +1,32 @@
 import os
 import base64
 import re
+import html
+
+def parse_markdown_table(table_lines):
+    """Parses markdown table lines into clean HTML table syntax."""
+    if len(table_lines) < 2:
+        return "\n".join(table_lines)
+    
+    headers = [cell.strip() for cell in table_lines[0].strip('|').split('|')]
+    # line 1 is separator |---|---|
+    rows = []
+    for line in table_lines[2:]:
+        if '|' in line:
+            cells = [cell.strip() for cell in line.strip('|').split('|')]
+            rows.append(cells)
+            
+    html_out = ['<table class="ieee-table">', '  <thead>', '    <tr>']
+    for h in headers:
+        html_out.append(f'      <th>{h}</th>')
+    html_out.extend(['    </tr>', '  </thead>', '  <tbody>'])
+    for r in rows:
+        html_out.append('    <tr>')
+        for c in r:
+            html_out.append(f'      <td>{c}</td>')
+        html_out.append('    </tr>')
+    html_out.extend(['  </tbody>', '</table>'])
+    return '\n'.join(html_out)
 
 def build_standalone_html():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -17,7 +43,10 @@ def build_standalone_html():
     with open(md_path, "r", encoding="utf-8") as f:
         md_text = f.read()
 
-    # Convert Markdown to HTML elements manually or via regex/formatting
+    # Extract paper title from # title line
+    title_match = re.search(r"^# (.*?)$", md_text, flags=re.MULTILINE)
+    paper_title = title_match.group(1).strip() if title_match else "Gradient-Aware RL-Based DVFS Governor"
+
     # Replace markdown image links with base64 data URI img tag
     md_text = re.sub(
         r"!\[.*?\]\(.*?\)",
@@ -30,7 +59,8 @@ def build_standalone_html():
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Predictive RL-Based DVFS Governor for Batteryless Intermittent IoT Edge Nodes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{paper_title}</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -44,25 +74,18 @@ def build_standalone_html():
             background-color: #fff;
         }}
         h1 {{
-            font-size: 24pt;
+            font-size: 22pt;
             text-align: center;
             font-weight: bold;
             margin-bottom: 15px;
             color: #0b2545;
+            line-height: 1.3;
         }}
         .author-block {{
             text-align: center;
             font-size: 11pt;
             margin-bottom: 30px;
             color: #333;
-        }}
-        .abstract-box {{
-            background: #f8f9fa;
-            border-left: 4px solid #0b2545;
-            padding: 18px;
-            margin-bottom: 30px;
-            font-size: 10.5pt;
-            text-align: justify;
         }}
         h2 {{
             font-size: 14pt;
@@ -77,23 +100,23 @@ def build_standalone_html():
             color: #134074;
             margin-top: 20px;
         }}
-        table {{
+        table.ieee-table {{
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
             font-size: 10pt;
         }}
-        th, td {{
+        table.ieee-table th, table.ieee-table td {{
             border: 1px solid #cbd5e1;
             padding: 10px 12px;
             text-align: left;
         }}
-        th {{
+        table.ieee-table th {{
             background-color: #0b2545;
             color: #fff;
             font-weight: bold;
         }}
-        tr:nth-child(even) {{
+        table.ieee-table tr:nth-child(even) {{
             background-color: #f8fafc;
         }}
         pre {{
@@ -104,6 +127,7 @@ def build_standalone_html():
             overflow-x: auto;
             font-family: 'Consolas', 'Courier New', monospace;
             font-size: 9.5pt;
+            line-height: 1.4;
         }}
         code {{
             font-family: 'Consolas', monospace;
@@ -112,46 +136,93 @@ def build_standalone_html():
             border-radius: 4px;
             font-size: 0.9em;
         }}
+        pre code {{
+            background-color: transparent;
+            padding: 0;
+            color: inherit;
+        }}
         blockquote {{
             border-left: 3px solid #94a3b8;
             margin: 0;
             padding-left: 15px;
             color: #475569;
         }}
+        hr {{
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 30px 0;
+        }}
     </style>
 </head>
 <body>
 """
 
-    # Format Markdown body to basic HTML tags
-    body_html = md_text
+    lines = md_text.splitlines()
+    body_html_lines = []
+    in_code_block = False
+    code_block_lines = []
+    in_table = False
+    table_lines = []
 
-    # Replace headings
-    body_html = re.sub(r"^# (.*?)$", r"h1.\1", body_html, flags=re.MULTILINE)
-    body_html = re.sub(r"^## (.*?)$", r"<h2>\1</h2>", body_html, flags=re.MULTILINE)
-    body_html = re.sub(r"^### (.*?)$", r"<h3>\1</h3>", body_html, flags=re.MULTILINE)
-
-    # Replace bold & italic
-    body_html = re.sub(r"\*\*(.*?)\*\*", r"<b>\1</b>", body_html)
-    body_html = re.sub(r"\*(.*?)\*", r"<i>\1</i>", body_html)
-
-    # Code blocks
-    body_html = re.sub(r"```(.*?)\n(.*?)```", r"<pre><code>\2</code></pre>", body_html, flags=re.DOTALL)
-
-    # Paragraphs and line breaks
-    paragraphs = body_html.split("\n\n")
-    formatted_paragraphs = []
-    for p in paragraphs:
-        p_strip = p.strip()
-        if p_strip.startswith("<h2>") or p_strip.startswith("<h3>") or p_strip.startswith("<pre>") or p_strip.startswith("<div") or p_strip.startswith("h1.") or p_strip.startswith("|"):
-            if p_strip.startswith("h1."):
-                formatted_paragraphs.append(f"<h1>{p_strip[3:]}</h1>")
+    for line in lines:
+        # Code blocks toggle
+        if line.startswith("```"):
+            if in_code_block:
+                escaped_code = html.escape("\n".join(code_block_lines))
+                body_html_lines.append(f"<pre><code>{escaped_code}</code></pre>")
+                code_block_lines = []
+                in_code_block = False
             else:
-                formatted_paragraphs.append(p_strip)
-        else:
-            formatted_paragraphs.append(f"<p>{p_strip}</p>")
+                in_code_block = True
+                code_block_lines = []
+            continue
 
-    html_content += "\n".join(formatted_paragraphs)
+        if in_code_block:
+            code_block_lines.append(line)
+            continue
+
+        # Tables toggle
+        if line.strip().startswith("|") and line.strip().endswith("|"):
+            if not in_table:
+                in_table = True
+                table_lines = [line]
+            else:
+                table_lines.append(line)
+            continue
+        else:
+            if in_table:
+                table_html = parse_markdown_table(table_lines)
+                body_html_lines.append(table_html)
+                table_lines = []
+                in_table = False
+
+        # Headings
+        if line.startswith("# "):
+            body_html_lines.append(f"<h1>{line[2:].strip()}</h1>")
+        elif line.startswith("## "):
+            body_html_lines.append(f"<h2>{line[3:].strip()}</h2>")
+        elif line.startswith("### "):
+            body_html_lines.append(f"<h3>{line[4:].strip()}</h3>")
+        elif line.startswith("---"):
+            body_html_lines.append("<hr />")
+        else:
+            # Inline replacements
+            l_fmt = line
+            l_fmt = re.sub(r"\*\*(.*?)\*\*", r"<b>\1</b>", l_fmt)
+            l_fmt = re.sub(r"\*(.*?)\*", r"<i>\1</i>", l_fmt)
+            l_fmt = re.sub(r"`(.*?)`", r"<code>\1</code>", l_fmt)
+
+            if l_fmt.strip():
+                if not l_fmt.strip().startswith("<"):
+                    body_html_lines.append(f"<p>{l_fmt.strip()}</p>")
+                else:
+                    body_html_lines.append(l_fmt.strip())
+
+    if in_table:
+        table_html = parse_markdown_table(table_lines)
+        body_html_lines.append(table_html)
+
+    html_content += "\n".join(body_html_lines)
     html_content += "\n</body>\n</html>"
 
     with open(out_html, "w", encoding="utf-8") as f:
