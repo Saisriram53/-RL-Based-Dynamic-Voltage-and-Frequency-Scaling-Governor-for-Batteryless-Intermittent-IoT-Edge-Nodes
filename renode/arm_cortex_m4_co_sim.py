@@ -15,6 +15,7 @@ from environment import EnergyHarvestingDVFSEnv
 from stable_baselines3 import PPO
 
 RENODE_EXE_PATH = r"C:\Program Files\Renode\bin\Renode.exe"
+FALLBACK_EMULATOR_PORT = 1234  # Must match RenodeTargetEmulatorServer's --port below
 
 class RenodeMonitorBridge:
     """
@@ -120,11 +121,13 @@ def run_hardware_cosimulation():
         time.sleep(5.0)
         bridge = RenodeMonitorBridge(port=1234)
     else:
-        print(f"[Co-Sim Bridge] Official Renode binary not found at {RENODE_EXE_PATH}. Launching protocol emulator on port 1234...")
+        print(f"[Co-Sim Bridge] Official Renode binary not found at {RENODE_EXE_PATH}. Launching protocol emulator...")
         server_script = os.path.join(base_dir, "renode", "renode_server.py")
-        renode_proc = subprocess.Popen([sys.executable, server_script, "--port", "1234"])
+        renode_proc = subprocess.Popen(
+            [sys.executable, server_script, "--port", str(FALLBACK_EMULATOR_PORT)]
+        )
         time.sleep(1.0)
-        bridge = RenodeMonitorBridge(port=1234)
+        bridge = RenodeMonitorBridge(port=FALLBACK_EMULATOR_PORT)
 
     try:
         bridge.connect()
