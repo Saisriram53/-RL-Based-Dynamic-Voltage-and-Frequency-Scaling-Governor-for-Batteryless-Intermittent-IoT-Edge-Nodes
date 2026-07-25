@@ -4,9 +4,17 @@ import shutil
 import subprocess
 
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(os.path.join(base_dir, "src"))
+src_dir = os.path.join(base_dir, "src")
+if src_dir not in sys.path:
+    sys.path.append(src_dir)
+if base_dir not in sys.path:
+    sys.path.append(base_dir)
 
-from export_ppo_c_policy import export_ppo_to_c
+try:
+    from src.export_ppo_c_policy import export_ppo_to_c
+except ImportError:
+    from export_ppo_c_policy import export_ppo_to_c
+
 from build_elf import create_arm_cortex_m4_elf
 
 def build_closed_loop_firmware():

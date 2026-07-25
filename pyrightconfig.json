@@ -1,0 +1,7 @@
+{
+  "extraPaths": [
+    "src",
+    "firmware",
+    "renode"
+  ]
+}
