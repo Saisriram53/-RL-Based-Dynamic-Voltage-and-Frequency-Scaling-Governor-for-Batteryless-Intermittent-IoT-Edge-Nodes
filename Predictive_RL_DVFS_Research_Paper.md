@@ -64,8 +64,8 @@ If $V_{\text{terminal}}(t) \le V_{\text{brownout}} = 1.8\text{V}$, a Brownout Re
   $$s_t = \left[ V_{\text{terminal}}(t), Q_{\text{len}}(t), P_{\text{harvested}}(t), \Delta P_{\text{harvested}}(t), \frac{a_{t-1}}{3.0} \right]$$
   where $V_{\text{terminal}}(t)$ is the physical rail voltage ($\text{V}$), $Q_{\text{len}}(t)$ is current task queue length, $P_{\text{harvested}}(t)$ is harvested power ($\text{mW}$), $\Delta P_{\text{harvested}}(t)$ is the power differential gradient ($\text{mW/step}$), and $a_{t-1}/3.0$ is the normalized previous scaling index.
 - **Action Space ($a_t \in \{0, 1, 2, 3\}$):** Discrete frequency selection index mapping to core frequencies $f_t \in \{8\text{ MHz}, 16\text{ MHz}, 48\text{ MHz}, 80\text{ MHz}\}$ and core supply voltages $V_{\text{dd}} \in \{0.9\text{V}, 1.1\text{V}, 1.3\text{V}, 1.5\text{V}\}$.
-- **Reward Function ($r_t$):** Formulated to balance task execution throughput against queue buildup while penalizing brownout crash events:
-  $$r_t = \begin{cases} -200.0 & \text{if } V_{\text{terminal}}(t) \le 1.8\text{V} \text{ (Brownout Reset Crash)} \\ \text{TasksServed}_t - (0.05 \cdot Q_{\text{len}}(t)) & \text{otherwise} \end{cases}$$
+- **Reward Function ($r_t$):** Formulated to reward task execution throughput while penalizing queue accumulation and catastrophic brownout crash events:
+  $$r_t = \begin{cases} -200.0 & \text{if } V_{\text{terminal}}(t) \le 1.8\text{V} \text{ (Brownout Reset Crash)} \\ 3.0 \cdot \text{TasksServed}_t - (0.4 \cdot Q_{\text{len}}(t)) & \text{otherwise} \end{cases}$$
 
 ---
 
@@ -110,7 +110,7 @@ To validate physical hardware instruction execution, target microcontroller reso
 
 1. **Target Firmware ELF Assembly (`firmware/firmware.elf`):**
    - Compiled a 32-bit ARM Cortex-M4 Little-Endian ELF binary targeting Flash base `0x08000000` and SRAM base `0x20000000`.
-   - Configures Initial Main Stack Pointer (`0x20004000`), Reset Vector (`0x08000009` with Thumb-2 bit), and FreeRTOS task control block (TCB) stack allocation instructions (`push {r4, lr}` and `sub sp` totaling **$1,840\text{ bytes}$** stack depth).
+   - Configures Initial Main Stack Pointer (`0x20004000`), Reset Vector (`0x08000009` with Thumb-2 bit), and FreeRTOS task control block (TCB) stack allocation instructions (`push {r4, lr}` and valid 16-bit Thumb `sub sp` instructions totaling **$1,840\text{ bytes}$** stack depth).
 2. **Renode Telnet Monitor Interface (`Renode.exe` v1.16.0 on Port 1234):**
    - Launched official Renode v1.16.0 (`C:\Program Files\Renode\bin\Renode.exe`) in background mode, loading `renode/stm32f4_dvfs.resc` to ingest `firmware/firmware.elf` and hosting a Telnet Monitor server on port 1234.
    - On each control step ($\Delta t = 100\text{ ms}$), Python sends MIPS scaling commands (`sysbus.cpu PerformanceInMips {freq_mhz}`) to dynamically adjust CPU clock rate in Renode.
