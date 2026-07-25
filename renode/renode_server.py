@@ -1,3 +1,4 @@
+import argparse
 import socket
 import json
 import re
@@ -86,5 +87,12 @@ class RenodeTargetEmulatorServer:
             server_sock.close()
 
 if __name__ == "__main__":
-    emulator = RenodeTargetEmulatorServer()
+    parser = argparse.ArgumentParser(description="Renode Telnet Monitor / JSON emulator server")
+    parser.add_argument("--port", type=int, default=1234,
+                         help="Port to listen on (must match RenodeMonitorBridge's port in the caller)")
+    parser.add_argument("--host", default="127.0.0.1")
+    args = parser.parse_args()
+
+    emulator = RenodeTargetEmulatorServer(host=args.host, port=args.port)
+    print(f"[Renode Telnet Monitor Server] Starting on {args.host}:{args.port}")
     emulator.run()

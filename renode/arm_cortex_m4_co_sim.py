@@ -120,11 +120,11 @@ def run_hardware_cosimulation():
         time.sleep(5.0)
         bridge = RenodeMonitorBridge(port=1234)
     else:
-        print(f"[Co-Sim Bridge] Official Renode binary not found at {RENODE_EXE_PATH}. Launching protocol emulator...")
+        print(f"[Co-Sim Bridge] Official Renode binary not found at {RENODE_EXE_PATH}. Launching protocol emulator on port 1234...")
         server_script = os.path.join(base_dir, "renode", "renode_server.py")
-        renode_proc = subprocess.Popen([sys.executable, server_script])
+        renode_proc = subprocess.Popen([sys.executable, server_script, "--port", "1234"])
         time.sleep(1.0)
-        bridge = RenodeMonitorBridge(port=4000)
+        bridge = RenodeMonitorBridge(port=1234)
 
     try:
         bridge.connect()
