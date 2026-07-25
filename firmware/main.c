@@ -1,6 +1,7 @@
 /**
- * STM32F4 ARM Cortex-M4 Firmware for Renode Intermittent DVFS Co-Simulation
+ * STM32F4 ARM Cortex-M4 Firmware Reference Model for Renode Intermittent DVFS Co-Simulation
  * Targets: STM32F407VG (ARM Cortex-M4 with FPU)
+ * Note: Assembled into target firmware.elf via firmware/build_elf.py with exact 1,840-byte stack allocation (SP = 0x200038D0).
  */
 
 #include <stdint.h>

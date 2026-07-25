@@ -106,7 +106,7 @@ During execution, the gradient feature $\Delta P_{\text{harvested}} = P_{\text{h
 +------------------------------------+               +-----------------------------------+
 ```
 
-To validate physical hardware instruction execution, target microcontroller resource constraints, and FreeRTOS task execution feasibility, we established an **ARM Cortex-M4 Renode Hardware Co-Simulation Framework** (`renode/stm32f4_dvfs.repl` and `renode/stm32f4_dvfs.resc`).
+To validate physical target instruction execution feasibility, microcontroller resource constraints, and FreeRTOS task memory stack feasibility ($1,840\text{ bytes}$ stack depth), we established an **ARM Cortex-M4 Renode Hardware Co-Simulation Framework** (`renode/stm32f4_dvfs.repl` and `renode/stm32f4_dvfs.resc`). The hardware co-simulation framework streams frequency scaling commands over Renode's Telnet Monitor protocol (Port 1234) as an instruction-level hardware verification harness parallel to the Gymnasium energy dynamics model.
 
 1. **Target Firmware ELF Assembly (`firmware/firmware.elf`):**
    - Compiled a 32-bit ARM Cortex-M4 Little-Endian ELF binary targeting Flash base `0x08000000` and SRAM base `0x20000000`.

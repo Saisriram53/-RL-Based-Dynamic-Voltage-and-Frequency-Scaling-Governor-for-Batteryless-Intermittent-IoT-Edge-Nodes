@@ -171,7 +171,7 @@
 |   2. Computes action a_t (PPO)     |  Port 1234    |   2. sysbus.cpu PerformanceInMips |
 |   3. Sends PerformanceInMips cmd   | &lt;------------ |   3. Queries SP &amp; ExecutedInst    |
 +------------------------------------+               +-----------------------------------+</code></pre>
-<p>To validate physical hardware instruction execution, target microcontroller resource constraints, and FreeRTOS task execution feasibility, we established an <b>ARM Cortex-M4 Renode Hardware Co-Simulation Framework</b> (<code>renode/stm32f4_dvfs.repl</code> and <code>renode/stm32f4_dvfs.resc</code>).</p>
+<p>To validate physical target instruction execution feasibility, microcontroller resource constraints, and FreeRTOS task memory stack feasibility ($1,840\text{ bytes}$ stack depth), we established an <b>ARM Cortex-M4 Renode Hardware Co-Simulation Framework</b> (<code>renode/stm32f4_dvfs.repl</code> and <code>renode/stm32f4_dvfs.resc</code>). The hardware co-simulation framework streams frequency scaling commands over Renode's Telnet Monitor protocol (Port 1234) as an instruction-level hardware verification harness parallel to the Gymnasium energy dynamics model.</p>
 <p>1. <b>Target Firmware ELF Assembly (<code>firmware/firmware.elf</code>):</b></p>
 <p>- Compiled a 32-bit ARM Cortex-M4 Little-Endian ELF binary targeting Flash base <code>0x08000000</code> and SRAM base <code>0x20000000</code>.</p>
 <p>- Configures Initial Main Stack Pointer (<code>0x20004000</code>), Reset Vector (<code>0x08000009</code> with Thumb-2 bit), and FreeRTOS task control block (TCB) stack allocation instructions (<code>push {r4, lr}</code> and valid 16-bit Thumb <code>sub sp</code> instructions totaling <b>$1,840\text{ bytes}$</b> stack depth).</p>
