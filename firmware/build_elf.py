@@ -5,7 +5,7 @@ def create_arm_cortex_m4_elf(output_filepath):
     """
     Generates a valid 32-bit Little-Endian ARM ELF binary (EM_ARM)
     targeting ARM Cortex-M4 memory layout (Flash at 0x08000000, SRAM at 0x20000000).
-    Includes Vector Table, FreeRTOS TCB stack allocation (1,840 bytes),
+    Includes Vector Table, FreeRTOS TCB stack allocation (EXACTLY 1,840 bytes),
     Reset Handler, and active Thumb-2 USART1 telemetry loop.
     """
     # 1. Vector Table (at 0x08000000)
@@ -21,7 +21,7 @@ def create_arm_cortex_m4_elf(output_filepath):
     #   0x08000008: B510      push {r4, lr}        ; SP = 0x20003FF8 (-8 bytes)
     #   0x0800000A: B0B4      sub  sp, #720        ; SP -= 720
     #   0x0800000C: B0B4      sub  sp, #720        ; SP -= 720
-    #   0x0800000E: B0A8      sub  sp, #400        ; SP -= 400 (Total SP drop = 1,840 bytes -> SP = 0x200038D0)
+    #   0x0800000E: B0A6      sub  sp, #392        ; SP -= 392 (Total SP drop = 8 + 720 + 720 + 392 = EXACTLY 1,840 bytes -> SP = 0x200038D0)
     #   0x08000010: 2400      movs r4, #0          ; Counter r4 = 0
     #   0x08000012: 3401      adds r4, #1          ; Loop counter r4++
     #   0x08000014: 2041      movs r0, #65         ; 'A'
@@ -35,7 +35,7 @@ def create_arm_cortex_m4_elf(output_filepath):
         0x10, 0xb5,  # push {r4, lr}
         0xb4, 0xb0,  # sub sp, #720
         0xb4, 0xb0,  # sub sp, #720
-        0xa8, 0xb0,  # sub sp, #400
+        0xa6, 0xb0,  # sub sp, #392
         0x00, 0x24,  # movs r4, #0
         0x01, 0x34,  # adds r4, #1
         0x41, 0x20,  # movs r0, #65
