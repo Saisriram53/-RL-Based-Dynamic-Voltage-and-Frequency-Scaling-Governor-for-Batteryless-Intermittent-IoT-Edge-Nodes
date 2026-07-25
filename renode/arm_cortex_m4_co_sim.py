@@ -7,6 +7,8 @@ import subprocess
 import re
 import numpy as np
 
+import shutil
+
 # Add src to sys.path
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(base_dir, "src"))
@@ -14,7 +16,17 @@ sys.path.append(os.path.join(base_dir, "src"))
 from environment import EnergyHarvestingDVFSEnv
 from stable_baselines3 import PPO
 
-RENODE_EXE_PATH = r"C:\Program Files\Renode\bin\Renode.exe"
+def find_renode_executable():
+    """Cross-platform auto-detection of Renode executable across Linux, macOS, and Windows."""
+    path_executable = shutil.which("renode") or shutil.which("Renode")
+    if path_executable:
+        return path_executable
+    win_path = r"C:\Program Files\Renode\bin\Renode.exe"
+    if os.path.exists(win_path):
+        return win_path
+    return None
+
+RENODE_EXE_PATH = find_renode_executable()
 FALLBACK_EMULATOR_PORT = 1234  # Must match RenodeTargetEmulatorServer's --port below
 
 class RenodeMonitorBridge:
@@ -112,7 +124,7 @@ def run_hardware_cosimulation():
     
     renode_proc = None
     
-    use_real_renode = os.path.exists(RENODE_EXE_PATH)
+    use_real_renode = (RENODE_EXE_PATH is not None) and os.path.exists(RENODE_EXE_PATH)
     if use_real_renode:
         print(f"[Co-Sim Bridge] Found official Renode binary at: {RENODE_EXE_PATH}")
         cmd = [RENODE_EXE_PATH, "--disable-xwt", "--port", "1234", "-e", "include @renode/stm32f4_dvfs.resc"]
