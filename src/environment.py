@@ -117,12 +117,16 @@ class EnergyHarvestingDVFSEnv(gym.Env):
         V_terminal = getattr(self, 'last_v_terminal', float(self.V_cap))
         p_harvest = self.solar_trace[self.time_step % len(self.solar_trace)]
         dp_harvest = p_harvest - self.prev_p_harvested
+        
+        q_norm = float(self.queue_length) / 50.0
+        p_norm = p_harvest * 10.0
+        dp_norm = dp_harvest * 10.0
         prev_act_norm = float(self.prev_action) / 3.0
         
         if self.include_gradient:
-            return np.array([V_terminal, self.queue_length, p_harvest, dp_harvest, prev_act_norm], dtype=np.float32)
+            return np.array([V_terminal, q_norm, p_norm, dp_norm, prev_act_norm], dtype=np.float32)
         else:
-            return np.array([V_terminal, self.queue_length, p_harvest, prev_act_norm], dtype=np.float32)
+            return np.array([V_terminal, q_norm, p_norm, prev_act_norm], dtype=np.float32)
 
     def step(self, action):
         freq = self.freq_steps[action] * 1e6   # Convert MHz to Hz
@@ -188,5 +192,6 @@ class EnergyHarvestingDVFSEnv(gym.Env):
             'v_cap': self.V_cap,
             'v_terminal': V_terminal,
             'p_consumed': P_consumed,
-            'p_harvested': P_harvested
+            'p_harvested': P_harvested,
+            'queue_length': float(self.queue_length)
         }

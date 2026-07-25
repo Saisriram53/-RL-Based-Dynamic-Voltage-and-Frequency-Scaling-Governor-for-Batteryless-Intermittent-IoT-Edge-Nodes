@@ -29,6 +29,15 @@ def train_agents(total_timesteps=61440, seeds=[0, 1, 2, 3, 4]):
             ppo_model.save(os.path.join(models_dir, "ppo_dvfs_model.zip"))
         print(f"PPO Seed {s} Model successfully saved to {ppo_path}")
 
+    print(f"\n--- Training Ablated PPO Governor (without dP feature, {total_timesteps} timesteps) ---")
+    env_ablation = EnergyHarvestingDVFSEnv(profile='standard_cloudy', include_gradient=False)
+    env_ablation.reset(seed=primary_seed)
+    ablation_model = PPO("MlpPolicy", env_ablation, learning_rate=0.001, seed=primary_seed, verbose=0)
+    ablation_model.learn(total_timesteps=total_timesteps)
+    ablation_path = os.path.join(models_dir, "ppo_ablation_no_grad_model.zip")
+    ablation_model.save(ablation_path)
+    print(f"Ablated PPO Model successfully saved to {ablation_path}")
+
     print(f"\n--- Training Primary DQN RL DVFS Governor ({total_timesteps} timesteps, seed={primary_seed}) ---")
     env_dqn = EnergyHarvestingDVFSEnv(profile='standard_cloudy')
     env_dqn.reset(seed=primary_seed)

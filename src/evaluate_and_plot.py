@@ -72,6 +72,7 @@ def benchmark_and_plot():
     
     ppo_path = os.path.join(models_dir, "ppo_dvfs_model.zip")
     dqn_path = os.path.join(models_dir, "dqn_dvfs_model.zip")
+    ablation_path = os.path.join(models_dir, "ppo_ablation_no_grad_model.zip")
     
     env = EnergyHarvestingDVFSEnv(profile='standard_cloudy')
     
@@ -83,6 +84,8 @@ def benchmark_and_plot():
     
     if os.path.exists(ppo_path):
         governors['Proposed PPO RL'] = PPO.load(ppo_path)
+    if os.path.exists(ablation_path):
+        governors['Ablated PPO (w/o dP)'] = PPO.load(ablation_path)
     if os.path.exists(dqn_path):
         governors['DQN RL'] = DQN.load(dqn_path)
 
@@ -100,7 +103,8 @@ def benchmark_and_plot():
         num_trials = 30
         
         for seed in range(num_trials):
-            env_test = EnergyHarvestingDVFSEnv(profile='standard_cloudy')
+            is_ablation = ('w/o dP' in name)
+            env_test = EnergyHarvestingDVFSEnv(profile='standard_cloudy', include_gradient=not is_ablation)
             obs, _ = env_test.reset(seed=100 + seed)
             done = False
             t_tasks = 0
@@ -119,7 +123,7 @@ def benchmark_and_plot():
                 done = terminated or truncated
                 t_tasks += info['tasks_processed']
                 steps_active += 1
-                q_lens.append(obs[1])
+                q_lens.append(info['queue_length'])
                 if info['brownout']:
                     crashed = True
                     
@@ -152,7 +156,9 @@ def benchmark_and_plot():
         }
         
         # Capture single deterministic trace for plotting
-        episode_traces[name] = run_episode(EnergyHarvestingDVFSEnv(profile='standard_cloudy'), gov)
+        is_ablation = ('w/o dP' in name)
+        env_trace = EnergyHarvestingDVFSEnv(profile='standard_cloudy', include_gradient=not is_ablation)
+        episode_traces[name] = run_episode(env_trace, gov)
 
     # Export Raw Benchmark Results CSV
     csv_path = os.path.join(results_dir, "benchmark_raw_results.csv")
@@ -240,7 +246,7 @@ def benchmark_and_plot():
                     a_p = int(a_p.item()) if isinstance(a_p, np.ndarray) else int(a_p)
                     o_p, r_p, term_p, trunc_p, inf_p = e_p.step(a_p)
                     d_p = term_p or trunc_p
-                    ql.append(o_p[1])
+                    ql.append(inf_p['queue_length'])
                     t_tasks_p += inf_p['tasks_processed']
                     steps_p += 1
                     if inf_p['brownout']:
@@ -299,7 +305,7 @@ def benchmark_and_plot():
                     a_c = int(a_c.item()) if isinstance(a_c, np.ndarray) else int(a_c)
                     o_c, r_c, term_c, trunc_c, inf_c = e_c.step(a_c)
                     d_c = term_c or trunc_c
-                    ql.append(o_c[1])
+                    ql.append(inf_c['queue_length'])
                     t_tasks_c += inf_c['tasks_processed']
                     steps_c += 1
                     if inf_c['brownout']:
