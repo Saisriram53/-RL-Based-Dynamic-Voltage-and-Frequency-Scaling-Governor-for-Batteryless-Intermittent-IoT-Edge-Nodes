@@ -1,5 +1,5 @@
 :name: STM32F4 ARM Cortex-M4 DVFS Hardware Co-Simulation
-:description: Loads STM32F4 platform, compiles Flash ELF firmware, and binds USART1 to TCP Socket Terminal Port 4000
+:description: Loads custom STM32F4 platform description, ingests firmware ELF, and sets up USART1 serial terminal
 
 using sysbus
 $name?="stm32f4_dvfs"
@@ -14,4 +14,4 @@ connector Connect sysbus.usart1 term
 
 start
 
-echo "Renode STM32F4 ARM Cortex-M4 Target Initialized and Executing Firmware ELF on Port 4000."
+echo "Renode STM32F4 ARM Cortex-M4 Target Initialized and Executing Firmware ELF."

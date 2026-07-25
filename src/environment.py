@@ -8,16 +8,45 @@ class EnergyHarvestingDVFSEnv(gym.Env):
     Markov Decision Process (POMDP) for an intermittent, batteryless IoT node with
     Supercapacitor ESR I^2 R losses, PLL Clock Lock Latency, Thermal Leakage Drift, 
     and Domain Randomization for Sim-to-Real Transfer.
+
+    Physics Equations:
+    ------------------
+    1. Supercapacitor Stored Energy:
+       E_cap(t) = 0.5 * C_supercap * V_cap(t)^2
+    
+    2. Dynamic CMOS Power Dissipation:
+       P_dynamic = alpha_CL * V_dd(f)^2 * f
+    
+    3. Total Power Consumption & ESR Resistive Drain:
+       P_consumed = P_dynamic + P_leakage
+       I_load = P_consumed / max(1.0, V_cap)
+       P_esr_loss = I_load^2 * R_esr
+       P_total_drain = P_consumed + P_esr_loss
+
+    4. Energy Integration:
+       dE = (P_harvested - P_total_drain) * dt
+       E_new = max(0.0, E_cap(t) + dE)
+       V_cap(t+1) = sqrt(2 * E_new / C_supercap)
+
+    5. Terminal Voltage Drop under Load:
+       V_terminal = max(0.0, V_cap(t+1) - I_load * R_esr)
+
+    Reward Function:
+    ----------------
+    r_t = -200.0                       if (V_terminal <= 1.8V or V_cap <= 1.8V) [Brownout Reset]
+    r_t = +3.0 * TasksProcessed        otherwise
+          -0.4 * ActiveQueueLength
     """
     metadata = {'render_modes': ['human']}
 
-    def __init__(self, profile='standard_cloudy', domain_randomization=True, C_supercap=0.010):
+    def __init__(self, profile='standard_cloudy', domain_randomization=True, C_supercap=0.010, include_gradient=True):
         super(EnergyHarvestingDVFSEnv, self).__init__()
         
         # 1. Frequency Steps (MHz) & Core Voltages (Volts)
         self.freq_steps = np.array([8.0, 16.0, 48.0, 80.0])  # MHz
         self.voltage_steps = np.array([0.9, 1.1, 1.3, 1.5])  # Volts
         self.action_space = spaces.Discrete(len(self.freq_steps))
+        self.include_gradient = include_gradient
         
         # 2. Physical Hardware Parameters
         self.C_supercap = float(C_supercap) # Configurable Supercapacitor capacitance (F)
@@ -29,11 +58,19 @@ class EnergyHarvestingDVFSEnv(gym.Env):
         self.domain_randomization = domain_randomization
         
         # 3. Observation Space: [V_terminal (V), Task Queue Length, Harvested Power (W), dP_harvested (W), Prev_Action_Norm]
-        self.observation_space = spaces.Box(
-            low=np.array([1.0, 0.0, 0.0, -0.1, 0.0], dtype=np.float32),
-            high=np.array([3.3, 200.0, 0.1, 0.1, 1.0], dtype=np.float32),
-            dtype=np.float32
-        )
+        if self.include_gradient:
+            self.observation_space = spaces.Box(
+                low=np.array([1.0, 0.0, 0.0, -0.1, 0.0], dtype=np.float32),
+                high=np.array([3.3, 200.0, 0.1, 0.1, 1.0], dtype=np.float32),
+                dtype=np.float32
+            )
+        else:
+            # Ablation observation space without gradient feature
+            self.observation_space = spaces.Box(
+                low=np.array([1.0, 0.0, 0.0, 0.0], dtype=np.float32),
+                high=np.array([3.3, 200.0, 0.1, 1.0], dtype=np.float32),
+                dtype=np.float32
+            )
         
         self.profile = profile
         self.max_steps = 150
@@ -82,7 +119,11 @@ class EnergyHarvestingDVFSEnv(gym.Env):
         p_harvest = self.solar_trace[self.time_step % len(self.solar_trace)]
         dp_harvest = p_harvest - self.prev_p_harvested
         prev_act_norm = float(self.prev_action) / 3.0
-        return np.array([V_terminal, self.queue_length, p_harvest, dp_harvest, prev_act_norm], dtype=np.float32)
+        
+        if self.include_gradient:
+            return np.array([V_terminal, self.queue_length, p_harvest, dp_harvest, prev_act_norm], dtype=np.float32)
+        else:
+            return np.array([V_terminal, self.queue_length, p_harvest, prev_act_norm], dtype=np.float32)
 
     def step(self, action):
         freq = self.freq_steps[action] * 1e6   # Convert MHz to Hz

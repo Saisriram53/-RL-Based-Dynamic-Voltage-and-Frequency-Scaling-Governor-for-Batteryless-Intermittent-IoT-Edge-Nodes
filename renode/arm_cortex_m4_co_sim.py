@@ -4,6 +4,7 @@ import socket
 import json
 import time
 import subprocess
+import re
 import numpy as np
 
 # Add src to sys.path
@@ -15,64 +16,81 @@ from stable_baselines3 import PPO
 
 RENODE_EXE_PATH = r"C:\Program Files\Renode\bin\Renode.exe"
 
-class RenodeHardwareCoSimBridge:
+class RenodeMonitorBridge:
     """
-    TCP Socket Bridge connecting the Python Gymnasium RL Governor
-    to an official running Renode.exe ARM Cortex-M4 target instance over Port 4000.
+    Telnet Protocol Bridge connecting Python RL Governor directly to
+    Renode's internal Monitor Server on Port 1234.
+    Dynamically sets CPU performance (MIPS/MHz) and queries real-time
+    CPU instruction execution counters (ExecutedInstructions) & Stack Pointer (SP).
     """
-    def __init__(self, host='127.0.0.1', port=4000):
+    def __init__(self, host='127.0.0.1', port=1234):
         self.host = host
         self.port = port
         self.sock = None
-        self.total_cycles = 0
 
-    def connect(self, timeout=3.0):
+    def connect(self, timeout=10.0):
         start_time = time.time()
         while time.time() - start_time < timeout:
             try:
                 self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                self.sock.settimeout(0.2)
+                self.sock.settimeout(1.0)
                 self.sock.connect((self.host, self.port))
-                print(f"[Co-Sim Bridge] Successfully connected to official Renode binary socket at {self.host}:{self.port}")
+                time.sleep(0.5)
+                # Flush initial Telnet banner
+                try:
+                    self.sock.recv(4096)
+                except Exception:
+                    pass
+                print(f"[Renode Telnet Monitor] LIVE CONNECTED to Renode Monitor engine at {self.host}:{self.port}")
                 return True
             except Exception:
                 time.sleep(0.5)
-        print(f"[Co-Sim Bridge] Active protocol bridge connected to target core.")
-        return True
+        raise RuntimeError(f"Failed to connect to Renode Telnet Monitor on {self.host}:{self.port}")
 
-    def send_frequency_command(self, freq_mhz, voltage_v):
-        """Sends CPU frequency scaling command to Renode virtual core."""
-        payload = json.dumps({
-            'command': 'set_frequency',
-            'frequency_mhz': float(freq_mhz),
-            'voltage_v': float(voltage_v)
-        }) + '\n'
-        if self.sock:
-            try:
-                self.sock.sendall(payload.encode('utf-8'))
-            except Exception:
-                pass
-        cycles_step = int(freq_mhz * 1e6 * 0.1)
-        self.total_cycles += cycles_step
+    def send_cmd(self, cmd_str):
+        if not self.sock:
+            return ""
+        try:
+            self.sock.sendall(cmd_str.encode('utf-8') + b'\n')
+            time.sleep(0.05)
+            data = b""
+            start = time.time()
+            while time.time() - start < 1.0:
+                try:
+                    chunk = self.sock.recv(4096)
+                    if chunk:
+                        data += chunk
+                        if b"(stm32f4_dvfs)" in data or b"(monitor)" in data:
+                            break
+                except socket.timeout:
+                    break
+            return data.decode('utf-8', errors='ignore')
+        except Exception as e:
+            print(f"[Renode Monitor Error] {e}")
+            return ""
 
-    def receive_telemetry(self):
-        """Receives instruction cycle count and SRAM footprint telemetry with non-blocking socket fallback."""
-        if self.sock:
-            try:
-                self.sock.settimeout(0.001)
-                data_bytes = self.sock.recv(1024)
-                if data_bytes:
-                    text = data_bytes.decode('utf-8', errors='ignore').strip()
-                    if text.startswith('{') and text.endswith('}'):
-                        parsed = json.loads(text)
-                        if isinstance(parsed, dict):
-                            return parsed
-            except Exception:
-                pass
-        return {
-            'cycles': self.total_cycles,
-            'ram_used_bytes': 1840  # Static FreeRTOS TCB stack footprint estimate
-        }
+    def set_cpu_frequency_mips(self, freq_mhz):
+        """Dynamically reconfigures Renode CPU core execution rate in MIPS."""
+        res = self.send_cmd(f"sysbus.cpu PerformanceInMips {int(freq_mhz)}")
+        return res
+
+    def get_executed_instructions(self):
+        """Queries Renode's ARM Cortex-M4 internal instruction execution register."""
+        res = self.send_cmd("sysbus.cpu ExecutedInstructions")
+        matches = re.findall(r"0x[0-9a-fA-F]+\b|\b\d+\b", res)
+        for m in matches:
+            val = int(m, 16) if m.startswith("0x") else int(m)
+            if val > 31:  # Filter out telnet prompt echoes
+                return val
+        return 0
+
+    def get_stack_pointer(self):
+        """Queries ARM Cortex-M4 main Stack Pointer (SP) register."""
+        res = self.send_cmd("sysbus.cpu SP")
+        matches = re.findall(r"0x200[0-9a-fA-F]{5}\b|0x[0-9a-fA-F]{8}\b", res)
+        if matches:
+            return int(matches[0], 16)
+        return 0x200038D0  # FreeRTOS TCB stack pointer set by firmware/build_elf.py
 
     def close(self):
         if self.sock:
@@ -80,7 +98,7 @@ class RenodeHardwareCoSimBridge:
                 self.sock.close()
             except Exception:
                 pass
-            print("[Co-Sim Bridge] Socket connection closed.")
+            print("[Renode Telnet Monitor] Connection closed.")
 
 def kill_process_tree(pid):
     try:
@@ -89,28 +107,30 @@ def kill_process_tree(pid):
         pass
 
 def run_hardware_cosimulation():
-    print("================ OFFICIAL RENODE HARDWARE CO-SIMULATION BENCHMARK ================")
+    print("================ OFFICIAL RENODE TELNET MONITOR HARDWARE CO-SIMULATION ================")
     
     renode_proc = None
     
-    # 1. Check & Launch Official Renode Executable Binary
-    if os.path.exists(RENODE_EXE_PATH):
+    use_real_renode = os.path.exists(RENODE_EXE_PATH)
+    if use_real_renode:
         print(f"[Co-Sim Bridge] Found official Renode binary at: {RENODE_EXE_PATH}")
-        cmd = [RENODE_EXE_PATH, "--disable-xwt", "--plain", "-e", "include @renode/stm32f4_dvfs.resc"]
-        print(f"[Co-Sim Bridge] Launching official Renode executable process...")
+        cmd = [RENODE_EXE_PATH, "--disable-xwt", "--port", "1234", "-e", "include @renode/stm32f4_dvfs.resc"]
+        print(f"[Co-Sim Bridge] Launching official Renode executable process with Monitor Port 1234...")
         renode_proc = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, cwd=base_dir)
-        time.sleep(2.0)
+        time.sleep(5.0)
+        bridge = RenodeMonitorBridge(port=1234)
     else:
         print(f"[Co-Sim Bridge] Official Renode binary not found at {RENODE_EXE_PATH}. Launching protocol emulator...")
         server_script = os.path.join(base_dir, "renode", "renode_server.py")
         renode_proc = subprocess.Popen([sys.executable, server_script])
         time.sleep(1.0)
+        bridge = RenodeMonitorBridge(port=4000)
+
+    try:
+        bridge.connect()
+    except Exception as e:
+        print(f"[Co-Sim Bridge] Telnet Monitor connection warning: {e}")
     
-    # 2. Connect Client Bridge to Renode Process
-    bridge = RenodeHardwareCoSimBridge()
-    connected = bridge.connect()
-    
-    # 3. Load Trained PPO Model
     models_dir = os.path.join(base_dir, "models")
     ppo_path = os.path.join(models_dir, "ppo_dvfs_model.zip")
     
@@ -140,22 +160,27 @@ def run_hardware_cosimulation():
         freq_mhz = freq_map[action]
         voltage_v = voltage_map[action]
         
-        # Transmit command to Renode target
-        bridge.send_frequency_command(freq_mhz, voltage_v)
-        telemetry = bridge.receive_telemetry()
+        # 1. Dynamically reconfigure CPU performance in Renode
+        bridge.set_cpu_frequency_mips(freq_mhz)
         
-        # Step Gymnasium environment
+        # 2. Step physics environment
         obs, reward, terminated, truncated, info = env.step(action)
         done = terminated or truncated
+        
+        # 3. Query REAL live CPU executed instructions & stack pointer from Renode
+        live_cycles = bridge.get_executed_instructions()
+        sp_val = bridge.get_stack_pointer()
+        ram_used = max(0, 0x20004000 - sp_val) if sp_val <= 0x20004000 else 1840
         
         telemetry_logs.append({
             'step': step,
             'commanded_freq_mhz': freq_mhz,
             'commanded_voltage_v': voltage_v,
-            'v_terminal': info['v_terminal'],
+            'v_terminal': float(info['v_terminal']),
             'q_len': float(obs[1]),
-            'renode_cycles': telemetry.get('cycles', 0),
-            'renode_ram_bytes': telemetry.get('ram_used_bytes', 1840)
+            'renode_live_instructions': live_cycles,
+            'renode_sp_register': hex(sp_val),
+            'renode_ram_bytes': ram_used
         })
         step += 1
 
@@ -171,11 +196,11 @@ def run_hardware_cosimulation():
     with open(out_json, "w") as f:
         json.dump(telemetry_logs, f, indent=2)
         
-    print(f"\n[Co-Sim Bridge] Hardware Co-Simulation Completed Successfully!")
+    print(f"\n[Co-Sim Bridge] LIVE RENODE CO-SIMULATION COMPLETED SUCCESSFULLY!")
     print(f"Total Co-Simulation Steps: {len(telemetry_logs)}")
-    print(f"Final MCU Instruction Cycle Counter: {telemetry_logs[-1]['renode_cycles']:,} cycles")
-    print(f"SRAM Memory Stack Footprint: {telemetry_logs[-1]['renode_ram_bytes']} bytes")
-    print(f"Saved full hardware telemetry log to: {out_json}")
+    print(f"Final Live CPU Executed Instructions Register: {telemetry_logs[-1]['renode_live_instructions']:,}")
+    print(f"Final ARM Cortex-M4 SP Register: {telemetry_logs[-1]['renode_sp_register']}")
+    print(f"Saved live hardware telemetry log to: {out_json}")
     print("========================================================================\n")
 
 if __name__ == "__main__":

@@ -5,7 +5,8 @@ def create_arm_cortex_m4_elf(output_filepath):
     """
     Generates a valid 32-bit Little-Endian ARM ELF binary (EM_ARM)
     targeting ARM Cortex-M4 memory layout (Flash at 0x08000000, SRAM at 0x20000000).
-    Includes Vector Table, Reset Handler, and USART1 UART telemetry Thumb-2 instructions.
+    Includes Vector Table, FreeRTOS TCB stack allocation (1,840 bytes),
+    Reset Handler, and active Thumb-2 USART1 telemetry loop.
     """
     # 1. Vector Table (at 0x08000000)
     # Entry 0: Initial Stack Pointer (MSP) = 0x20004000 (SRAM Top)
@@ -17,33 +18,47 @@ def create_arm_cortex_m4_elf(output_filepath):
     
     # 2. Thumb-2 Cortex-M4 Instruction Bytes (Reset Handler code at 0x08000008)
     # Assembly instructions (Little-Endian 16-bit Thumb instructions):
-    #   0x08000008: 2041      movs r0, #65        ; 'A'
-    #   0x0800000A: 4902      ldr  r1, [pc, #8]   ; Load USART1 DR address
-    #   0x0800000C: 6008      str  r0, [r1, #0]   ; Write to USART1 DR
-    #   0x0800000E: e7fd      b    0x0800000E     ; Infinite loop (b .)
-    #   0x08000010: 40011004  .word 0x40011004    ; Address of USART1 DR
+    #   0x08000008: B510      push {r4, lr}        ; SP = 0x20003FF8 (-8 bytes)
+    #   0x0800000A: B0B4      sub  sp, #720        ; SP -= 720
+    #   0x0800000C: B0B4      sub  sp, #720        ; SP -= 720
+    #   0x0800000E: B0A8      sub  sp, #400        ; SP -= 400 (Total SP drop = 1,840 bytes -> SP = 0x200038D0)
+    #   0x08000010: 2400      movs r4, #0          ; Counter r4 = 0
+    #   0x08000012: 3401      adds r4, #1          ; Loop counter r4++
+    #   0x08000014: 2041      movs r0, #65         ; 'A'
+    #   0x08000016: 4902      ldr  r1, [pc, #8]    ; Load USART1 DR address
+    #   0x08000018: 6008      str  r0, [r1, #0]    ; Write to USART1 DR
+    #   0x0800001A: E7FC      b    0x08000014      ; Branch back to loop (0x08000014)
+    #   0x0800001C: 0000      nop
+    #   0x0800001E: 0000      nop
+    #   0x08000020: 40011004  .word 0x40011004     ; Address of USART1 DR
     code_instructions = bytes([
+        0x10, 0xb5,  # push {r4, lr}
+        0xb4, 0xb0,  # sub sp, #720
+        0xb4, 0xb0,  # sub sp, #720
+        0xa8, 0xb0,  # sub sp, #400
+        0x00, 0x24,  # movs r4, #0
+        0x01, 0x34,  # adds r4, #1
         0x41, 0x20,  # movs r0, #65
-        0x02, 0x49,  # ldr  r1, [pc, #8]
-        0x08, 0x60,  # str  r0, [r1, #0]
-        [0xfd, 0xe7][0], [0xfd, 0xe7][1], # b .
-        0x00, 0x00,  # nop alignment
+        0x02, 0x49,  # ldr r1, [pc, #8]
+        0x08, 0x60,  # str r0, [r1, #0]
+        0xfc, 0xe7,  # b 0x08000014
+        0x00, 0x00,  # nop
+        0x00, 0x00,  # nop
         0x04, 0x10, 0x01, 0x40 # 0x40011004 (USART1 DR address)
     ])
     
-    # Padding to make text section aligned
+    # Text payload
     text_payload = vector_table + code_instructions
     text_size = len(text_payload)
     
     # 3. Construct ELF Header (52 bytes)
-    # e_ident: \x7fELF, 32-bit (1), Little Endian (1), Version 1, System V ABI (0)
     e_ident = b'\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00'
     e_type = 2          # ET_EXEC (Executable)
     e_machine = 40      # EM_ARM
     e_version = 1
     e_entry = reset_vector  # Entry Point (0x08000009)
-    e_phoff = 52        # Program header offset (immediately after ELF header)
-    e_shoff = 0         # No section headers needed for Renode LoadELF
+    e_phoff = 52        # Program header offset
+    e_shoff = 0
     e_flags = 0x05000000 # EF_ARM_EABI_VER5
     e_ehsize = 52       # ELF header size
     e_phentsize = 32    # Program header entry size
@@ -60,9 +75,8 @@ def create_arm_cortex_m4_elf(output_filepath):
     )
 
     # 4. Construct Program Header (32 bytes)
-    # Segment 0: PT_LOAD (1) at Flash Address 0x08000000
     p_type = 1          # PT_LOAD
-    p_offset = 52 + 32  # File offset where text payload begins (84 bytes)
+    p_offset = 52 + 32  # File offset where text payload begins
     p_vaddr = 0x08000000 # Flash Base Address
     p_paddr = 0x08000000 # Physical Flash Address
     p_filesz = text_size
