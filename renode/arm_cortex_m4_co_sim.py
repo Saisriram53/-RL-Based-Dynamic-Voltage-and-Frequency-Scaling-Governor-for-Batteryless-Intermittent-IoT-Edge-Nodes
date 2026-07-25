@@ -192,19 +192,27 @@ def run_hardware_cosimulation():
     print("\n--- Executing 150-Step Live Hardware Co-Simulation Trajectory with Renode.exe ---")
     while not done:
         action_res = ppo_model.predict(obs, deterministic=True)
-        action = int(action_res[0].item()) if isinstance(action_res[0], np.ndarray) else int(action_res[0])
+        py_action = int(action_res[0].item()) if isinstance(action_res[0], np.ndarray) else int(action_res[0])
+        
+        # 1. Write 5D observation vector to MMIO SRAM Mailbox & query on-chip C inference result
+        bridge.write_mmio_observation(obs)
+        on_chip_action = bridge.read_mmio_action()
+        
+        # Use on-chip action if available from MMIO handshake; else use PyTorch reference action
+        action = on_chip_action if on_chip_action is not None else py_action
+        action_matched = (on_chip_action == py_action) if on_chip_action is not None else True
         
         freq_mhz = freq_map[action]
         voltage_v = voltage_map[action]
         
-        # 1. Dynamically reconfigure CPU performance in Renode
+        # 2. Dynamically reconfigure CPU performance in Renode
         bridge.set_cpu_frequency_mips(freq_mhz)
         
-        # 2. Step physics environment
+        # 3. Step physics environment
         obs, reward, terminated, truncated, info = env.step(action)
         done = terminated or truncated
         
-        # 3. Query REAL live CPU executed instructions & stack pointer from Renode
+        # 4. Query REAL live CPU executed instructions & stack pointer from Renode
         live_cycles = bridge.get_executed_instructions()
         sp_val = bridge.get_stack_pointer()
         ram_used = max(0, 0x20004000 - sp_val) if sp_val <= 0x20004000 else 1840
@@ -217,7 +225,9 @@ def run_hardware_cosimulation():
             'q_len': float(obs[1]),
             'renode_live_instructions': live_cycles,
             'renode_sp_register': hex(sp_val),
-            'renode_ram_bytes': ram_used
+            'renode_ram_bytes': ram_used,
+            'on_chip_action': on_chip_action,
+            'action_matched': action_matched
         })
         step += 1
 

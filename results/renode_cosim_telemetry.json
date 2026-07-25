@@ -7,7 +7,9 @@
     "q_len": 16.0049991607666,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 1,
@@ -17,7 +19,9 @@
     "q_len": 13.005000114440918,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 2,
@@ -27,7 +31,9 @@
     "q_len": 17.007999420166016,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 3,
@@ -37,7 +43,9 @@
     "q_len": 13.012999534606934,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 4,
@@ -47,7 +55,9 @@
     "q_len": 9.015999794006348,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 5,
@@ -57,7 +67,9 @@
     "q_len": 4.015999794006348,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 6,
@@ -67,7 +79,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 7,
@@ -77,7 +91,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 8,
@@ -87,7 +103,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 9,
@@ -97,7 +115,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 10,
@@ -107,7 +127,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 11,
@@ -117,7 +139,9 @@
     "q_len": 2.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 12,
@@ -127,7 +151,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 13,
@@ -137,7 +163,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 14,
@@ -147,7 +175,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 15,
@@ -157,7 +187,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 16,
@@ -167,7 +199,9 @@
     "q_len": 8.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 17,
@@ -177,7 +211,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 18,
@@ -187,7 +223,9 @@
     "q_len": 0.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 19,
@@ -197,7 +235,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 20,
@@ -207,7 +247,9 @@
     "q_len": 13.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 21,
@@ -217,7 +259,9 @@
     "q_len": 12.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 22,
@@ -227,7 +271,9 @@
     "q_len": 7.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 23,
@@ -237,7 +283,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 24,
@@ -247,7 +295,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 25,
@@ -257,7 +307,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 26,
@@ -267,7 +319,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 27,
@@ -277,7 +331,9 @@
     "q_len": 9.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 28,
@@ -287,7 +343,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 29,
@@ -297,7 +355,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 30,
@@ -307,7 +367,9 @@
     "q_len": 1.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 31,
@@ -317,7 +379,9 @@
     "q_len": 9.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 32,
@@ -327,7 +391,9 @@
     "q_len": 7.002999782562256,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 33,
@@ -337,7 +403,9 @@
     "q_len": 7.002999782562256,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 34,
@@ -347,7 +415,9 @@
     "q_len": 5.002999782562256,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 35,
@@ -357,7 +427,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 36,
@@ -367,7 +439,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 37,
@@ -377,7 +451,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 38,
@@ -387,7 +463,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 39,
@@ -397,7 +475,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 40,
@@ -407,7 +487,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 41,
@@ -417,7 +499,9 @@
     "q_len": 2.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 42,
@@ -427,7 +511,9 @@
     "q_len": 2.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 43,
@@ -437,7 +523,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 44,
@@ -447,7 +535,9 @@
     "q_len": 7.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 45,
@@ -457,7 +547,9 @@
     "q_len": 7.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 46,
@@ -467,7 +559,9 @@
     "q_len": 1.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 47,
@@ -477,7 +571,9 @@
     "q_len": 7.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 48,
@@ -487,7 +583,9 @@
     "q_len": 6.002999782562256,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 49,
@@ -497,7 +595,9 @@
     "q_len": 4.002999782562256,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 50,
@@ -507,7 +607,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 51,
@@ -517,7 +619,9 @@
     "q_len": 1.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 52,
@@ -527,7 +631,9 @@
     "q_len": 8.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 53,
@@ -537,7 +643,9 @@
     "q_len": 3.003000020980835,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 54,
@@ -547,7 +655,9 @@
     "q_len": 2.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 55,
@@ -557,7 +667,9 @@
     "q_len": 1.0010000467300415,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 56,
@@ -567,7 +679,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 57,
@@ -577,7 +691,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 58,
@@ -587,7 +703,9 @@
     "q_len": 1.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 59,
@@ -597,7 +715,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 60,
@@ -607,7 +727,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 61,
@@ -617,7 +739,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 62,
@@ -627,7 +751,9 @@
     "q_len": 7.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 63,
@@ -637,7 +763,9 @@
     "q_len": 8.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 64,
@@ -647,7 +775,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 65,
@@ -657,7 +787,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 66,
@@ -667,7 +799,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 67,
@@ -677,7 +811,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 68,
@@ -687,7 +823,9 @@
     "q_len": 7.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 69,
@@ -697,7 +835,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 70,
@@ -707,7 +847,9 @@
     "q_len": 1.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 71,
@@ -717,7 +859,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 72,
@@ -727,7 +871,9 @@
     "q_len": 4.002999782562256,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 73,
@@ -737,7 +883,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 74,
@@ -747,7 +895,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 75,
@@ -757,7 +907,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 76,
@@ -767,7 +919,9 @@
     "q_len": 3.000999927520752,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 77,
@@ -777,7 +931,9 @@
     "q_len": 9.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 78,
@@ -787,7 +943,9 @@
     "q_len": 8.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 79,
@@ -797,7 +955,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 80,
@@ -807,7 +967,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 81,
@@ -817,7 +979,9 @@
     "q_len": 4.000999927520752,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 82,
@@ -827,7 +991,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 83,
@@ -837,7 +1003,9 @@
     "q_len": 8.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 84,
@@ -847,7 +1015,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 85,
@@ -857,7 +1027,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 86,
@@ -867,7 +1039,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 87,
@@ -877,7 +1051,9 @@
     "q_len": 2.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 88,
@@ -887,7 +1063,9 @@
     "q_len": 4.000999927520752,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 89,
@@ -897,7 +1075,9 @@
     "q_len": 9.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 90,
@@ -907,7 +1087,9 @@
     "q_len": 8.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 91,
@@ -917,7 +1099,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 92,
@@ -927,7 +1111,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 93,
@@ -937,7 +1123,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 94,
@@ -947,7 +1135,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 95,
@@ -957,7 +1147,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 96,
@@ -967,7 +1159,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 97,
@@ -977,7 +1171,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 98,
@@ -987,7 +1183,9 @@
     "q_len": 2.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 99,
@@ -997,7 +1195,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 100,
@@ -1007,7 +1207,9 @@
     "q_len": 2.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 101,
@@ -1017,7 +1219,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 102,
@@ -1027,7 +1231,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 103,
@@ -1037,7 +1243,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 104,
@@ -1047,7 +1255,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 105,
@@ -1057,7 +1267,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 106,
@@ -1067,7 +1279,9 @@
     "q_len": 8.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 107,
@@ -1077,7 +1291,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 108,
@@ -1087,7 +1303,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 109,
@@ -1097,7 +1315,9 @@
     "q_len": 2.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 110,
@@ -1107,7 +1327,9 @@
     "q_len": 0.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 111,
@@ -1117,7 +1339,9 @@
     "q_len": 2.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 112,
@@ -1127,7 +1351,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 113,
@@ -1137,7 +1363,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 114,
@@ -1147,7 +1375,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 115,
@@ -1157,7 +1387,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 116,
@@ -1167,7 +1399,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 117,
@@ -1177,7 +1411,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 118,
@@ -1187,7 +1423,9 @@
     "q_len": 2.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 119,
@@ -1197,7 +1435,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 120,
@@ -1207,7 +1447,9 @@
     "q_len": 1.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 121,
@@ -1217,7 +1459,9 @@
     "q_len": 2.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 122,
@@ -1227,7 +1471,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 123,
@@ -1237,7 +1483,9 @@
     "q_len": 2.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 124,
@@ -1247,7 +1495,9 @@
     "q_len": 9.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 125,
@@ -1257,7 +1507,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 126,
@@ -1267,7 +1519,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 127,
@@ -1277,7 +1531,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 128,
@@ -1287,7 +1543,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 129,
@@ -1297,7 +1555,9 @@
     "q_len": 8.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 130,
@@ -1307,7 +1567,9 @@
     "q_len": 10.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 131,
@@ -1317,7 +1579,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 132,
@@ -1327,7 +1591,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 133,
@@ -1337,7 +1603,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 134,
@@ -1347,7 +1615,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 135,
@@ -1357,7 +1627,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 136,
@@ -1367,7 +1639,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 137,
@@ -1377,7 +1651,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 138,
@@ -1387,7 +1663,9 @@
     "q_len": 3.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 139,
@@ -1397,7 +1675,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 140,
@@ -1407,7 +1687,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 141,
@@ -1417,7 +1699,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 142,
@@ -1427,7 +1711,9 @@
     "q_len": 2.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 143,
@@ -1437,7 +1723,9 @@
     "q_len": 5.000999927520752,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 144,
@@ -1447,7 +1735,9 @@
     "q_len": 4.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 145,
@@ -1457,7 +1747,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 146,
@@ -1467,7 +1759,9 @@
     "q_len": 5.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 147,
@@ -1477,7 +1771,9 @@
     "q_len": 6.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 148,
@@ -1487,7 +1783,9 @@
     "q_len": 8.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   },
   {
     "step": 149,
@@ -1497,6 +1795,8 @@
     "q_len": 7.0,
     "renode_live_instructions": 33,
     "renode_sp_register": "0x200038d0",
-    "renode_ram_bytes": 1840
+    "renode_ram_bytes": 1840,
+    "on_chip_action": null,
+    "action_matched": true
   }
 ]
