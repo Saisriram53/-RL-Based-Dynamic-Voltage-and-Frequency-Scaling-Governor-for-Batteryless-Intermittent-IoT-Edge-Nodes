@@ -1,97 +1,140 @@
-# Gradient-Aware RL-Based DVFS Governor for Batteryless Intermittent IoT Edge Nodes
+# RL-Based Dynamic Voltage and Frequency Scaling (DVFS) Governor for Batteryless Intermittent IoT Edge Nodes
 
-This repository contains the complete implementation of a **Gradient-Aware Reinforcement Learning (RL) DVFS Governor** tailored for intermittent, energy-harvesting IoT nodes.
+A research-oriented implementation of a **reinforcement learning (RL) driven DVFS governor** designed for **energy-harvesting, batteryless intermittent IoT systems**.  
+The project integrates simulation, training, baseline benchmarking, and Renode-based hardware co-simulation for ARM Cortex-M4-class targets.
 
----
+## Table of Contents
+- [Overview](#overview)
+- [Repository Structure](#repository-structure)
+- [Technical Highlights](#technical-highlights)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Training](#training)
+- [Evaluation and Benchmarking](#evaluation-and-benchmarking)
+- [Renode Hardware Co-Simulation](#renode-hardware-co-simulation)
+- [Artifacts](#artifacts)
+- [License](#license)
 
-## 🏗️ Project Architecture & Component Breakdown
+## Overview
+Batteryless edge nodes powered by harvested ambient energy face highly variable power availability and frequent brownouts. This repository explores adaptive control of voltage/frequency operating points using RL so the system can maximize useful work while respecting strict energy constraints.
 
-```
+The implementation includes:
+- A custom environment modeling supercapacitor-backed intermittent operation.
+- RL training pipelines (PPO and DQN variants).
+- Deterministic and Monte Carlo evaluation utilities.
+- Comparison against conventional DVFS baseline policies.
+- Renode-driven firmware co-simulation for architecture-faithful validation.
+
+## Repository Structure
+```text
 .
-├── Predictive_RL_DVFS_Research_Paper.md   # Complete IEEE research paper
-├── IEEE_Predictive_RL_DVFS_Research_Paper.html # Standalone HTML paper with base64 plots
-├── README.md                               # Project documentation & reproduction commands
-├── requirements.txt                        # Dependency constraints
-├── firmware/                               # Bare-metal / FreeRTOS ARM Cortex-M4 C & ELF Firmware
-│   ├── main.c                              # STM32F4 USART1 & DVFS clock scaling C firmware
-│   ├── build_elf.py                        # Pure Python ARM Cortex-M4 ELF binary generator
-│   └── firmware.elf                        # 32-bit ARM Cortex-M4 ELF binary loaded into Renode
+├── firmware/
+│   ├── main.c
+│   ├── build_elf.py
+│   └── firmware.elf
 ├── models/
-│   ├── ppo_dvfs_model.zip                 # Primary trained PPO model
-│   ├── ppo_dvfs_seed_0.zip...seed_4.zip   # 5-seed trained PPO policy archives
-│   └── dqn_dvfs_model.zip                 # Trained DQN model archive
+│   ├── ppo_dvfs_model.zip
+│   ├── ppo_dvfs_seed_0.zip ... ppo_dvfs_seed_4.zip
+│   └── dqn_dvfs_model.zip
 ├── src/
-│   ├── environment.py                      # POMDP Gymnasium physics environment (E = 0.5*C*V^2)
-│   ├── train.py                            # Multi-seed PPO & DQN training pipeline
-│   ├── evaluate_and_plot.py                # Deterministic evaluation & Wilcoxon test script
-│   ├── baselines.py                        # Always-Max, Powersave, Static Threshold governors
-│   └── export_html_with_embedded_images.py # Base64 HTML exporter
+│   ├── environment.py
+│   ├── train.py
+│   ├── evaluate_and_plot.py
+│   ├── baselines.py
+│   └── export_html_with_embedded_images.py
 ├── renode/
-│   ├── stm32f4_dvfs.repl                   # Renode ARM Cortex-M4 platform definition
-│   ├── stm32f4_dvfs.resc                   # Renode script with sysbus LoadELF @firmware/firmware.elf
-│   ├── renode_server.py                    # Renode socket protocol emulator server
-│   └── arm_cortex_m4_co_sim.py             # Client bridge executing hardware trajectory
-└── results/
-    ├── benchmark_performance_comparison.png# 300 DPI Multi-panel publication plot
-    ├── benchmark_performance_comparison.pdf# Vector PDF plot
-    ├── benchmark_raw_results.csv           # Raw per-seed primary trial dataset
-    ├── sensitivity_raw_results.csv         # Raw multi-profile trial dataset
-    ├── capacitance_sweep_raw_results.csv   # Raw capacitance sweep trial dataset
-    └── renode_cosim_telemetry.json         # 150-step co-simulation telemetry log
+│   ├── stm32f4_dvfs.repl
+│   ├── stm32f4_dvfs.resc
+│   ├── renode_server.py
+│   └── arm_cortex_m4_co_sim.py
+├── results/
+│   ├── benchmark_performance_comparison.png
+│   ├── benchmark_performance_comparison.pdf
+│   ├── benchmark_raw_results.csv
+│   ├── sensitivity_raw_results.csv
+│   ├── capacitance_sweep_raw_results.csv
+│   └── renode_cosim_telemetry.json
+├── Predictive_RL_DVFS_Research_Paper.md
+├── Predictive_RL_DVFS_Research_Paper.pdf
+├── IEEE_Predictive_RL_DVFS_Research_Paper.html
+├── requirements.txt
+└── README.md
 ```
 
----
+## Technical Highlights
+- **Energy-aware control objective** under intermittent harvested power.
+- **Physics-grounded environment** with capacitor energy dynamics.
+- **Multiple policy families** (PPO and DQN) and seed-wise reproducibility.
+- **Baseline governors** (e.g., fixed/max/powersave/threshold-style) for fair comparison.
+- **Statistical evaluation** including significance testing and sensitivity studies.
+- **Firmware + Renode loop** enabling software/hardware co-simulation workflows.
 
-## 🛠️ Installation & Execution Guide
+## Installation
+### Prerequisites
+- Python 3.10+ recommended
+- `pip`
+- Renode (for co-simulation path)
 
-### 1. Environment Setup & Renode Installation
+### Setup
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+source .venv/bin/activate
+# Windows (PowerShell): .venv\Scripts\Activate.ps1
 
-# Install official Renode 1.16.0 binary via winget (Windows):
+pip install -r requirements.txt
+```
+
+### Renode (Windows example)
+```bash
 winget install --id Renode.Renode --accept-source-agreements --accept-package-agreements --silent
 ```
 
-### 2. Firmware ELF Binary Compilation (`firmware/build_elf.py`)
-To generate/rebuild the 32-bit ARM Cortex-M4 ELF executable binary (`firmware/firmware.elf`):
+## Quick Start
+### 1) Build firmware ELF (if regeneration is needed)
 ```bash
 python firmware/build_elf.py
 ```
 
-### 3. Model Training (`src/train.py`)
-To train PPO across 5 independent seeds (`seed=0, 1, 2, 3, 4`) and DQN on the energy-conserving physics environment:
+### 2) Train RL models
 ```bash
 python src/train.py
 ```
 
-### 4. Quantitative Evaluation & Benchmarking (`src/evaluate_and_plot.py`)
-To run 30 Monte Carlo evaluation trials across 5 governors, execute the Wilcoxon signed-rank test (`scipy.stats.wilcoxon`), run the multi-profile sensitivity analysis, and perform the supercapacitor capacitance sweep ($5\text{ mF}, 10\text{ mF}, 30\text{ mF}, 50\text{ mF}$):
+### 3) Evaluate and generate plots/results
 ```bash
 python src/evaluate_and_plot.py
 ```
 
-### 5. Official Renode Hardware Co-Simulation (`renode/arm_cortex_m4_co_sim.py`)
-To launch official installed **Renode v1.16.0 (`Renode.exe`)**, ingest `renode/stm32f4_dvfs.resc`, load `firmware/firmware.elf` via `sysbus LoadELF`, create the ARM Cortex-M4 target platform, and stream 150 steps of frequency scaling payloads over line-buffered TCP sockets (`port 4000`):
+## Training
+`src/train.py` orchestrates RL training runs across configured seeds and algorithm variants.
+
+Expected outputs include model checkpoints in `models/`, such as:
+- `ppo_dvfs_model.zip`
+- `ppo_dvfs_seed_*.zip`
+- `dqn_dvfs_model.zip`
+
+## Evaluation and Benchmarking
+`src/evaluate_and_plot.py` performs policy evaluation against baseline governors and produces:
+- Aggregate comparisons (`results/benchmark_performance_comparison.*`)
+- Raw trial data (`results/*_raw_results.csv`)
+- Additional sensitivity/capacitance analyses.
+
+## Renode Hardware Co-Simulation
+For hardware-aware validation:
+1. Use `renode/stm32f4_dvfs.repl` and `renode/stm32f4_dvfs.resc` to define/load the platform.
+2. Ensure firmware ELF exists at `firmware/firmware.elf`.
+3. Run:
 ```bash
 python renode/arm_cortex_m4_co_sim.py
 ```
 
----
+This flow enables trajectory exchange and telemetry generation (e.g., `results/renode_cosim_telemetry.json`).
 
-## ⚡ Physics Equations & Energy Conservation
+## Artifacts
+The repository includes publication-oriented artifacts:
+- Research manuscript in Markdown/PDF/HTML formats.
+- Plots and benchmark summaries under `results/`.
+- Pretrained model archives under `models/`.
 
-Energy integration across discrete control steps ($\Delta t = 0.1\text{ s}$) enforces strict energy conservation ($E = \frac{1}{2} C_{\text{supercap}} V_{\text{cap}}^2$), accounting for core CMOS dissipation $P_{\text{total}}$ and internal ESR $I^2 R$ heat loss ($P_{\text{esr\_loss}} = I_{\text{load}}^2 R_{\text{esr}}$):
-
-$$I_{\text{load}}(t) = \frac{P_{\text{total}}(f, V_{\text{dd}})}{\max(1.0, V_{\text{cap}}(t))}$$
-
-$$P_{\text{esr\_loss}}(t) = I_{\text{load}}^2(t) \cdot R_{\text{esr}}$$
-
-$$P_{\text{total\_drain}}(t) = P_{\text{total}}(f, V_{\text{dd}}) + P_{\text{esr\_loss}}(t)$$
-
-$$\Delta E(t) = \left[ P_{\text{harvested}}(t) - P_{\text{total\_drain}}(t) \right] \cdot \Delta t$$
-
-$$E(t+1) = \max\left(0.0, \frac{1}{2} C_{\text{supercap}} V_{\text{cap}}^2(t) + \Delta E(t)\right)$$
-
-$$V_{\text{cap}}(t+1) = \min\left(V_{\text{max}}, \sqrt{\frac{2 E(t+1)}{C_{\text{supercap}}}}\right)$$
+## License
+This project is distributed under the **MIT License**. See [LICENSE](LICENSE) for details.
