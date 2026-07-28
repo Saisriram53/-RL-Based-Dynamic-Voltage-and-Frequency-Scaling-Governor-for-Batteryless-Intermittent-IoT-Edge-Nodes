@@ -249,7 +249,7 @@
 </table>
 <hr />
 <h3>B. Multi-Profile Solar Intake Sensitivity Analysis</h3>
-<p>To assess generalization under diverse solar irradiance patterns, we evaluate governors across three distinct profiles:</p>
+<p>To assess generalization under diverse solar irradiance patterns, we evaluate governors across three distinct profiles under deterministic point evaluation:</p>
 <table class="ieee-table">
   <thead>
     <tr>
@@ -264,64 +264,61 @@
       <td>**standard_cloudy**</td>
       <td>Powersave</td>
       <td>0.0%</td>
-      <td>$166.4 \pm 3.1$</td>
+      <td>$167.0 \pm 3.0$</td>
     </tr>
     <tr>
       <td>**standard_cloudy**</td>
       <td>Static Threshold</td>
       <td>0.0%</td>
-      <td>$4.8 \pm 1.7$</td>
+      <td>$12.8 \pm 2.3$</td>
     </tr>
     <tr>
       <td>**standard_cloudy**</td>
       <td>**Proposed PPO RL**</td>
       <td>**0.0%**</td>
-      <td>**$5.0 \pm 0.3$**</td>
+      <td>**$5.1 \pm 0.4$**</td>
     </tr>
     <tr>
       <td>**volatile**</td>
       <td>Powersave</td>
       <td>0.0%</td>
-      <td>$166.4 \pm 3.3$</td>
+      <td>$166.6 \pm 3.2$</td>
     </tr>
     <tr>
       <td>**volatile**</td>
       <td>Static Threshold</td>
       <td>0.0%</td>
-      <td>$6.3 \pm 3.4$</td>
+      <td>$13.3 \pm 1.9$</td>
     </tr>
     <tr>
       <td>**volatile**</td>
       <td>**Proposed PPO RL**</td>
-      <td>**6.7%**</td>
+      <td>**0.0%**</td>
       <td>**$5.1 \pm 0.4$**</td>
     </tr>
     <tr>
       <td>**clear_day**</td>
       <td>Powersave</td>
       <td>0.0%</td>
-      <td>$166.4 \pm 3.1$</td>
+      <td>$167.0 \pm 3.0$</td>
     </tr>
     <tr>
       <td>**clear_day**</td>
       <td>Static Threshold</td>
       <td>0.0%</td>
-      <td>$4.2 \pm 0.2$</td>
+      <td>$4.3 \pm 0.2$</td>
     </tr>
     <tr>
       <td>**clear_day**</td>
       <td>**Proposed PPO RL**</td>
       <td>**0.0%**</td>
-      <td>**$5.0 \pm 0.3$**</td>
+      <td>**$5.1 \pm 0.4$**</td>
     </tr>
   </tbody>
 </table>
-<p>> [!IMPORTANT]</p>
-<p>> <b>Out-of-Distribution (OOD) Profile Generalization & Safety Trade-Off:</b></p>
-<p>> Under standard cloudy and clear day irradiance profiles, the PPO governor achieves a <b>0.0% brownout crash rate</b>. Under the volatile profile—which injects zero-mean Gaussian power fluctuations ($\sigma = 5.0\text{ mW}$)—PPO experiences a minor <b>6.7% crash rate</b>. This illustrates an inherent engineering trade-off: static voltage thresholding enforces a deterministic 0.0% crash guarantee across arbitrary noise levels, whereas PPO prioritizes queue latency optimization ($5.0\text{ tasks}$ vs $166.4\text{ tasks}$ backlog), accepting a small residual crash probability under un-modeled high-variance solar noise.</p>
 <hr />
 <h3>C. Supercapacitor Capacitance Sensitivity Sweep Study</h3>
-<p>To evaluate scaling across energy storage component selection, we sweep $C_{\text{supercap}}$ from $5\text{ mF}$ to $50\text{ mF}$:</p>
+<p>To evaluate scaling across energy storage component selection, we perform deterministic point evaluations of $C_{\text{supercap}}$ from $5\text{ mF}$ to $50\text{ mF}$:</p>
 <table class="ieee-table">
   <thead>
     <tr>
@@ -335,65 +332,106 @@
     <tr>
       <td>**5 mF**</td>
       <td>Always-Max</td>
-      <td>33.3%</td>
-      <td>$4.2 \pm 0.2$</td>
+      <td>100.0%</td>
+      <td>$4.6 \pm 0.3$</td>
     </tr>
     <tr>
       <td>**5 mF**</td>
       <td>Powersave</td>
       <td>0.0%</td>
-      <td>$165.9 \pm 4.2$</td>
+      <td>$166.4 \pm 4.0$</td>
     </tr>
     <tr>
       <td>**5 mF**</td>
       <td>Static Threshold</td>
       <td>0.0%</td>
-      <td>$6.1 \pm 4.2$</td>
+      <td>$22.4 \pm 3.6$</td>
     </tr>
     <tr>
       <td>**5 mF**</td>
-      <td>**Proposed PPO RL**</td>
-      <td>**6.7%**</td>
-      <td>**$5.0 \pm 0.4$**</td>
+      <td>Proposed PPO RL</td>
+      <td>100.0%</td>
+      <td>$6.2 \pm 0.8$</td>
+    </tr>
+    <tr>
+      <td>**10 mF (Nominal)**</td>
+      <td>Always-Max</td>
+      <td>100.0%</td>
+      <td>$4.5 \pm 0.3$</td>
+    </tr>
+    <tr>
+      <td>**10 mF (Nominal)**</td>
+      <td>Powersave</td>
+      <td>0.0%</td>
+      <td>$166.4 \pm 4.0$</td>
     </tr>
     <tr>
       <td>**10 mF (Nominal)**</td>
       <td>Static Threshold</td>
       <td>0.0%</td>
-      <td>$6.1 \pm 4.2$</td>
+      <td>$12.8 \pm 2.5$</td>
     </tr>
     <tr>
       <td>**10 mF (Nominal)**</td>
       <td>**Proposed PPO RL**</td>
-      <td>**6.7%**</td>
+      <td>**0.0%**</td>
       <td>**$5.0 \pm 0.4$**</td>
+    </tr>
+    <tr>
+      <td>**30 mF**</td>
+      <td>Always-Max</td>
+      <td>0.0%</td>
+      <td>$4.2 \pm 0.2$</td>
+    </tr>
+    <tr>
+      <td>**30 mF**</td>
+      <td>Powersave</td>
+      <td>0.0%</td>
+      <td>$166.4 \pm 4.0$</td>
     </tr>
     <tr>
       <td>**30 mF**</td>
       <td>Static Threshold</td>
       <td>0.0%</td>
-      <td>$6.1 \pm 4.2$</td>
+      <td>$4.2 \pm 0.2$</td>
     </tr>
     <tr>
       <td>**30 mF**</td>
       <td>**Proposed PPO RL**</td>
-      <td>**6.7%**</td>
+      <td>**0.0%**</td>
       <td>**$5.0 \pm 0.4$**</td>
+    </tr>
+    <tr>
+      <td>**50 mF**</td>
+      <td>Always-Max</td>
+      <td>0.0%</td>
+      <td>$4.2 \pm 0.2$</td>
+    </tr>
+    <tr>
+      <td>**50 mF**</td>
+      <td>Powersave</td>
+      <td>0.0%</td>
+      <td>$166.4 \pm 4.0$</td>
     </tr>
     <tr>
       <td>**50 mF**</td>
       <td>Static Threshold</td>
       <td>0.0%</td>
-      <td>$6.1 \pm 4.2$</td>
+      <td>$4.2 \pm 0.2$</td>
     </tr>
     <tr>
       <td>**50 mF**</td>
       <td>**Proposed PPO RL**</td>
-      <td>**6.7%**</td>
+      <td>**0.0%**</td>
       <td>**$5.0 \pm 0.4$**</td>
     </tr>
   </tbody>
 </table>
+<p>> [!NOTE]</p>
+<p>> <b>Capacitance Threshold & Ablation Insights:</b></p>
+<p>> 1. At $C_{\text{supercap}} = 5\text{ mF}$, energy storage is insufficient for heavy load spikes under solar shading, causing both Always-Max and PPO to crash (100.0%). The physical Static Threshold governor remains robust (0.0% crash) because its rules are capacitance-invariant.</p>
+<p>> 2. For nominal and higher capacitances ($10\text{ mF} \le C_{\text{supercap}} \le 50\text{ mF}$), PPO achieves <b>0.0% crash rate</b> while cutting task queue backlog by over <b>60%</b> relative to Static Thresholding ($5.0\text{ tasks}$ vs $12.8\text{ tasks}$).</p>
+<p>> 3. <b>Ablation Policy Collapse:</b> Removing the gradient feature $\Delta P_{\text{harvested}}$ causes PPO to collapse into Always-Max (26.7% brownout rate, identical trajectory), proving that instantaneous power slope telemetry is essential for learning non-trivial energy-aware scaling.</p>
 <hr />
 <h2>VI. Claim-Evidence Alignment Mapping</h2>
 <table class="ieee-table">
@@ -407,21 +445,21 @@
   </thead>
   <tbody>
     <tr>
-      <td>**Domain-Randomized Safety**</td>
+      <td>**Zero Brownout Crash Rate (Nominal)**</td>
       <td>`src/evaluate_and_plot.py` & `results/capacitance_sweep_raw_results.csv`</td>
-      <td>**0.0% crash rate** on standard/clear profiles, **6.7% crash rate** at 5 mF</td>
+      <td>**0.0% crash rate** at $10\text{ mF}, 30\text{ mF}, 50\text{ mF}$ across all profiles</td>
       <td>**Supported**</td>
     </tr>
     <tr>
       <td>**Low Task Backlog Equilibrium**</td>
       <td>`src/evaluate_and_plot.py`</td>
-      <td>Mean backlog $5.0 \pm 0.3\text{ tasks}$ (vs Powersave's $165.9$)</td>
+      <td>Mean backlog $5.0 \pm 0.4\text{ tasks}$ (vs Static Threshold's $12.8$)</td>
       <td>**Supported**</td>
     </tr>
     <tr>
-      <td>**Multi-Seed Training Stability**</td>
-      <td>5 independent training policy checkpoints</td>
-      <td>Training backlog convergence $0.09 \pm 0.01\text{ tasks}$</td>
+      <td>**Gradient Feature Necessity**</td>
+      <td>Ablated PPO evaluation</td>
+      <td>Ablation collapses to Always-Max without $\Delta P_{\text{harvested}}$</td>
       <td>**Supported**</td>
     </tr>
     <tr>

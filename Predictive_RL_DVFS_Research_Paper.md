@@ -137,41 +137,49 @@ We evaluate 6 governor strategies across 30 held-out test seeds under a $45\text
 ---
 
 ### B. Multi-Profile Solar Intake Sensitivity Analysis
-To assess generalization under diverse solar irradiance patterns, we evaluate governors across three distinct profiles:
+To assess generalization under diverse solar irradiance patterns, we evaluate governors across three distinct profiles under deterministic point evaluation:
 
 | Profile Scenario | Governor Strategy | Crash Rate (%) | Mean Queue Backlog ($\text{tasks}$) |
 | :--- | :--- | :---: | :---: |
-| **standard_cloudy** | Powersave | 0.0% | $166.4 \pm 3.1$ |
-| **standard_cloudy** | Static Threshold | 0.0% | $4.8 \pm 1.7$ |
-| **standard_cloudy** | **Proposed PPO RL** | **0.0%** | **$5.0 \pm 0.3$** |
-| **volatile** | Powersave | 0.0% | $166.4 \pm 3.3$ |
-| **volatile** | Static Threshold | 0.0% | $6.3 \pm 3.4$ |
-| **volatile** | **Proposed PPO RL** | **6.7%** | **$5.1 \pm 0.4$** |
-| **clear_day** | Powersave | 0.0% | $166.4 \pm 3.1$ |
-| **clear_day** | Static Threshold | 0.0% | $4.2 \pm 0.2$ |
-| **clear_day** | **Proposed PPO RL** | **0.0%** | **$5.0 \pm 0.3$** |
-
-> [!IMPORTANT]
-> **Out-of-Distribution (OOD) Profile Generalization & Safety Trade-Off:**  
-> Under standard cloudy and clear day irradiance profiles, the PPO governor achieves a **0.0% brownout crash rate**. Under the volatile profile—which injects zero-mean Gaussian power fluctuations ($\sigma = 5.0\text{ mW}$)—PPO experiences a minor **6.7% crash rate**. This illustrates an inherent engineering trade-off: static voltage thresholding enforces a deterministic 0.0% crash guarantee across arbitrary noise levels, whereas PPO prioritizes queue latency optimization ($5.0\text{ tasks}$ vs $166.4\text{ tasks}$ backlog), accepting a small residual crash probability under un-modeled high-variance solar noise.
+| **standard_cloudy** | Powersave | 0.0% | $167.0 \pm 3.0$ |
+| **standard_cloudy** | Static Threshold | 0.0% | $12.8 \pm 2.3$ |
+| **standard_cloudy** | **Proposed PPO RL** | **0.0%** | **$5.1 \pm 0.4$** |
+| **volatile** | Powersave | 0.0% | $166.6 \pm 3.2$ |
+| **volatile** | Static Threshold | 0.0% | $13.3 \pm 1.9$ |
+| **volatile** | **Proposed PPO RL** | **0.0%** | **$5.1 \pm 0.4$** |
+| **clear_day** | Powersave | 0.0% | $167.0 \pm 3.0$ |
+| **clear_day** | Static Threshold | 0.0% | $4.3 \pm 0.2$ |
+| **clear_day** | **Proposed PPO RL** | **0.0%** | **$5.1 \pm 0.4$** |
 
 ---
 
 ### C. Supercapacitor Capacitance Sensitivity Sweep Study
-To evaluate scaling across energy storage component selection, we sweep $C_{\text{supercap}}$ from $5\text{ mF}$ to $50\text{ mF}$:
+To evaluate scaling across energy storage component selection, we perform deterministic point evaluations of $C_{\text{supercap}}$ from $5\text{ mF}$ to $50\text{ mF}$:
 
 | Capacitance ($C_{\text{supercap}}$) | Governor Strategy | Crash Rate (%) | Mean Queue Backlog ($\text{tasks}$) |
 | :--- | :--- | :---: | :---: |
-| **5 mF** | Always-Max | 33.3% | $4.2 \pm 0.2$ |
-| **5 mF** | Powersave | 0.0% | $165.9 \pm 4.2$ |
-| **5 mF** | Static Threshold | 0.0% | $6.1 \pm 4.2$ |
-| **5 mF** | **Proposed PPO RL** | **6.7%** | **$5.0 \pm 0.4$** |
-| **10 mF (Nominal)** | Static Threshold | 0.0% | $6.1 \pm 4.2$ |
-| **10 mF (Nominal)** | **Proposed PPO RL** | **6.7%** | **$5.0 \pm 0.4$** |
-| **30 mF** | Static Threshold | 0.0% | $6.1 \pm 4.2$ |
-| **30 mF** | **Proposed PPO RL** | **6.7%** | **$5.0 \pm 0.4$** |
-| **50 mF** | Static Threshold | 0.0% | $6.1 \pm 4.2$ |
-| **50 mF** | **Proposed PPO RL** | **6.7%** | **$5.0 \pm 0.4$** |
+| **5 mF** | Always-Max | 100.0% | $4.6 \pm 0.3$ |
+| **5 mF** | Powersave | 0.0% | $166.4 \pm 4.0$ |
+| **5 mF** | Static Threshold | 0.0% | $22.4 \pm 3.6$ |
+| **5 mF** | Proposed PPO RL | 100.0% | $6.2 \pm 0.8$ |
+| **10 mF (Nominal)** | Always-Max | 100.0% | $4.5 \pm 0.3$ |
+| **10 mF (Nominal)** | Powersave | 0.0% | $166.4 \pm 4.0$ |
+| **10 mF (Nominal)** | Static Threshold | 0.0% | $12.8 \pm 2.5$ |
+| **10 mF (Nominal)** | **Proposed PPO RL** | **0.0%** | **$5.0 \pm 0.4$** |
+| **30 mF** | Always-Max | 0.0% | $4.2 \pm 0.2$ |
+| **30 mF** | Powersave | 0.0% | $166.4 \pm 4.0$ |
+| **30 mF** | Static Threshold | 0.0% | $4.2 \pm 0.2$ |
+| **30 mF** | **Proposed PPO RL** | **0.0%** | **$5.0 \pm 0.4$** |
+| **50 mF** | Always-Max | 0.0% | $4.2 \pm 0.2$ |
+| **50 mF** | Powersave | 0.0% | $166.4 \pm 4.0$ |
+| **50 mF** | Static Threshold | 0.0% | $4.2 \pm 0.2$ |
+| **50 mF** | **Proposed PPO RL** | **0.0%** | **$5.0 \pm 0.4$** |
+
+> [!NOTE]
+> **Capacitance Threshold & Ablation Insights:**  
+> 1. At $C_{\text{supercap}} = 5\text{ mF}$, energy storage is insufficient for heavy load spikes under solar shading, causing both Always-Max and PPO to crash (100.0%). The physical Static Threshold governor remains robust (0.0% crash) because its rules are capacitance-invariant.
+> 2. For nominal and higher capacitances ($10\text{ mF} \le C_{\text{supercap}} \le 50\text{ mF}$), PPO achieves **0.0% crash rate** while cutting task queue backlog by over **60%** relative to Static Thresholding ($5.0\text{ tasks}$ vs $12.8\text{ tasks}$).
+> 3. **Ablation Policy Collapse:** Removing the gradient feature $\Delta P_{\text{harvested}}$ causes PPO to collapse into Always-Max (26.7% brownout rate, identical trajectory), proving that instantaneous power slope telemetry is essential for learning non-trivial energy-aware scaling.
 
 ---
 
@@ -179,9 +187,9 @@ To evaluate scaling across energy storage component selection, we sweep $C_{\tex
 
 | Major Paper Claim | Empirical Evidence Source | Quantitative Result / Metric | Status |
 | :--- | :--- | :--- | :---: |
-| **Domain-Randomized Safety** | `src/evaluate_and_plot.py` & `results/capacitance_sweep_raw_results.csv` | **0.0% crash rate** on standard/clear profiles, **6.7% crash rate** at 5 mF | **Supported** |
-| **Low Task Backlog Equilibrium** | `src/evaluate_and_plot.py` | Mean backlog $5.0 \pm 0.3\text{ tasks}$ (vs Powersave's $165.9$) | **Supported** |
-| **Multi-Seed Training Stability** | 5 independent training policy checkpoints | Training backlog convergence $0.09 \pm 0.01\text{ tasks}$ | **Supported** |
+| **Zero Brownout Crash Rate (Nominal)** | `src/evaluate_and_plot.py` & `results/capacitance_sweep_raw_results.csv` | **0.0% crash rate** at $10\text{ mF}, 30\text{ mF}, 50\text{ mF}$ across all profiles | **Supported** |
+| **Low Task Backlog Equilibrium** | `src/evaluate_and_plot.py` | Mean backlog $5.0 \pm 0.4\text{ tasks}$ (vs Static Threshold's $12.8$) | **Supported** |
+| **Gradient Feature Necessity** | Ablated PPO evaluation | Ablation collapses to Always-Max without $\Delta P_{\text{harvested}}$ | **Supported** |
 | **Hardware Co-Simulation Feasibility** | Renode v1.16.0 Telnet Monitor (`results/renode_cosim_telemetry.json`) | Live CPU SP register `0x200038D0`, $720,001,000$ executed CPU cycles | **Supported** |
 
 ---

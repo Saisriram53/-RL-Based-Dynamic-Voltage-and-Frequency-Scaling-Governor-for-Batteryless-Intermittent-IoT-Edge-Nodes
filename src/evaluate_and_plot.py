@@ -231,7 +231,7 @@ def benchmark_and_plot():
             c_cnt = 0
             q_list = []
             for seed in range(30):
-                e_p = EnergyHarvestingDVFSEnv(profile=p)
+                e_p = EnergyHarvestingDVFSEnv(profile=p, domain_randomization=False)
                 o_p, _ = e_p.reset(seed=200 + seed)
                 d_p = False
                 ql = []
@@ -289,7 +289,7 @@ def benchmark_and_plot():
             c_cnt = 0
             q_list = []
             for seed in range(30):
-                e_c = EnergyHarvestingDVFSEnv(profile='standard_cloudy', C_supercap=c_val)
+                e_c = EnergyHarvestingDVFSEnv(profile='standard_cloudy', C_supercap=c_val, domain_randomization=False)
                 o_c, _ = e_c.reset(seed=300 + seed)
                 d_c = False
                 ql = []

@@ -46,8 +46,8 @@ typedef struct {
 #define RCC   ((RCC_TypeDef *) RCC_BASE)
 #define USART1 ((USART_TypeDef *) USART1_BASE)
 
-// Static FreeRTOS-style task control block stack buffer (1840 bytes)
-static uint8_t freertos_tcb_stack[1840] __attribute__((aligned(8)));
+// Static task control block stack buffer (1840 bytes)
+static uint8_t baremetal_tcb_stack[1840] __attribute__((aligned(8)));
 static volatile uint32_t g_current_freq_mhz = 8;
 static volatile uint64_t g_instruction_cycles = 0;
 
@@ -87,7 +87,7 @@ int main(void) {
     RCC->APB2ENR |= (1 << 4); // Enable USART1 clock
     
     usart1_send_string("\r\n================ STM32F4 ARM CORTEX-M4 DVFS FIRMWARE ================\r\n");
-    usart1_send_string("[FreeRTOS Initialized] Allocated TCB Stack Footprint: 1840 Bytes\r\n");
+    usart1_send_string("[MCU Stack Initialized] Allocated TCB Stack Footprint: 1840 Bytes\r\n");
     usart1_send_string("[MCU Initialized] Ready for DVFS Scaling Commands over Renode Bus\r\n");
 
     uint32_t step = 0;

@@ -1,271 +1,271 @@
 profile,governor,seed,crashed,mean_queue_backlog,total_tasks,active_steps
-standard_cloudy,Powersave,200,False,169.38666666666666,150.0,150
-standard_cloudy,Powersave,201,False,158.58,150.0,150
-standard_cloudy,Powersave,202,False,167.26,150.0,150
-standard_cloudy,Powersave,203,False,164.86666666666667,150.0,150
-standard_cloudy,Powersave,204,False,166.55333333333334,150.0,150
-standard_cloudy,Powersave,205,False,158.91333333333333,150.0,150
-standard_cloudy,Powersave,206,False,171.2,150.0,150
-standard_cloudy,Powersave,207,False,169.80666666666667,150.0,150
-standard_cloudy,Powersave,208,False,169.22,150.0,150
-standard_cloudy,Powersave,209,False,168.79333333333332,150.0,150
-standard_cloudy,Powersave,210,False,166.99333333333334,150.0,150
-standard_cloudy,Powersave,211,False,166.87333333333333,150.0,150
-standard_cloudy,Powersave,212,False,166.88666666666666,150.0,150
-standard_cloudy,Powersave,213,False,171.62,150.0,150
-standard_cloudy,Powersave,214,False,170.73333333333332,150.0,150
-standard_cloudy,Powersave,215,False,167.62666666666667,150.0,150
-standard_cloudy,Powersave,216,False,162.41333333333333,150.0,150
-standard_cloudy,Powersave,217,False,167.12,150.0,150
-standard_cloudy,Powersave,218,False,165.94666666666666,150.0,150
-standard_cloudy,Powersave,219,False,164.59333333333333,150.0,150
-standard_cloudy,Powersave,220,False,165.50666666666666,150.0,150
-standard_cloudy,Powersave,221,False,167.18666666666667,150.0,150
-standard_cloudy,Powersave,222,False,167.09333333333333,150.0,150
-standard_cloudy,Powersave,223,False,160.75333333333333,150.0,150
-standard_cloudy,Powersave,224,False,167.32666666666665,150.0,150
-standard_cloudy,Powersave,225,False,165.42666666666668,150.0,150
-standard_cloudy,Powersave,226,False,166.52,150.0,150
-standard_cloudy,Powersave,227,False,167.49333333333334,150.0,150
-standard_cloudy,Powersave,228,False,166.04666666666665,150.0,150
-standard_cloudy,Powersave,229,False,163.39333333333335,150.0,150
-standard_cloudy,Static Threshold,200,False,4.586786666666667,672.0,150
-standard_cloudy,Static Threshold,201,False,3.9934333333333334,592.0,150
-standard_cloudy,Static Threshold,202,False,5.333566666666666,607.0,150
-standard_cloudy,Static Threshold,203,False,4.1001,612.0,150
-standard_cloudy,Static Threshold,204,False,4.086733333333333,607.0,150
-standard_cloudy,Static Threshold,205,False,3.9067333333333334,586.0,150
-standard_cloudy,Static Threshold,206,False,4.373466666666666,642.0,150
-standard_cloudy,Static Threshold,207,False,7.420413333333332,638.0,150
-standard_cloudy,Static Threshold,208,False,4.106766666666666,607.0,150
-standard_cloudy,Static Threshold,209,False,7.4339,668.0,150
-standard_cloudy,Static Threshold,210,False,4.5601,657.0,150
-standard_cloudy,Static Threshold,211,False,4.300173333333333,616.0,150
-standard_cloudy,Static Threshold,212,False,4.58684,667.0,150
-standard_cloudy,Static Threshold,213,False,4.5401,672.0,150
-standard_cloudy,Static Threshold,214,False,12.79422,617.0,150
-standard_cloudy,Static Threshold,215,False,4.506766666666667,671.0,150
-standard_cloudy,Static Threshold,216,False,4.113433333333333,611.0,150
-standard_cloudy,Static Threshold,217,False,4.333433333333333,638.0,150
-standard_cloudy,Static Threshold,218,False,4.106786666666667,607.0,150
-standard_cloudy,Static Threshold,219,False,4.2600999999999996,633.0,150
-standard_cloudy,Static Threshold,220,False,4.133466666666666,601.0,150
-standard_cloudy,Static Threshold,221,False,4.233466666666667,622.0,150
-standard_cloudy,Static Threshold,222,False,5.587066666666666,625.0,150
-standard_cloudy,Static Threshold,223,False,4.2600999999999996,635.0,150
-standard_cloudy,Static Threshold,224,False,4.42014,651.0,150
-standard_cloudy,Static Threshold,225,False,4.0268,599.0,150
-standard_cloudy,Static Threshold,226,False,4.286766666666667,623.0,150
-standard_cloudy,Static Threshold,227,False,4.353453333333333,628.0,150
-standard_cloudy,Static Threshold,228,False,4.2001,611.0,150
-standard_cloudy,Static Threshold,229,False,4.086786666666667,603.0,150
-standard_cloudy,Proposed PPO RL,200,False,5.2402,672.0,150
-standard_cloudy,Proposed PPO RL,201,False,4.553473333333333,592.0,150
-standard_cloudy,Proposed PPO RL,202,False,4.940180000000001,606.0,150
-standard_cloudy,Proposed PPO RL,203,False,5.10024,612.0,150
-standard_cloudy,Proposed PPO RL,204,False,4.493453333333334,607.0,150
-standard_cloudy,Proposed PPO RL,205,False,4.486846666666667,586.0,150
-standard_cloudy,Proposed PPO RL,206,False,5.553673333333333,642.0,150
-standard_cloudy,Proposed PPO RL,207,False,5.133473333333333,638.0,150
-standard_cloudy,Proposed PPO RL,208,False,5.033613333333333,607.0,150
-standard_cloudy,Proposed PPO RL,209,False,5.6401200000000005,664.0,150
-standard_cloudy,Proposed PPO RL,210,False,5.333513333333333,657.0,150
-standard_cloudy,Proposed PPO RL,211,False,5.140300000000001,614.0,150
-standard_cloudy,Proposed PPO RL,212,False,5.46016,667.0,150
-standard_cloudy,Proposed PPO RL,213,False,5.80028,672.0,150
-standard_cloudy,Proposed PPO RL,214,False,5.22026,617.0,150
-standard_cloudy,Proposed PPO RL,215,False,5.3735333333333335,671.0,150
-standard_cloudy,Proposed PPO RL,216,False,4.666826666666666,611.0,150
-standard_cloudy,Proposed PPO RL,217,False,5.146886666666667,638.0,150
-standard_cloudy,Proposed PPO RL,218,False,4.693533333333333,607.0,150
-standard_cloudy,Proposed PPO RL,219,False,4.8401,633.0,150
-standard_cloudy,Proposed PPO RL,220,False,5.0602599999999995,601.0,150
-standard_cloudy,Proposed PPO RL,221,False,4.90016,622.0,150
-standard_cloudy,Proposed PPO RL,222,False,4.96018,625.0,150
-standard_cloudy,Proposed PPO RL,223,False,5.106786666666667,634.0,150
-standard_cloudy,Proposed PPO RL,224,False,4.973533333333333,651.0,150
-standard_cloudy,Proposed PPO RL,225,False,4.8002,599.0,150
-standard_cloudy,Proposed PPO RL,226,False,5.22024,620.0,150
-standard_cloudy,Proposed PPO RL,227,False,4.973493333333334,628.0,150
-standard_cloudy,Proposed PPO RL,228,False,4.94016,611.0,150
-standard_cloudy,Proposed PPO RL,229,False,4.60018,603.0,150
-volatile,Powersave,200,False,166.28,150.0,150
-volatile,Powersave,201,False,161.78666666666666,150.0,150
-volatile,Powersave,202,False,170.61333333333334,150.0,150
-volatile,Powersave,203,False,161.82,150.0,150
-volatile,Powersave,204,False,167.08,150.0,150
-volatile,Powersave,205,False,163.25333333333333,150.0,150
-volatile,Powersave,206,False,167.64666666666668,150.0,150
-volatile,Powersave,207,False,164.02,150.0,150
-volatile,Powersave,208,False,165.78666666666666,150.0,150
-volatile,Powersave,209,False,174.26,150.0,150
-volatile,Powersave,210,False,166.68,150.0,150
-volatile,Powersave,211,False,168.98666666666668,150.0,150
-volatile,Powersave,212,False,169.48,150.0,150
-volatile,Powersave,213,False,172.14666666666668,150.0,150
-volatile,Powersave,214,False,163.82,150.0,150
-volatile,Powersave,215,False,169.85333333333332,150.0,150
-volatile,Powersave,216,False,167.78666666666666,150.0,150
-volatile,Powersave,217,False,165.95333333333335,150.0,150
-volatile,Powersave,218,False,164.32666666666665,150.0,150
-volatile,Powersave,219,False,166.19333333333333,150.0,150
-volatile,Powersave,220,False,160.3,150.0,150
-volatile,Powersave,221,False,164.16666666666666,150.0,150
-volatile,Powersave,222,False,166.84666666666666,150.0,150
-volatile,Powersave,223,False,169.52666666666667,150.0,150
-volatile,Powersave,224,False,170.39333333333335,150.0,150
-volatile,Powersave,225,False,168.18666666666667,150.0,150
-volatile,Powersave,226,False,163.27333333333334,150.0,150
-volatile,Powersave,227,False,166.96666666666667,150.0,150
-volatile,Powersave,228,False,165.44666666666666,150.0,150
-volatile,Powersave,229,False,160.2,150.0,150
-volatile,Static Threshold,200,False,4.426773333333333,656.0,150
-volatile,Static Threshold,201,False,4.206786666666667,626.0,150
-volatile,Static Threshold,202,False,4.173466666666666,603.0,150
-volatile,Static Threshold,203,False,4.24026,624.0,150
-volatile,Static Threshold,204,False,7.2471533333333324,612.0,150
-volatile,Static Threshold,205,False,7.493986666666666,598.0,150
-volatile,Static Threshold,206,False,5.160293333333334,626.0,150
-volatile,Static Threshold,207,False,4.300173333333333,624.0,150
-volatile,Static Threshold,208,False,14.007723333333331,609.0,150
-volatile,Static Threshold,209,False,4.4135,644.0,150
-volatile,Static Threshold,210,False,4.333466666666666,633.0,150
-volatile,Static Threshold,211,False,4.2068,612.0,150
-volatile,Static Threshold,212,False,4.586766666666667,675.0,150
-volatile,Static Threshold,213,False,9.534073333333332,655.0,150
-volatile,Static Threshold,214,False,18.734736666666663,584.0,150
-volatile,Static Threshold,215,False,8.760646666666666,653.0,150
-volatile,Static Threshold,216,False,4.146766666666666,619.0,150
-volatile,Static Threshold,217,False,4.353466666666667,639.0,150
-volatile,Static Threshold,218,False,5.35366,615.0,150
-volatile,Static Threshold,219,False,4.200139999999999,616.0,150
-volatile,Static Threshold,220,False,3.9267666666666665,588.0,150
-volatile,Static Threshold,221,False,4.3201,637.0,150
-volatile,Static Threshold,222,False,4.313466666666667,631.0,150
-volatile,Static Threshold,223,False,4.4667666666666666,654.0,150
-volatile,Static Threshold,224,False,9.707386666666666,627.0,150
-volatile,Static Threshold,225,False,10.760753333333332,594.0,150
-volatile,Static Threshold,226,False,6.613793333333334,626.0,150
-volatile,Static Threshold,227,False,4.280166666666666,623.0,150
-volatile,Static Threshold,228,False,7.227259999999999,618.0,150
-volatile,Static Threshold,229,False,4.106733333333334,603.0,150
-volatile,Proposed PPO RL,200,False,5.086846666666667,656.0,150
-volatile,Proposed PPO RL,201,False,4.86016,626.0,150
-volatile,Proposed PPO RL,202,False,5.113593333333333,603.0,150
-volatile,Proposed PPO RL,203,False,4.753433333333334,622.0,150
-volatile,Proposed PPO RL,204,False,4.953633333333334,612.0,150
-volatile,Proposed PPO RL,205,False,4.426806666666667,598.0,150
-volatile,Proposed PPO RL,206,False,5.120240000000001,626.0,150
-volatile,Proposed PPO RL,207,False,5.42028,624.0,150
-volatile,Proposed PPO RL,208,True,5.460842105263158,324.0,76
-volatile,Proposed PPO RL,209,False,6.473693333333333,644.0,150
-volatile,Proposed PPO RL,210,False,5.266846666666667,633.0,150
-volatile,Proposed PPO RL,211,False,5.006866666666666,612.0,150
-volatile,Proposed PPO RL,212,False,5.240139999999999,675.0,150
-volatile,Proposed PPO RL,213,False,5.80028,655.0,150
-volatile,Proposed PPO RL,214,True,5.154123076923077,276.0,65
-volatile,Proposed PPO RL,215,False,5.353633333333334,653.0,150
-volatile,Proposed PPO RL,216,False,4.766866666666666,619.0,150
-volatile,Proposed PPO RL,217,False,5.193553333333333,639.0,150
-volatile,Proposed PPO RL,218,False,4.813533333333333,615.0,150
-volatile,Proposed PPO RL,219,False,4.90028,616.0,150
-volatile,Proposed PPO RL,220,False,4.58016,588.0,150
-volatile,Proposed PPO RL,221,False,5.153553333333334,636.0,150
-volatile,Proposed PPO RL,222,False,5.60026,631.0,150
-volatile,Proposed PPO RL,223,False,5.746946666666667,654.0,150
-volatile,Proposed PPO RL,224,False,5.093673333333333,627.0,150
-volatile,Proposed PPO RL,225,False,4.793573333333334,594.0,150
-volatile,Proposed PPO RL,226,False,4.7801,626.0,150
-volatile,Proposed PPO RL,227,False,5.393573333333333,623.0,150
-volatile,Proposed PPO RL,228,False,4.886886666666666,617.0,150
-volatile,Proposed PPO RL,229,False,4.473493333333334,603.0,150
-clear_day,Powersave,200,False,169.38666666666666,150.0,150
-clear_day,Powersave,201,False,158.58,150.0,150
-clear_day,Powersave,202,False,167.26,150.0,150
-clear_day,Powersave,203,False,164.86666666666667,150.0,150
-clear_day,Powersave,204,False,166.55333333333334,150.0,150
-clear_day,Powersave,205,False,158.91333333333333,150.0,150
-clear_day,Powersave,206,False,171.2,150.0,150
-clear_day,Powersave,207,False,169.80666666666667,150.0,150
-clear_day,Powersave,208,False,169.22,150.0,150
-clear_day,Powersave,209,False,168.79333333333332,150.0,150
-clear_day,Powersave,210,False,166.99333333333334,150.0,150
-clear_day,Powersave,211,False,166.87333333333333,150.0,150
-clear_day,Powersave,212,False,166.88666666666666,150.0,150
-clear_day,Powersave,213,False,171.62,150.0,150
-clear_day,Powersave,214,False,170.73333333333332,150.0,150
-clear_day,Powersave,215,False,167.62666666666667,150.0,150
-clear_day,Powersave,216,False,162.41333333333333,150.0,150
-clear_day,Powersave,217,False,167.12,150.0,150
-clear_day,Powersave,218,False,165.94666666666666,150.0,150
-clear_day,Powersave,219,False,164.59333333333333,150.0,150
-clear_day,Powersave,220,False,165.50666666666666,150.0,150
-clear_day,Powersave,221,False,167.18666666666667,150.0,150
-clear_day,Powersave,222,False,167.09333333333333,150.0,150
-clear_day,Powersave,223,False,160.75333333333333,150.0,150
-clear_day,Powersave,224,False,167.32666666666665,150.0,150
-clear_day,Powersave,225,False,165.42666666666668,150.0,150
-clear_day,Powersave,226,False,166.52,150.0,150
-clear_day,Powersave,227,False,167.49333333333334,150.0,150
-clear_day,Powersave,228,False,166.04666666666665,150.0,150
-clear_day,Powersave,229,False,163.39333333333335,150.0,150
-clear_day,Static Threshold,200,False,4.526766666666666,672.0,150
-clear_day,Static Threshold,201,False,3.9734333333333334,592.0,150
-clear_day,Static Threshold,202,False,4.113466666666667,607.0,150
-clear_day,Static Threshold,203,False,4.1001,612.0,150
-clear_day,Static Threshold,204,False,4.046733333333333,607.0,150
-clear_day,Static Threshold,205,False,3.9067333333333334,586.0,150
-clear_day,Static Threshold,206,False,4.360133333333334,642.0,150
-clear_day,Static Threshold,207,False,4.326766666666667,638.0,150
-clear_day,Static Threshold,208,False,4.1001,607.0,150
-clear_day,Static Threshold,209,False,4.440066666666667,668.0,150
-clear_day,Static Threshold,210,False,4.3801,657.0,150
-clear_day,Static Threshold,211,False,4.173466666666666,616.0,150
-clear_day,Static Threshold,212,False,4.520133333333333,667.0,150
-clear_day,Static Threshold,213,False,4.513433333333333,672.0,150
-clear_day,Static Threshold,214,False,4.193433333333333,617.0,150
-clear_day,Static Threshold,215,False,4.493433333333333,671.0,150
-clear_day,Static Threshold,216,False,4.113433333333333,611.0,150
-clear_day,Static Threshold,217,False,4.333433333333333,638.0,150
-clear_day,Static Threshold,218,False,4.1001,607.0,150
-clear_day,Static Threshold,219,False,4.246766666666667,633.0,150
-clear_day,Static Threshold,220,False,4.0868,601.0,150
-clear_day,Static Threshold,221,False,4.193433333333333,622.0,150
-clear_day,Static Threshold,222,False,4.206766666666667,625.0,150
-clear_day,Static Threshold,223,False,4.2600999999999996,635.0,150
-clear_day,Static Threshold,224,False,4.3401,651.0,150
-clear_day,Static Threshold,225,False,4.020133333333333,599.0,150
-clear_day,Static Threshold,226,False,4.253433333333334,623.0,150
-clear_day,Static Threshold,227,False,4.226766666666666,628.0,150
-clear_day,Static Threshold,228,False,4.146766666666666,611.0,150
-clear_day,Static Threshold,229,False,4.066766666666666,603.0,150
-clear_day,Proposed PPO RL,200,False,5.2402,672.0,150
-clear_day,Proposed PPO RL,201,False,4.553473333333333,592.0,150
-clear_day,Proposed PPO RL,202,False,4.940180000000001,606.0,150
-clear_day,Proposed PPO RL,203,False,5.10024,612.0,150
-clear_day,Proposed PPO RL,204,False,4.493453333333334,607.0,150
-clear_day,Proposed PPO RL,205,False,4.486846666666667,586.0,150
-clear_day,Proposed PPO RL,206,False,5.553673333333333,642.0,150
-clear_day,Proposed PPO RL,207,False,5.133473333333333,638.0,150
-clear_day,Proposed PPO RL,208,False,5.033613333333333,607.0,150
-clear_day,Proposed PPO RL,209,False,5.6401200000000005,664.0,150
-clear_day,Proposed PPO RL,210,False,5.333513333333333,657.0,150
-clear_day,Proposed PPO RL,211,False,5.140300000000001,614.0,150
-clear_day,Proposed PPO RL,212,False,5.46016,667.0,150
-clear_day,Proposed PPO RL,213,False,5.80028,672.0,150
-clear_day,Proposed PPO RL,214,False,5.22026,617.0,150
-clear_day,Proposed PPO RL,215,False,5.3735333333333335,671.0,150
-clear_day,Proposed PPO RL,216,False,4.666826666666666,611.0,150
-clear_day,Proposed PPO RL,217,False,5.146886666666667,638.0,150
-clear_day,Proposed PPO RL,218,False,4.693533333333333,607.0,150
-clear_day,Proposed PPO RL,219,False,4.8401,633.0,150
-clear_day,Proposed PPO RL,220,False,5.0602599999999995,601.0,150
-clear_day,Proposed PPO RL,221,False,4.90016,622.0,150
-clear_day,Proposed PPO RL,222,False,4.96018,625.0,150
-clear_day,Proposed PPO RL,223,False,5.106786666666667,634.0,150
-clear_day,Proposed PPO RL,224,False,4.973533333333333,651.0,150
-clear_day,Proposed PPO RL,225,False,4.8002,599.0,150
-clear_day,Proposed PPO RL,226,False,5.22024,620.0,150
-clear_day,Proposed PPO RL,227,False,4.973493333333334,628.0,150
-clear_day,Proposed PPO RL,228,False,4.94016,611.0,150
-clear_day,Proposed PPO RL,229,False,4.60018,603.0,150
+standard_cloudy,Powersave,200,False,168.59333333333333,150.0,150
+standard_cloudy,Powersave,201,False,159.93333333333334,150.0,150
+standard_cloudy,Powersave,202,False,166.52,150.0,150
+standard_cloudy,Powersave,203,False,164.16666666666666,150.0,150
+standard_cloudy,Powersave,204,False,167.67333333333335,150.0,150
+standard_cloudy,Powersave,205,False,160.26,150.0,150
+standard_cloudy,Powersave,206,False,172.13333333333333,150.0,150
+standard_cloudy,Powersave,207,False,170.85333333333332,150.0,150
+standard_cloudy,Powersave,208,False,170.29333333333332,150.0,150
+standard_cloudy,Powersave,209,False,169.83333333333334,150.0,150
+standard_cloudy,Powersave,210,False,168.13333333333333,150.0,150
+standard_cloudy,Powersave,211,False,167.72,150.0,150
+standard_cloudy,Powersave,212,False,167.84666666666666,150.0,150
+standard_cloudy,Powersave,213,False,172.56,150.0,150
+standard_cloudy,Powersave,214,False,169.92666666666668,150.0,150
+standard_cloudy,Powersave,215,False,168.70666666666668,150.0,150
+standard_cloudy,Powersave,216,False,163.60666666666665,150.0,150
+standard_cloudy,Powersave,217,False,168.24666666666667,150.0,150
+standard_cloudy,Powersave,218,False,167.07333333333332,150.0,150
+standard_cloudy,Powersave,219,False,165.74666666666667,150.0,150
+standard_cloudy,Powersave,220,False,166.62666666666667,150.0,150
+standard_cloudy,Powersave,221,False,166.51333333333332,150.0,150
+standard_cloudy,Powersave,222,False,168.24666666666667,150.0,150
+standard_cloudy,Powersave,223,False,162.02,150.0,150
+standard_cloudy,Powersave,224,False,168.34,150.0,150
+standard_cloudy,Powersave,225,False,166.45333333333335,150.0,150
+standard_cloudy,Powersave,226,False,165.81333333333333,150.0,150
+standard_cloudy,Powersave,227,False,166.72,150.0,150
+standard_cloudy,Powersave,228,False,165.3,150.0,150
+standard_cloudy,Powersave,229,False,162.67333333333335,150.0,150
+standard_cloudy,Static Threshold,200,False,17.414540000000002,670.0,150
+standard_cloudy,Static Threshold,201,False,13.707673333333332,595.0000000000001,150
+standard_cloudy,Static Threshold,202,False,10.547393333333332,605.0,150
+standard_cloudy,Static Threshold,203,False,13.25426,612.0,150
+standard_cloudy,Static Threshold,204,False,10.860826666666666,610.0,150
+standard_cloudy,Static Threshold,205,False,12.267586666666666,589.0,150
+standard_cloudy,Static Threshold,206,False,11.267666666666665,645.0,150
+standard_cloudy,Static Threshold,207,False,8.647146666666668,641.0,150
+standard_cloudy,Static Threshold,208,False,12.654253333333333,610.0,150
+standard_cloudy,Static Threshold,209,False,18.00106666666667,671.0,150
+standard_cloudy,Static Threshold,210,False,16.954433333333334,660.0,150
+standard_cloudy,Static Threshold,211,False,15.274339999999999,619.0,150
+standard_cloudy,Static Threshold,212,False,15.867680000000004,670.0,150
+standard_cloudy,Static Threshold,213,False,15.31448,675.0,150
+standard_cloudy,Static Threshold,214,False,12.440886666666668,614.0,150
+standard_cloudy,Static Threshold,215,False,13.914313333333332,674.0,150
+standard_cloudy,Static Threshold,216,False,12.88098,614.0,150
+standard_cloudy,Static Threshold,217,False,11.160820000000001,641.0,150
+standard_cloudy,Static Threshold,218,False,11.300826666666667,610.0,150
+standard_cloudy,Static Threshold,219,False,10.747473333333332,636.0,150
+standard_cloudy,Static Threshold,220,False,12.854193333333333,604.0,150
+standard_cloudy,Static Threshold,221,False,11.900886666666667,620.0,150
+standard_cloudy,Static Threshold,222,False,13.220886666666667,628.0,150
+standard_cloudy,Static Threshold,223,False,13.24098,638.0,150
+standard_cloudy,Static Threshold,224,False,13.027613333333333,654.0,150
+standard_cloudy,Static Threshold,225,False,11.247586666666667,602.0,150
+standard_cloudy,Static Threshold,226,False,12.894293333333332,616.0,150
+standard_cloudy,Static Threshold,227,False,12.954006666666665,624.0,150
+standard_cloudy,Static Threshold,228,False,9.420646666666666,610.0,150
+standard_cloudy,Static Threshold,229,False,9.43416,602.0,150
+standard_cloudy,Proposed PPO RL,200,False,5.1401200000000005,670.0,150
+standard_cloudy,Proposed PPO RL,201,False,4.7001800000000005,595.0,150
+standard_cloudy,Proposed PPO RL,202,False,4.886846666666667,602.0,150
+standard_cloudy,Proposed PPO RL,203,False,4.9669066666666675,612.0,150
+standard_cloudy,Proposed PPO RL,204,False,4.666906666666667,610.0,150
+standard_cloudy,Proposed PPO RL,205,False,4.666906666666667,589.0,150
+standard_cloudy,Proposed PPO RL,206,False,5.82036,645.0,150
+standard_cloudy,Proposed PPO RL,207,False,5.2935533333333336,641.0,150
+standard_cloudy,Proposed PPO RL,208,False,5.313633333333334,610.0,150
+standard_cloudy,Proposed PPO RL,209,False,5.76022,667.0,150
+standard_cloudy,Proposed PPO RL,210,False,5.5202,660.0,150
+standard_cloudy,Proposed PPO RL,211,False,5.1936333333333335,617.0,150
+standard_cloudy,Proposed PPO RL,212,False,5.50018,670.0,150
+standard_cloudy,Proposed PPO RL,213,False,6.08028,675.0,150
+standard_cloudy,Proposed PPO RL,214,False,4.986926666666666,614.0,150
+standard_cloudy,Proposed PPO RL,215,False,5.566866666666667,674.0,150
+standard_cloudy,Proposed PPO RL,216,False,4.84018,614.0,150
+standard_cloudy,Proposed PPO RL,217,False,5.373573333333334,641.0,150
+standard_cloudy,Proposed PPO RL,218,False,4.886906666666667,610.0,150
+standard_cloudy,Proposed PPO RL,219,False,4.953453333333334,636.0,150
+standard_cloudy,Proposed PPO RL,220,False,5.26026,604.0,150
+standard_cloudy,Proposed PPO RL,221,False,4.913493333333333,620.0,150
+standard_cloudy,Proposed PPO RL,222,False,5.126886666666667,628.0,150
+standard_cloudy,Proposed PPO RL,223,False,5.24016,637.0,150
+standard_cloudy,Proposed PPO RL,224,False,5.153553333333334,654.0,150
+standard_cloudy,Proposed PPO RL,225,False,4.873553333333334,602.0,150
+standard_cloudy,Proposed PPO RL,226,False,5.040240000000001,616.0,150
+standard_cloudy,Proposed PPO RL,227,False,4.893473333333333,624.0,150
+standard_cloudy,Proposed PPO RL,228,False,4.8668466666666665,610.0,150
+standard_cloudy,Proposed PPO RL,229,False,4.52014,602.0,150
+volatile,Powersave,200,False,167.3,150.0,150
+volatile,Powersave,201,False,163.01333333333332,150.0,150
+volatile,Powersave,202,False,169.94666666666666,150.0,150
+volatile,Powersave,203,False,163.03333333333333,150.0,150
+volatile,Powersave,204,False,168.18666666666667,150.0,150
+volatile,Powersave,205,False,162.48666666666668,150.0,150
+volatile,Powersave,206,False,168.74,150.0,150
+volatile,Powersave,207,False,163.30666666666667,150.0,150
+volatile,Powersave,208,False,165.00666666666666,150.0,150
+volatile,Powersave,209,False,173.41333333333333,150.0,150
+volatile,Powersave,210,False,167.72,150.0,150
+volatile,Powersave,211,False,168.16666666666666,150.0,150
+volatile,Powersave,212,False,170.46,150.0,150
+volatile,Powersave,213,False,171.41333333333333,150.0,150
+volatile,Powersave,214,False,163.04,150.0,150
+volatile,Powersave,215,False,169.04666666666665,150.0,150
+volatile,Powersave,216,False,166.98666666666668,150.0,150
+volatile,Powersave,217,False,165.32666666666665,150.0,150
+volatile,Powersave,218,False,165.49333333333334,150.0,150
+volatile,Powersave,219,False,165.44666666666666,150.0,150
+volatile,Powersave,220,False,161.54,150.0,150
+volatile,Powersave,221,False,165.36,150.0,150
+volatile,Powersave,222,False,165.99333333333334,150.0,150
+volatile,Powersave,223,False,170.58666666666667,150.0,150
+volatile,Powersave,224,False,171.33333333333334,150.0,150
+volatile,Powersave,225,False,167.51333333333332,150.0,150
+volatile,Powersave,226,False,164.44666666666666,150.0,150
+volatile,Powersave,227,False,167.98,150.0,150
+volatile,Powersave,228,False,166.70666666666668,150.0,150
+volatile,Powersave,229,False,159.46,150.0,150
+volatile,Static Threshold,200,False,17.127806666666668,659.0,150
+volatile,Static Threshold,201,False,13.767526666666667,629.0,150
+volatile,Static Threshold,202,False,10.347466666666666,602.0,150
+volatile,Static Threshold,203,False,11.780853333333333,627.0,150
+volatile,Static Threshold,204,False,13.060873333333333,615.0,150
+volatile,Static Threshold,205,False,10.134033333333331,595.0,150
+volatile,Static Threshold,206,False,15.03442,629.0,150
+volatile,Static Threshold,207,False,15.181066666666668,622.0,150
+volatile,Static Threshold,208,False,10.827433333333333,608.0,150
+volatile,Static Threshold,209,False,14.374279999999999,644.0,150
+volatile,Static Threshold,210,False,12.414353333333333,636.0,150
+volatile,Static Threshold,211,False,11.3272,610.0,150
+volatile,Static Threshold,212,False,12.61422,678.0,150
+volatile,Static Threshold,213,False,16.361106666666668,654.0,150
+volatile,Static Threshold,214,False,11.074006666666667,581.0,150
+volatile,Static Threshold,215,False,17.034533333333336,649.0,150
+volatile,Static Threshold,216,False,13.120853333333333,617.0,150
+volatile,Static Threshold,217,False,13.15436,636.0,150
+volatile,Static Threshold,218,False,14.407553333333334,618.0,150
+volatile,Static Threshold,219,False,15.274426666666669,613.0,150
+volatile,Static Threshold,220,False,10.360766666666667,591.0,150
+volatile,Static Threshold,221,False,12.687513333333333,640.0,150
+volatile,Static Threshold,222,False,12.40754,630.0,150
+volatile,Static Threshold,223,False,16.134346666666666,657.0,150
+volatile,Static Threshold,224,False,12.867606666666667,630.0,150
+volatile,Static Threshold,225,False,12.840866666666667,593.0,150
+volatile,Static Threshold,226,False,11.81418,629.0,150
+volatile,Static Threshold,227,False,13.854346666666666,626.0,150
+volatile,Static Threshold,228,False,14.067673333333332,621.0,150
+volatile,Static Threshold,229,False,14.774386666666668,602.0,150
+volatile,Proposed PPO RL,200,False,5.2135533333333335,659.0,150
+volatile,Proposed PPO RL,201,False,5.0468866666666665,629.0,150
+volatile,Proposed PPO RL,202,False,5.033593333333333,602.0,150
+volatile,Proposed PPO RL,203,False,4.84012,625.0,150
+volatile,Proposed PPO RL,204,False,5.233653333333334,615.0,150
+volatile,Proposed PPO RL,205,False,4.366806666666666,595.0,150
+volatile,Proposed PPO RL,206,False,5.32028,629.0,150
+volatile,Proposed PPO RL,207,False,5.2602400000000005,622.0,150
+volatile,Proposed PPO RL,208,False,4.626846666666667,608.0,150
+volatile,Proposed PPO RL,209,False,6.213653333333333,644.0,150
+volatile,Proposed PPO RL,210,False,5.4601999999999995,636.0,150
+volatile,Proposed PPO RL,211,False,4.873513333333333,610.0,150
+volatile,Proposed PPO RL,212,False,5.400180000000001,678.0,150
+volatile,Proposed PPO RL,213,False,5.66028,654.0,150
+volatile,Proposed PPO RL,214,False,4.3067866666666665,581.0,150
+volatile,Proposed PPO RL,215,False,5.14026,649.0,150
+volatile,Proposed PPO RL,216,False,4.68016,617.0,150
+volatile,Proposed PPO RL,217,False,5.166886666666667,636.0,150
+volatile,Proposed PPO RL,218,False,5.02022,618.0,150
+volatile,Proposed PPO RL,219,False,4.746866666666667,613.0,150
+volatile,Proposed PPO RL,220,False,4.713513333333333,591.0,150
+volatile,Proposed PPO RL,221,False,5.36024,639.0,150
+volatile,Proposed PPO RL,222,False,5.3136133333333335,630.0,150
+volatile,Proposed PPO RL,223,False,6.006946666666667,657.0,150
+volatile,Proposed PPO RL,224,False,5.347006666666666,630.0,150
+volatile,Proposed PPO RL,225,False,4.713573333333334,593.0,150
+volatile,Proposed PPO RL,226,False,4.873453333333334,629.0,150
+volatile,Proposed PPO RL,227,False,5.54026,626.0,150
+volatile,Proposed PPO RL,228,False,5.106886666666667,620.0,150
+volatile,Proposed PPO RL,229,False,4.42012,602.0,150
+clear_day,Powersave,200,False,168.59333333333333,150.0,150
+clear_day,Powersave,201,False,159.93333333333334,150.0,150
+clear_day,Powersave,202,False,166.52,150.0,150
+clear_day,Powersave,203,False,164.16666666666666,150.0,150
+clear_day,Powersave,204,False,167.67333333333335,150.0,150
+clear_day,Powersave,205,False,160.26,150.0,150
+clear_day,Powersave,206,False,172.13333333333333,150.0,150
+clear_day,Powersave,207,False,170.85333333333332,150.0,150
+clear_day,Powersave,208,False,170.29333333333332,150.0,150
+clear_day,Powersave,209,False,169.83333333333334,150.0,150
+clear_day,Powersave,210,False,168.13333333333333,150.0,150
+clear_day,Powersave,211,False,167.72,150.0,150
+clear_day,Powersave,212,False,167.84666666666666,150.0,150
+clear_day,Powersave,213,False,172.56,150.0,150
+clear_day,Powersave,214,False,169.92666666666668,150.0,150
+clear_day,Powersave,215,False,168.70666666666668,150.0,150
+clear_day,Powersave,216,False,163.60666666666665,150.0,150
+clear_day,Powersave,217,False,168.24666666666667,150.0,150
+clear_day,Powersave,218,False,167.07333333333332,150.0,150
+clear_day,Powersave,219,False,165.74666666666667,150.0,150
+clear_day,Powersave,220,False,166.62666666666667,150.0,150
+clear_day,Powersave,221,False,166.51333333333332,150.0,150
+clear_day,Powersave,222,False,168.24666666666667,150.0,150
+clear_day,Powersave,223,False,162.02,150.0,150
+clear_day,Powersave,224,False,168.34,150.0,150
+clear_day,Powersave,225,False,166.45333333333335,150.0,150
+clear_day,Powersave,226,False,165.81333333333333,150.0,150
+clear_day,Powersave,227,False,166.72,150.0,150
+clear_day,Powersave,228,False,165.3,150.0,150
+clear_day,Powersave,229,False,162.67333333333335,150.0,150
+clear_day,Static Threshold,200,False,4.633473333333333,670.0,150
+clear_day,Static Threshold,201,False,4.046766666666667,595.0,150
+clear_day,Static Threshold,202,False,4.113433333333333,605.0,150
+clear_day,Static Threshold,203,False,4.226766666666666,612.0,150
+clear_day,Static Threshold,204,False,4.0934333333333335,610.0,150
+clear_day,Static Threshold,205,False,3.9534666666666665,589.0,150
+clear_day,Static Threshold,206,False,4.420133333333333,645.0,150
+clear_day,Static Threshold,207,False,4.3867666666666665,641.0,150
+clear_day,Static Threshold,208,False,4.173466666666666,610.0,150
+clear_day,Static Threshold,209,False,4.933653333333333,671.0,150
+clear_day,Static Threshold,210,False,4.4868,660.0,150
+clear_day,Static Threshold,211,False,4.2200999999999995,619.0,150
+clear_day,Static Threshold,212,False,4.5268,670.0,150
+clear_day,Static Threshold,213,False,4.7001,675.0,150
+clear_day,Static Threshold,214,False,4.12014,614.0,150
+clear_day,Static Threshold,215,False,4.606819999999999,674.0,150
+clear_day,Static Threshold,216,False,4.213486666666666,614.0,150
+clear_day,Static Threshold,217,False,4.400133333333333,641.0,150
+clear_day,Static Threshold,218,False,4.153453333333333,610.0,150
+clear_day,Static Threshold,219,False,4.313433333333333,636.0,150
+clear_day,Static Threshold,220,False,4.34688,604.0,150
+clear_day,Static Threshold,221,False,4.206806666666666,620.0,150
+clear_day,Static Threshold,222,False,4.273466666666667,628.0,150
+clear_day,Static Threshold,223,False,4.346786666666667,638.0,150
+clear_day,Static Threshold,224,False,4.386786666666667,654.0,150
+clear_day,Static Threshold,225,False,4.060133333333333,602.0,150
+clear_day,Static Threshold,226,False,4.2867999999999995,616.0,150
+clear_day,Static Threshold,227,False,4.233453333333333,624.0,150
+clear_day,Static Threshold,228,False,4.1334333333333335,610.0,150
+clear_day,Static Threshold,229,False,4.026766666666666,602.0,150
+clear_day,Proposed PPO RL,200,False,5.1401200000000005,670.0,150
+clear_day,Proposed PPO RL,201,False,4.7001800000000005,595.0,150
+clear_day,Proposed PPO RL,202,False,4.886846666666667,602.0,150
+clear_day,Proposed PPO RL,203,False,4.9669066666666675,612.0,150
+clear_day,Proposed PPO RL,204,False,4.666906666666667,610.0,150
+clear_day,Proposed PPO RL,205,False,4.666906666666667,589.0,150
+clear_day,Proposed PPO RL,206,False,5.82036,645.0,150
+clear_day,Proposed PPO RL,207,False,5.2935533333333336,641.0,150
+clear_day,Proposed PPO RL,208,False,5.313633333333334,610.0,150
+clear_day,Proposed PPO RL,209,False,5.76022,667.0,150
+clear_day,Proposed PPO RL,210,False,5.5202,660.0,150
+clear_day,Proposed PPO RL,211,False,5.1936333333333335,617.0,150
+clear_day,Proposed PPO RL,212,False,5.50018,670.0,150
+clear_day,Proposed PPO RL,213,False,6.08028,675.0,150
+clear_day,Proposed PPO RL,214,False,4.986926666666666,614.0,150
+clear_day,Proposed PPO RL,215,False,5.566866666666667,674.0,150
+clear_day,Proposed PPO RL,216,False,4.84018,614.0,150
+clear_day,Proposed PPO RL,217,False,5.373573333333334,641.0,150
+clear_day,Proposed PPO RL,218,False,4.886906666666667,610.0,150
+clear_day,Proposed PPO RL,219,False,4.953453333333334,636.0,150
+clear_day,Proposed PPO RL,220,False,5.26026,604.0,150
+clear_day,Proposed PPO RL,221,False,4.913493333333333,620.0,150
+clear_day,Proposed PPO RL,222,False,5.126886666666667,628.0,150
+clear_day,Proposed PPO RL,223,False,5.24016,637.0,150
+clear_day,Proposed PPO RL,224,False,5.153553333333334,654.0,150
+clear_day,Proposed PPO RL,225,False,4.873553333333334,602.0,150
+clear_day,Proposed PPO RL,226,False,5.040240000000001,616.0,150
+clear_day,Proposed PPO RL,227,False,4.893473333333333,624.0,150
+clear_day,Proposed PPO RL,228,False,4.8668466666666665,610.0,150
+clear_day,Proposed PPO RL,229,False,4.52014,602.0,150
