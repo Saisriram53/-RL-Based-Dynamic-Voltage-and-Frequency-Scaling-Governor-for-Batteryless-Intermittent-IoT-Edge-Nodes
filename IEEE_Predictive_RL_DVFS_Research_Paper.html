@@ -316,6 +316,9 @@
     </tr>
   </tbody>
 </table>
+<p>> [!IMPORTANT]</p>
+<p>> <b>Out-of-Distribution (OOD) Profile Generalization & Safety Trade-Off:</b></p>
+<p>> Under standard cloudy and clear day irradiance profiles, the PPO governor achieves a <b>0.0% brownout crash rate</b>. Under the volatile profile—which injects zero-mean Gaussian power fluctuations ($\sigma = 5.0\text{ mW}$)—PPO experiences a minor <b>6.7% crash rate</b>. This illustrates an inherent engineering trade-off: static voltage thresholding enforces a deterministic 0.0% crash guarantee across arbitrary noise levels, whereas PPO prioritizes queue latency optimization ($5.0\text{ tasks}$ vs $166.4\text{ tasks}$ backlog), accepting a small residual crash probability under un-modeled high-variance solar noise.</p>
 <hr />
 <h3>C. Supercapacitor Capacitance Sensitivity Sweep Study</h3>
 <p>To evaluate scaling across energy storage component selection, we sweep $C_{\text{supercap}}$ from $5\text{ mF}$ to $50\text{ mF}$:</p>

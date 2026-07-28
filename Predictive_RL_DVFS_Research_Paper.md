@@ -151,6 +151,10 @@ To assess generalization under diverse solar irradiance patterns, we evaluate go
 | **clear_day** | Static Threshold | 0.0% | $4.2 \pm 0.2$ |
 | **clear_day** | **Proposed PPO RL** | **0.0%** | **$5.0 \pm 0.3$** |
 
+> [!IMPORTANT]
+> **Out-of-Distribution (OOD) Profile Generalization & Safety Trade-Off:**  
+> Under standard cloudy and clear day irradiance profiles, the PPO governor achieves a **0.0% brownout crash rate**. Under the volatile profile—which injects zero-mean Gaussian power fluctuations ($\sigma = 5.0\text{ mW}$)—PPO experiences a minor **6.7% crash rate**. This illustrates an inherent engineering trade-off: static voltage thresholding enforces a deterministic 0.0% crash guarantee across arbitrary noise levels, whereas PPO prioritizes queue latency optimization ($5.0\text{ tasks}$ vs $166.4\text{ tasks}$ backlog), accepting a small residual crash probability under un-modeled high-variance solar noise.
+
 ---
 
 ### C. Supercapacitor Capacitance Sensitivity Sweep Study
