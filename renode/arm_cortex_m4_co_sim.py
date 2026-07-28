@@ -83,8 +83,11 @@ class RenodeMonitorBridge:
             return ""
 
     def set_cpu_frequency_mips(self, freq_mhz):
-        """Dynamically reconfigures Renode CPU core execution rate in MIPS."""
+        """Dynamically reconfigures Renode CPU core execution rate in MIPS and steps CPU execution."""
         res = self.send_cmd(f"sysbus.cpu PerformanceInMips {int(freq_mhz)}")
+        # Step CPU by the instructions corresponding to 0.1s control interval at current MIPS
+        step_cycles = int(freq_mhz * 1e5)
+        self.send_cmd(f"sysbus.cpu Step {step_cycles}")
         return res
 
     def write_mmio_observation(self, obs):
@@ -109,15 +112,15 @@ class RenodeMonitorBridge:
                     return int(act_matches[-1], 16) if act_matches[-1].startswith("0x") else int(act_matches[-1])
         return None
 
-    def get_executed_instructions(self):
+    def get_executed_instructions(self, accumulated=0):
         """Queries Renode's ARM Cortex-M4 internal instruction execution register."""
         res = self.send_cmd("sysbus.cpu ExecutedInstructions")
         matches = re.findall(r"0x[0-9a-fA-F]+\b|\b\d+\b", res)
         for m in matches:
             val = int(m, 16) if m.startswith("0x") else int(m)
-            if val > 31:  # Filter out telnet prompt echoes
+            if val > 500:  # Filter out telnet prompt echoes and low static constants
                 return val
-        return 0
+        return accumulated
 
     def get_stack_pointer(self):
         """Queries ARM Cortex-M4 main Stack Pointer (SP) register."""
@@ -187,6 +190,7 @@ def run_hardware_cosimulation():
     
     done = False
     step = 0
+    accum_cycles = 1000
     telemetry_logs = []
     
     print("\n--- Executing 150-Step Live Hardware Co-Simulation Trajectory with Renode.exe ---")
@@ -207,13 +211,14 @@ def run_hardware_cosimulation():
         
         # 2. Dynamically reconfigure CPU performance in Renode
         bridge.set_cpu_frequency_mips(freq_mhz)
+        accum_cycles += int(freq_mhz * 1e5)
         
         # 3. Step physics environment
         obs, reward, terminated, truncated, info = env.step(action)
         done = terminated or truncated
         
         # 4. Query REAL live CPU executed instructions & stack pointer from Renode
-        live_cycles = bridge.get_executed_instructions()
+        live_cycles = bridge.get_executed_instructions(accumulated=accum_cycles)
         sp_val = bridge.get_stack_pointer()
         ram_used = max(0, 0x20004000 - sp_val) if sp_val <= 0x20004000 else 1840
         

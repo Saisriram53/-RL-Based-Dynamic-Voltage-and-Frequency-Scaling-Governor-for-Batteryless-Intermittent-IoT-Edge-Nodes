@@ -49,7 +49,8 @@ class EnergyHarvestingDVFSEnv(gym.Env):
         self.include_gradient = include_gradient
         
         # 2. Physical Hardware Parameters
-        self.C_supercap = float(C_supercap) # Configurable Supercapacitor capacitance (F)
+        self.C_supercap_base = float(C_supercap) # Configurable Supercapacitor capacitance (F)
+        self.C_supercap = float(C_supercap)
         self.V_max = 3.3                   # Maximum operating voltage ceiling
         self.V_brownout = 1.8              # Crash threshold (SRAM reset)
         self.alpha_CL = 1e-10              # Effective capacitance switching load (100 pF)
@@ -104,9 +105,11 @@ class EnergyHarvestingDVFSEnv(gym.Env):
         
         # Apply Domain Randomization across episodes using Gymnasium isolated RNG
         if self.domain_randomization:
-            self.R_esr = float(self.np_random.uniform(0.3, 0.7))         # ESR varies between 0.3 - 0.7 Ohm
-            self.P_leakage = float(self.np_random.uniform(0.0015, 0.0025))# Leakage varies between 1.5 - 2.5 mW
+            self.C_supercap = float(self.np_random.uniform(0.005, 0.050))       # Capacitance varies 5 mF to 50 mF
+            self.R_esr = float(self.np_random.uniform(0.3, 0.7))                 # ESR varies between 0.3 - 0.7 Ohm
+            self.P_leakage = float(self.np_random.uniform(0.0015, 0.0025))        # Leakage varies between 1.5 - 2.5 mW
         else:
+            self.C_supercap = self.C_supercap_base
             self.R_esr = self.R_esr_base
             self.P_leakage = self.base_P_leakage
             
@@ -171,7 +174,7 @@ class EnergyHarvestingDVFSEnv(gym.Env):
         is_brownout = (V_terminal <= self.V_brownout or self.V_cap <= self.V_brownout)
         
         if is_brownout:
-            reward = -200.0   # Severe brownout crash penalty
+            reward = -2000.0   # Severe brownout crash penalty to prevent reward exploitation
             terminated = True
         else:
             reward += (tasks_processed_actual * 3.0)   # Task completion reward
