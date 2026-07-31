@@ -46,4 +46,12 @@ jobs:
 
       - name: Verify On-Chip C Policy Matches PyTorch Reference (Hardware Validation Regression Test)
         run: |
-          pytest tests/test_c_policy_parity.py -v -rs
+          set -o pipefail
+          pytest tests/test_c_policy_parity.py -v -rs 2>&1 | tee pytest_parity_output.txt
+
+      - name: Upload Parity Test Output (debug artifact)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parity-test-output
+          path: pytest_parity_output.txt
