@@ -1,8 +1,14 @@
 # Core Dependencies for Gradient-Aware RL DVFS Governor
-numpy>=1.24.0,<2.0.0
-gymnasium>=0.29.0,<1.0.0
-stable-baselines3>=2.2.0,<3.0.0
-torch>=2.1.0,<2.5.0
+# Version floors match the environment the committed models/*.zip and
+# models/**/*_vecnormalize.pkl were actually trained and saved with; numpy's
+# internal module layout changed between 1.x and 2.x (numpy.core ->
+# numpy._core), so cloudpickled SB3 model archives saved under numpy 2.x
+# cannot be deserialized under numpy<2.0 -- pin accordingly rather than
+# pinning below the version actually used.
+numpy>=2.0.0,<3.0.0
+gymnasium>=1.0.0,<2.0.0
+stable-baselines3>=2.8.0,<3.0.0
+torch>=2.5.0,<3.0.0
 matplotlib>=3.7.0
 scipy>=1.10.0,<2.0.0
 python-docx>=1.2.0
