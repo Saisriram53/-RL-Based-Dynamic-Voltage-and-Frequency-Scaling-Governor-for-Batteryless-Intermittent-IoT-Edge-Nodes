@@ -6,3 +6,4 @@ torch>=2.1.0,<2.5.0
 matplotlib>=3.7.0
 scipy>=1.10.0,<2.0.0
 python-docx>=1.2.0
+pytest>=7.4.0
